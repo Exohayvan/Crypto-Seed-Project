@@ -65,7 +65,8 @@ Coming soon will be auto payouts for balanced adresses as well as other coins.
 ### Built With
 ![Python][python]
 
-### Operating Systems
+### Operating Systems list
+Systems are listed as "OS" and "Build Status". Build status are, "Latest Stable Version"/"processing"/"failed".
 If missing one you use please reach out on discord!
 
 ![Ubuntu][ubuntu-shield]![Build][0.0.1-alpha]
