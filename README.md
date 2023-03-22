@@ -63,7 +63,7 @@
 Project is made to check Private Keys for a balance, using a proxy.
 Coming soon will be auto payouts for balanced adresses as well as other coins.
 ### Built With
-![Python][python]
+![Python][python]![Version][python-version]
 
 ![VSCode][vsc]
 
@@ -172,6 +172,7 @@ Project Link: [https://github.com/Exohayvan/Crypto-Seed-Project](https://github.
 [license-url]: https://github.com/Exohayvan/Crypto-Seed-Project/blob/main/LICENSE
 
 [python]: https://img.shields.io/badge/python-3670A0?style=for-the-badge&logo=python&logoColor=ffdd54
+[py-version]: https://img.shields.io/badge/-v3.11%2B-lightgrey?style=for-the-badge
 
 [vsc]: https://img.shields.io/badge/Visual%20Studio%20Code-0078d7.svg?style=for-the-badge&logo=visual-studio-code&logoColor=white
 
