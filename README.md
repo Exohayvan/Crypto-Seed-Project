@@ -63,7 +63,7 @@
 Project is made to check Private Keys for a balance, using a proxy.
 Coming soon will be auto payouts for balanced adresses as well as other coins.
 ### Built With
-![Python](https://img.shields.io/badge/python-3670A0?style=for-the-badge&logo=python&logoColor=ffdd54)
+![Python][python]
 
 ### Operating Systems
 If missing one you use please reach out on discord!
@@ -164,6 +164,8 @@ Project Link: [https://github.com/Exohayvan/Crypto-Seed-Project](https://github.
 [license-shield]: https://img.shields.io/github/license/Exohayvan/crypto-seed-project.svg?style=for-the-badge
 [license-url]: https://github.com/Exohayvan/Crypto-Seed-Project/blob/main/LICENSE
 
+[python]: https://img.shields.io/badge/python-3670A0?style=for-the-badge&logo=python&logoColor=ffdd54
+
 [ubuntu-shield]: https://img.shields.io/badge/Ubuntu-E95420?style=for-the-badge&logo=ubuntu&logoColor=white
 [ios-shield]: https://img.shields.io/badge/iOS-000000?style=for-the-badge&logo=ios&logoColor=white
 [windows-shield]: https://img.shields.io/badge/Windows-0078D6?style=for-the-badge&logo=windows&logoColor=white
@@ -179,4 +181,4 @@ Project Link: [https://github.com/Exohayvan/Crypto-Seed-Project](https://github.
 [untested]: https://img.shields.io/badge/-untested-lightgrey
 [fail]: https://img.shields.io/badge/-failed-red
 [processing]: https://img.shields.io/badge/-processing-yellow
-[0.0.1-alpha]: https://img.shields.io/badge/-0.0.1--alpha-brightgreen
+[0.0.1-alpha]: https://img.shields.io/badge/-v0.0.1--alpha-brightgreen
