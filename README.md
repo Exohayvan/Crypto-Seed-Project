@@ -66,11 +66,11 @@ Coming soon will be auto payouts for balanced adresses as well as other coins.
 ![Python](https://img.shields.io/badge/python-3670A0?style=for-the-badge&logo=python&logoColor=ffdd54)
 
 ### Tested on these Operating Systems
-![Ubuntu](https://img.shields.io/badge/Ubuntu-E95420?style=for-the-badge&logo=ubuntu&logoColor=white)(https://img.shields.io/badge/-0.0.1--alpha-brightgreen)
+![Ubuntu](https://img.shields.io/badge/Ubuntu-E95420?style=for-the-badge&logo=ubuntu&logoColor=white)![Build](https://img.shields.io/badge/-0.0.1--alpha-brightgreen)
 
-![iOS](https://img.shields.io/badge/iOS-000000?style=for-the-badge&logo=ios&logoColor=white)(https://img.shields.io/badge/-0.0.1--alpha-brightgreen)
+![iOS](https://img.shields.io/badge/iOS-000000?style=for-the-badge&logo=ios&logoColor=white)![Build](https://img.shields.io/badge/-0.0.1--alpha-brightgreen)
 
-![Windows](https://img.shields.io/badge/Windows-0078D6?style=for-the-badge&logo=windows&logoColor=white)(https://img.shields.io/badge/-0.0.1--alpha-brightgreen)
+![Windows](https://img.shields.io/badge/Windows-0078D6?style=for-the-badge&logo=windows&logoColor=white)![Build](https://img.shields.io/badge/-0.0.1--alpha-brightgreen)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
