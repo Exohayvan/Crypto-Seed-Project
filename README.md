@@ -5,7 +5,7 @@
 [![Stargazers][stars-shield]][stars-url]
 [![Issues][issues-shield]][issues-url]
 [![MIT License][license-shield]][license-url]
-[![Discord](https://img.shields.io/discord/1074536450353287188?logo=discord&style=for-the-badge)](https://discord.gg/EXFrWNpd)
+[![Discord][discord-id]][discord-invite]
 <a href="https://discord.gg/EXFrWNpd">
         <img src="https://img.shields.io/discord/1074536450353287188?logo=discord&style=for-the-badge"
             alt="chat on Discord"></a>
@@ -196,7 +196,7 @@ Project Link: [https://github.com/Exohayvan/Crypto-Seed-Project](https://github.
 
 
 
-[discord-id]: 1074536450353287188
+[discord-id]: https://img.shields.io/discord/1074536450353287188?logo=discord&style=for-the-badge
 [discord-invite]: https://discord.gg/EXFrWNpd
 
 [untested]: https://img.shields.io/badge/-untested-lightgrey?style=for-the-badge
