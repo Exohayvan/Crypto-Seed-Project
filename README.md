@@ -173,4 +173,4 @@ Project Link: [https://github.com/Exohayvan/Crypto-Seed-Project](https://github.
 [issues-shield]: https://img.shields.io/github/issues/Exohayvan/crypto-seed-project.svg?style=for-the-badge
 [issues-url]: https://github.com/Exohayvan/crypto-seed-project/issues
 [license-shield]: https://img.shields.io/github/license/Exohayvan/crypto-seed-project.svg?style=for-the-badge
-[license-url]: https://github.com/Exohayvan/crypto-seed-project/LICENSE.md
+[license-url]: https://github.com/Exohayvan/crypto-seed-project/blob/master/LICENSE.md
