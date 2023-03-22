@@ -107,11 +107,14 @@ To get a local copy up and running follow these simple example steps.
 ### Installation
 
 1. Install requirements.
-2. Clone or download a package of the repo
+2. Clone or download a package of the repo.
    ```sh
    git clone https://github.com/Exohayvan/Crypto-Seed-Project.git
    ```
-More instructions coming soon. Not Finished
+3. Run.
+   ```sh
+   python3 main.pyc
+   ```
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
