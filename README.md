@@ -5,7 +5,7 @@
 [![Stargazers][stars-shield]][stars-url]
 [![Issues][issues-shield]][issues-url]
 [![MIT License][license-shield]][license-url]
-<a href=discord-invite>
+<a href="https://discord.gg/EXFrWNpd">
         <img src="https://img.shields.io/discord/1074536450353287188?logo=discord"
             alt="chat on Discord"></a>
 
@@ -63,6 +63,11 @@
 Project is made to check Private Keys for a balance, using a proxy.
 Coming soon will be auto payouts for balanced adresses as well as other coins.
 ### Built With ![Python](https://img.shields.io/badge/python-3670A0?style=for-the-badge&logo=python&logoColor=ffdd54)
+
+### Tested on these Operating Systems
+![Ubuntu](https://img.shields.io/badge/Ubuntu-E95420?style=for-the-badge&logo=ubuntu&logoColor=white)
+![iOS](https://img.shields.io/badge/iOS-000000?style=for-the-badge&logo=ios&logoColor=white)
+![Windows](https://img.shields.io/badge/Windows-0078D6?style=for-the-badge&logo=windows&logoColor=white)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
