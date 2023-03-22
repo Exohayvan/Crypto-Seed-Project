@@ -73,6 +73,7 @@ If missing one you use please reach out on discord!
 
 ![Windows][windows-shield]![Build][0.0.1-alpha]
 
+![OpenWRT][openwrt-shield]
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 <!-- GETTING STARTED -->
@@ -157,6 +158,11 @@ Project Link: [https://github.com/Exohayvan/Crypto-Seed-Project](https://github.
 [ubuntu-shield]: https://img.shields.io/badge/Ubuntu-E95420?style=for-the-badge&logo=ubuntu&logoColor=white
 [ios-shield]: https://img.shields.io/badge/iOS-000000?style=for-the-badge&logo=ios&logoColor=white
 [windows-shield]: https://img.shields.io/badge/Windows-0078D6?style=for-the-badge&logo=windows&logoColor=white
+[macos-shield]: https://img.shields.io/badge/mac%20os-000000?style=for-the-badge&logo=macos&logoColor=F0F0F0
+[openwrt-shield]: https://img.shields.io/badge/OpenWRT-00B5E2?style=for-the-badge&logo=OpenWrt&logoColor=white
+[android-shield]: https://img.shields.io/badge/Android-3DDC84?style=for-the-badge&logo=android&logoColor=white
+[debian-shield]: https://img.shields.io/badge/Debian-D70A53?style=for-the-badge&logo=debian&logoColor=white
+[chromeos-shield]: https://img.shields.io/badge/chrome%20os-3d89fc?style=for-the-badge&logo=google%20chrome&logoColor=white
 
 [discord-id]: 1074536450353287188
 [discord-invite]: https://discord.gg/EXFrWNpd
