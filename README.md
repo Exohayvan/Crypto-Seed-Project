@@ -25,7 +25,8 @@ THIS README.md is just a placeholder right now!
 [![MIT License][license-shield]][license-url]
 
 ![Discord Shield](https://discord.com/api/guilds/1074536450353287188/widget.png?style=shield)
-
+Join the discord here!
+<a href="https://discord.gg/EXFrWNpd"><strong>Join the discord here »</strong></a>
 
 
 <!-- PROJECT LOGO -->
