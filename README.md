@@ -6,7 +6,7 @@
 [![Issues][issues-shield]][issues-url]
 [![MIT License][license-shield]][license-url]
 [![Discord][discord-id]][discord-invite]
-![Version][package-version]
+
 
 <!-- PROJECT LOGO -->
 <br />
@@ -191,8 +191,6 @@ Project Link: [https://github.com/Exohayvan/Crypto-Seed-Project](https://github.
 [chromeos-shield]: https://img.shields.io/badge/chrome%20os-3d89fc?style=for-the-badge&logo=google%20chrome&logoColor=white
 [nixos-shield]: https://img.shields.io/badge/NIXOS-5277C3.svg?style=for-the-badge&logo=NixOS&logoColor=white
 [alpine-shield]: https://img.shields.io/badge/Alpine_Linux-%230D597F.svg?style=for-the-badge&logo=alpine-linux&logoColor=white
-
-[package-version]: https://img.shields.io/github/package-json/v/Exohayvan/Crypto-Seed-Project.svg?style=for-the-badge
 
 [discord-id]: https://img.shields.io/discord/1074536450353287188?logo=discord&style=for-the-badge
 [discord-invite]: https://discord.gg/EXFrWNpd
