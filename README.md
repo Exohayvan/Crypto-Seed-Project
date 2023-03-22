@@ -73,6 +73,8 @@ If missing one you use please reach out on discord!
 
 ![Windows][windows-shield]![Build][0.0.1-alpha]
 
+![MacOS][macos-shield]![Build][fail]
+
 ![OpenWRT][openwrt-shield]![Build][processing]
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
