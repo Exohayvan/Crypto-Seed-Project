@@ -23,7 +23,7 @@ THIS README.md is just a placeholder right now!
 [![Stargazers][stars-shield]][stars-url]
 [![Issues][issues-shield]][issues-url]
 [![MIT License][license-shield]][license-url]
-<a href="https://discord.gg/HjJCwm5">
+<a href="https://discord.gg/EXFrWNpd">
         <img src="https://img.shields.io/discord/1074536450353287188?logo=discord"
             alt="chat on Discord"></a>
 
