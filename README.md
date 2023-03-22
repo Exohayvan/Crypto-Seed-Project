@@ -34,10 +34,11 @@ THIS README.md is just a placeholder right now!
     <img src="images/logo.png" alt="Logo" width="80" height="80">
   </a>
 
-  <h3 align="center">Best-README-Template</h3>
+  <h3 align="center">Crypto Seed Project</h3>
 
   <p align="center">
-    An awesome README template to jumpstart your projects!
+    Project for brute forcing private keys!
+    For educational use only.
     <br />
     <a href="https://github.com/ExoHayvan/Crypto-Seed-Project"><strong>Explore the docs »</strong></a>
     <br />
