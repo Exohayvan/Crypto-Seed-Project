@@ -24,7 +24,7 @@ THIS README.md is just a placeholder right now!
 [![Stargazers][stars-shield]][stars-url]
 [![Issues][issues-shield]][issues-url]
 [![MIT License][license-shield]][license-url]
-![Discord Shield](https://discord.com/api/guilds/1074536450353287188/widget.json?style=shield)
+![Discord Shield](https://discord.com/api/guilds/1074536450353287188/widget.png?style=shield)(https://discord.gg/EXFrWNpd)
 
 
 
