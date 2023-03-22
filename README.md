@@ -5,6 +5,7 @@
 [![Stargazers][stars-shield]][stars-url]
 [![Issues][issues-shield]][issues-url]
 [![MIT License][license-shield]][license-url]
+[![Discord](https://img.shields.io/discord/1074536450353287188?logo=discord&style=for-the-badge)](https://discord.gg/EXFrWNpd)
 <a href="https://discord.gg/EXFrWNpd">
         <img src="https://img.shields.io/discord/1074536450353287188?logo=discord&style=for-the-badge"
             alt="chat on Discord"></a>
