@@ -68,7 +68,7 @@ Coming soon will be auto payouts for balanced adresses as well as other coins.
 ### Tested on these Operating Systems
 ![Ubuntu](https://img.shields.io/badge/Ubuntu-E95420?style=for-the-badge&logo=ubuntu&logoColor=white)![build][alpha-0.1.1]
 
-![iOS](https://img.shields.io/badge/iOS-000000?style=for-the-badge&logo=ios&logoColor=white)![build][alpha-0.1.1]
+![iOS](https://img.shields.io/badge/iOS-000000?style=for-the-badge&logo=ios&logoColor=white)[![build][alpha-0.1.1]]
 
 ![Windows](https://img.shields.io/badge/Windows-0078D6?style=for-the-badge&logo=windows&logoColor=white)![build][alpha-0.1.1]
 
