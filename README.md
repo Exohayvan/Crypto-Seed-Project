@@ -6,7 +6,7 @@
 [![Issues][issues-shield]][issues-url]
 [![MIT License][license-shield]][license-url]
 <a href="https://discord.gg/EXFrWNpd">
-        <img src="https://img.shields.io/discord/1074536450353287188?logo=discord"
+        <img src="https://img.shields.io/discord/1074536450353287188?logo=discord&style=for-the-badge"
             alt="chat on Discord"></a>
 
 <!-- PROJECT LOGO -->
