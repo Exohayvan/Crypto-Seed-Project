@@ -169,7 +169,7 @@ Project Link: [https://github.com/Exohayvan/Crypto-Seed-Project](https://github.
 [forks-shield]: https://img.shields.io/github/forks/Exohayvan/crypto-seed-project.svg?style=for-the-badge
 [forks-url]: https://github.com/Exohayvan/crypto-seed-project/network/members
 [stars-shield]: https://img.shields.io/github/stars/Exohayvan/crypto-seed-project.svg?style=for-the-badge
-[stars-url]: https://github.com/Exohayvan/crypto-seed-projectstargazers
+[stars-url]: https://github.com/Exohayvan/crypto-seed-project/stargazers
 [issues-shield]: https://img.shields.io/github/issues/Exohayvan/crypto-seed-project.svg?style=for-the-badge
 [issues-url]: https://github.com/Exohayvan/crypto-seed-project/issues
 [license-shield]: https://img.shields.io/github/license/Exohayvan/crypto-seed-project.svg?style=for-the-badge
