@@ -178,7 +178,7 @@ Project Link: [https://github.com/Exohayvan/Crypto-Seed-Project](https://github.
 [discord-id]: 1074536450353287188
 [discord-invite]: https://discord.gg/EXFrWNpd
 
-[untested]: https://img.shields.io/badge/-untested-lightgrey
-[fail]: https://img.shields.io/badge/-failed-red
-[processing]: https://img.shields.io/badge/-processing-yellow
-[0.0.1-alpha]: https://img.shields.io/badge/-v0.0.1--alpha-brightgreen
+[untested]: https://img.shields.io/badge/-untested-lightgrey?style=for-the-badge
+[fail]: https://img.shields.io/badge/-failed-red?style=for-the-badge
+[processing]: https://img.shields.io/badge/-processing-yellow?style=for-the-badge
+[0.0.1-alpha]: https://img.shields.io/badge/-v0.0.1--alpha-brightgreen?style=for-the-badge
