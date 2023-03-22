@@ -84,7 +84,8 @@ THIS README.md is just a placeholder right now!
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
-There are many great README templates available on GitHub; however, I didn't find one that really suited my needs so I created this enhanced one. I want to create a README template so amazing that it'll be the last one you ever need -- I think this is it.
+Project is made to check Private Keys for a balance, using a proxy.
+Coming soon will be auto payouts for balanced adresses as well as other coins.
 
 Here's why:
 * Your time should be focused on creating something amazing. A project that solves a problem and helps others
