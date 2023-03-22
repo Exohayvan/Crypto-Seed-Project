@@ -77,11 +77,11 @@ If missing one you use please reach out on discord!
 
 ![OpenWRT][openwrt-shield]![Build][processing]
 
-![Android][android-shield]
+![Android][android-shield]![Build][untested]
 
-![Debian][debian-shield]
+![Debian][debian-shield]![Build][untested]
 
-![ChromeOS][chromeos-shield]
+![ChromeOS][chromeos-shield]![Build][untested]
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -176,6 +176,7 @@ Project Link: [https://github.com/Exohayvan/Crypto-Seed-Project](https://github.
 [discord-id]: 1074536450353287188
 [discord-invite]: https://discord.gg/EXFrWNpd
 
+[untested]: https://img.shields.io/badge/-untested-lightgrey
 [fail]: https://img.shields.io/badge/-failed-red
 [processing]: https://img.shields.io/badge/-processing-yellow
 [0.0.1-alpha]: https://img.shields.io/badge/-0.0.1--alpha-brightgreen
