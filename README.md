@@ -67,6 +67,7 @@ Coming soon will be auto payouts for balanced adresses as well as other coins.
 
 ### Operating Systems
 If missing one you use please reach out on discord!
+
 ![Ubuntu][ubuntu-shield]![Build][0.0.1-alpha]
 
 ![iOS][ios-shield]![Build][0.0.1-alpha]
