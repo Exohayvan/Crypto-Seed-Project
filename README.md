@@ -76,6 +76,13 @@ If missing one you use please reach out on discord!
 ![MacOS][macos-shield]![Build][fail]
 
 ![OpenWRT][openwrt-shield]![Build][processing]
+
+![Android][android-shield]
+
+![Debian][debian-shield]
+
+![ChromeOS][chromeos-shield]
+
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 <!-- GETTING STARTED -->
