@@ -101,7 +101,7 @@ To get a local copy up and running follow these simple example steps.
 
 * Python
   ```sh
-  python install requirements.txt (not setup yet)
+  pip install -r requirements.txt
   ```
 
 ### Installation
