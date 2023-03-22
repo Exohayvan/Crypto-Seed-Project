@@ -24,7 +24,7 @@ THIS README.md is just a placeholder right now!
 [![Stargazers][stars-shield]][stars-url]
 [![Issues][issues-shield]][issues-url]
 [![MIT License][license-shield]][license-url]
-![Discord Shield](https://discord.com/api/guilds/1074536450353287188/widget.png?style=shield)(https://discord.gg/EXFrWNpd)
+![Discord Shield](https://discord.com/api/guilds/1074536450353287188/widget.png?style=shield)
 
 
 
@@ -250,8 +250,7 @@ Use this space to list resources you find helpful and would like to give credit 
 [issues-url]: https://github.com/Exohayvan/crypto-seed-project/issues
 [license-shield]: https://img.shields.io/github/license/Exohayvan/crypto-seed-project.svg?style=for-the-badge
 [license-url]: https://github.com/Exohayvan/crypto-seed-project/blob/master/LICENSE.txt
-[linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555
-[linkedin-url]: https://linkedin.com/in/othneildrew
+
 [product-screenshot]: images/screenshot.png
 [Next.js]: https://img.shields.io/badge/next.js-000000?style=for-the-badge&logo=nextdotjs&logoColor=white
 [Next-url]: https://nextjs.org/
