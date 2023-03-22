@@ -67,8 +67,10 @@ Coming soon will be auto payouts for balanced adresses as well as other coins.
 
 ### Operating Systems
 If missing one you use please reach out on discord!
-![Ubuntu](https://img.shields.io/badge/Ubuntu-E95420?style=for-the-badge&logo=ubuntu&logoColor=white)![Build](https://img.shields.io/badge/-0.0.1--alpha-brightgreen)
+![Ubuntu][ubuntu-shield]![Build](https://img.shields.io/badge/-0.0.1--alpha-brightgreen)
+
 ![iOS](https://img.shields.io/badge/iOS-000000?style=for-the-badge&logo=ios&logoColor=white)![Build](https://img.shields.io/badge/-0.0.1--alpha-brightgreen)
+
 ![Windows](https://img.shields.io/badge/Windows-0078D6?style=for-the-badge&logo=windows&logoColor=white)![Build](https://img.shields.io/badge/-0.0.1--alpha-brightgreen)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
@@ -151,6 +153,8 @@ Project Link: [https://github.com/Exohayvan/Crypto-Seed-Project](https://github.
 [issues-url]: https://github.com/Exohayvan/crypto-seed-project/issues
 [license-shield]: https://img.shields.io/github/license/Exohayvan/crypto-seed-project.svg?style=for-the-badge
 [license-url]: https://github.com/Exohayvan/Crypto-Seed-Project/blob/main/LICENSE
+
+[ubuntu-shield]: https://img.shields.io/badge/Ubuntu-E95420?style=for-the-badge&logo=ubuntu&logoColor=white
 
 [discord-id]: 1074536450353287188
 [discord-invite]: https://discord.gg/EXFrWNpd
