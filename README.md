@@ -69,9 +69,9 @@ Coming soon will be auto payouts for balanced adresses as well as other coins.
 If missing one you use please reach out on discord!
 ![Ubuntu][ubuntu-shield]![Build][0.0.1-alpha]
 
-![iOS](https://img.shields.io/badge/iOS-000000?style=for-the-badge&logo=ios&logoColor=white)![Build](https://img.shields.io/badge/-0.0.1--alpha-brightgreen)
+![iOS][ios-shield]![Build][0.0.1-alpha]
 
-![Windows](https://img.shields.io/badge/Windows-0078D6?style=for-the-badge&logo=windows&logoColor=white)![Build](https://img.shields.io/badge/-0.0.1--alpha-brightgreen)
+![Windows][windows-shield]![Build][0.0.1-alpha]
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -155,6 +155,8 @@ Project Link: [https://github.com/Exohayvan/Crypto-Seed-Project](https://github.
 [license-url]: https://github.com/Exohayvan/Crypto-Seed-Project/blob/main/LICENSE
 
 [ubuntu-shield]: https://img.shields.io/badge/Ubuntu-E95420?style=for-the-badge&logo=ubuntu&logoColor=white
+[ios-shield]: https://img.shields.io/badge/iOS-000000?style=for-the-badge&logo=ios&logoColor=white
+[windows-shield]: https://img.shields.io/badge/Windows-0078D6?style=for-the-badge&logo=windows&logoColor=white
 
 [discord-id]: 1074536450353287188
 [discord-invite]: https://discord.gg/EXFrWNpd
