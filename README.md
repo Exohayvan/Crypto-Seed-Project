@@ -65,6 +65,9 @@ Coming soon will be auto payouts for balanced adresses as well as other coins.
 ### Built With
 ![Python][python]
 
+### Supported Coins
+![Bitcoin][btc]
+
 ### Operating Systems list
 Systems are listed as "OS" and "Build Status". <br /> Build status are "Latest Stable Version"/"processing"/"failed". <br />
 If missing one you use please reach out on discord!
@@ -167,6 +170,8 @@ Project Link: [https://github.com/Exohayvan/Crypto-Seed-Project](https://github.
 [license-url]: https://github.com/Exohayvan/Crypto-Seed-Project/blob/main/LICENSE
 
 [python]: https://img.shields.io/badge/python-3670A0?style=for-the-badge&logo=python&logoColor=ffdd54
+
+[btc]: https://img.shields.io/badge/Bitcoin-000?style=for-the-badge&logo=bitcoin&logoColor=white
 
 [ubuntu-shield]: https://img.shields.io/badge/Ubuntu-E95420?style=for-the-badge&logo=ubuntu&logoColor=white
 [ios-shield]: https://img.shields.io/badge/iOS-000000?style=for-the-badge&logo=ios&logoColor=white
