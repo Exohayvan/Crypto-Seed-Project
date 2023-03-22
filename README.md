@@ -63,7 +63,9 @@
 Project is made to check Private Keys for a balance, using a proxy.
 Coming soon will be auto payouts for balanced adresses as well as other coins.
 ### Built With
-![Python][python]![VSCode][vsc]
+![Python][python]
+
+![VSCode][vsc]
 
 ### Supported Coins
 ![Bitcoin][btc]
