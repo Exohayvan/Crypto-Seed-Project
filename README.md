@@ -90,6 +90,10 @@ If missing one you use please reach out on discord!
 
 ![ChromeOS][chromeos-shield]![Build][untested]
 
+![NixOS][nixos-shield]![Build][untested]
+
+![Alpine Linux][alpine-shield]![Build][untested]
+
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 <!-- GETTING STARTED -->
@@ -186,6 +190,10 @@ Project Link: [https://github.com/Exohayvan/Crypto-Seed-Project](https://github.
 [android-shield]: https://img.shields.io/badge/Android-3DDC84?style=for-the-badge&logo=android&logoColor=white
 [debian-shield]: https://img.shields.io/badge/Debian-D70A53?style=for-the-badge&logo=debian&logoColor=white
 [chromeos-shield]: https://img.shields.io/badge/chrome%20os-3d89fc?style=for-the-badge&logo=google%20chrome&logoColor=white
+[nixos-shield]: https://img.shields.io/badge/NIXOS-5277C3.svg?style=for-the-badge&logo=NixOS&logoColor=white
+[alpine-shield]: https://img.shields.io/badge/Alpine_Linux-%230D597F.svg?style=for-the-badge&logo=alpine-linux&logoColor=white
+
+
 
 [discord-id]: 1074536450353287188
 [discord-invite]: https://discord.gg/EXFrWNpd
