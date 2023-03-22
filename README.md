@@ -67,7 +67,7 @@ Coming soon will be auto payouts for balanced adresses as well as other coins.
 
 ### Operating Systems
 If missing one you use please reach out on discord!
-![Ubuntu][ubuntu-shield]![Build](https://img.shields.io/badge/-0.0.1--alpha-brightgreen)
+![Ubuntu][ubuntu-shield]![Build][0.0.1-alpha]
 
 ![iOS](https://img.shields.io/badge/iOS-000000?style=for-the-badge&logo=ios&logoColor=white)![Build](https://img.shields.io/badge/-0.0.1--alpha-brightgreen)
 
