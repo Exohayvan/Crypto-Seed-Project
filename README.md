@@ -73,7 +73,7 @@ If missing one you use please reach out on discord!
 
 ![Windows][windows-shield]![Build][0.0.1-alpha]
 
-![OpenWRT][openwrt-shield]
+![OpenWRT][openwrt-shield]![Build][processing]
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 <!-- GETTING STARTED -->
@@ -166,4 +166,6 @@ Project Link: [https://github.com/Exohayvan/Crypto-Seed-Project](https://github.
 
 [discord-id]: 1074536450353287188
 [discord-invite]: https://discord.gg/EXFrWNpd
+
+[processing]: https://img.shields.io/badge/-processing-yellow
 [0.0.1-alpha]: https://img.shields.io/badge/-0.0.1--alpha-brightgreen
