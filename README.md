@@ -70,7 +70,7 @@ Coming soon will be auto payouts for balanced adresses as well as other coins.
 ![Bitcoin][btc]
 
 ### Operating Systems list
-Systems are listed as "OS" and "Build Status". <br /> Build status are "Latest Stable Version"/"processing"/"failed". <br />
+Systems are listed as "OS" and "Build Status". <br /> Build status are "passing"/"processing"/"failed"/"untested". <br />
 If missing one you use please reach out on discord!
 
 ![Ubuntu][ubuntu-shield]![Build][passing]
