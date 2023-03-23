@@ -18,7 +18,7 @@
   <h3 align="center">Crypto Seed Project</h3>
 
   <p align="center">
-    Project for brute forcing private keys!
+    Project for brute forcing private keys, using parallel processing across a network of everyone running the program!
     For educational use only.
     <br />
     <a href="https://github.com/ExoHayvan/Crypto-Seed-Project"><strong>Explore the docs »</strong></a>
