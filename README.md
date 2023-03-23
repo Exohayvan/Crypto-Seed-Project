@@ -80,7 +80,7 @@ Status is based of of the latest "<a href="https://github.com/Exohayvan/Crypto-S
 
 ![iOS][ios-shield]![Build][fail]
 
-![Windows][windows-shield]![Build][fail]
+![Windows][windows-shield]![Build][passing]
 
 ![MacOS][macos-shield]![Build][processing]
 
@@ -122,6 +122,12 @@ To get a local copy up and running follow these simple example steps.
     chmod +x run,sh
     ```
 5. Sit back and watch the magic happen.
+
+### Windows
+
+1. Unzip package
+2. Run .exe file
+3. Yes. It was that easy.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
