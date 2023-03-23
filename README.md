@@ -105,18 +105,23 @@ To get a local copy up and running follow these simple example steps.
 
 ### Installation
 
-1. Clone or download a package of the repo.
-   ```sh
-   git clone https://github.com/Exohayvan/Crypto-Seed-Project.git
-   ```
-2. Install required packages.
-   ```sh
-   pip install -r requirements.txt
-   ```
-3. Run.
-   ```sh
-   python3 main.pyc
-   ```
+1. Go to latest package and download .zip for OS. Now skip to your OS.
+
+### Linux
+
+1. Unzip package
+2. Open a termial inside the folder location.
+3. Run the program with
+    ```
+    ./run.sh
+    ```
+4. If file states you don't have permission to run.
+  * Comfirm disk has exec perms
+  * Try running
+    ```
+    chmod +x run,sh
+    ```
+5. Sit back and watch the magic happen.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
