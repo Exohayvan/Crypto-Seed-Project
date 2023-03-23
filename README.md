@@ -73,25 +73,25 @@ Coming soon will be auto payouts for balanced adresses as well as other coins.
 Systems are listed as "OS" and "Build Status". <br /> Build status are "Latest Stable Version"/"processing"/"failed". <br />
 If missing one you use please reach out on discord!
 
-![Ubuntu][ubuntu-shield]![Build][failed]
+![Ubuntu][ubuntu-shield]![Build][fail]
 
-![iOS][ios-shield]![Build][failed]
+![iOS][ios-shield]![Build][fail]
 
-![Windows][windows-shield]![Build][failed]
+![Windows][windows-shield]![Build][fail]
 
 ![MacOS][macos-shield]![Build][fail]
 
-![OpenWRT][openwrt-shield]![Build][failed]
+![OpenWRT][openwrt-shield]![Build][fail]
 
-![Android][android-shield]![Build][failed]
+![Android][android-shield]![Build][fail]
 
-![Debian][debian-shield]![Build][failed]
+![Debian][debian-shield]![Build][fail]
 
-![ChromeOS][chromeos-shield]![Build][failed]
+![ChromeOS][chromeos-shield]![Build][fail]
 
-![NixOS][nixos-shield]![Build][failed]
+![NixOS][nixos-shield]![Build][fail]
 
-![Alpine Linux][alpine-shield]![Build][failed]
+![Alpine Linux][alpine-shield]![Build][fail]
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
