@@ -73,7 +73,7 @@ Coming soon will be auto payouts for balanced adresses as well as other coins.
 Systems are listed as "OS" and "Build Status". <br /> Build status are "Latest Stable Version"/"processing"/"failed". <br />
 If missing one you use please reach out on discord!
 
-![Ubuntu][ubuntu-shield]![Build][fail]
+![Ubuntu][ubuntu-shield]![Build][passing]
 
 ![iOS][ios-shield]![Build][fail]
 
@@ -198,4 +198,4 @@ Project Link: [https://github.com/Exohayvan/Crypto-Seed-Project](https://github.
 [untested]: https://img.shields.io/badge/-untested-lightgrey?style=for-the-badge
 [fail]: https://img.shields.io/badge/-failed-red?style=for-the-badge
 [processing]: https://img.shields.io/badge/-processing-yellow?style=for-the-badge
-[0.0.1-alpha]: https://img.shields.io/badge/-v0.0.1--alpha-brightgreen?style=for-the-badge
+[passing]: https://img.shields.io/badge/-passing-brightgreen
