@@ -198,4 +198,4 @@ Project Link: [https://github.com/Exohayvan/Crypto-Seed-Project](https://github.
 [untested]: https://img.shields.io/badge/-untested-lightgrey?style=for-the-badge
 [fail]: https://img.shields.io/badge/-failed-red?style=for-the-badge
 [processing]: https://img.shields.io/badge/-processing-yellow?style=for-the-badge
-[passing]: https://img.shields.io/badge/-passing-brightgreen
+[passing]: https://img.shields.io/badge/-passing-brightgreen?style=for-the-badge
