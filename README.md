@@ -84,7 +84,7 @@ Status is based of of the latest "<a href="https://github.com/Exohayvan/Crypto-S
 
 ![MacOS][macos-shield]![Build][fail]
 
-![OpenWRT][openwrt-shield]![Build][untestec]
+![OpenWRT][openwrt-shield]![Build][untested]
 
 ![Android][android-shield]![Build][fail]
 
