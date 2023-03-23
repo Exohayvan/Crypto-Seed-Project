@@ -1,5 +1,8 @@
 # Crypto-Seed-Project
 
+<br />
+<div align="center">
+  <a href="https://github.com/ExoHayvan/Crypto-Seed-Project">
 [![Contributors][contributors-shield]][contributors-url]
 [![Forks][forks-shield]][forks-url]
 [![Stargazers][stars-shield]][stars-url]
@@ -9,9 +12,6 @@
 
 
 <!-- PROJECT LOGO -->
-<br />
-<div align="center">
-  <a href="https://github.com/ExoHayvan/Crypto-Seed-Project">
     <img src="images/logo.png" alt="Logo" width="80" height="80">
   </a>
 
