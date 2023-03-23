@@ -82,7 +82,7 @@ Status is based of of the latest "<a href="https://github.com/Exohayvan/Crypto-S
 
 ![Windows][windows-shield]![Build][fail]
 
-![MacOS][macos-shield]![Build][fail]
+![MacOS][macos-shield]![Build][processing]
 
 ![OpenWRT][openwrt-shield]![Build][untested]
 
