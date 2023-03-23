@@ -84,17 +84,17 @@ Status is based of of the latest "<a href="https://github.com/Exohayvan/Crypto-S
 
 ![MacOS][macos-shield]![Build][fail]
 
-![OpenWRT][openwrt-shield]![Build][fail]
+![OpenWRT][openwrt-shield]![Build][untestec]
 
 ![Android][android-shield]![Build][fail]
 
-![Debian][debian-shield]![Build][fail]
+![Debian][debian-shield]![Build][untested]
 
 ![ChromeOS][chromeos-shield]![Build][fail]
 
 ![NixOS][nixos-shield]![Build][fail]
 
-![Alpine Linux][alpine-shield]![Build][fail]
+![Alpine Linux][alpine-shield]![Build][untested]
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
