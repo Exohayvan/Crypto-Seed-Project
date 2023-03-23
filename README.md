@@ -73,6 +73,8 @@ Coming soon will be auto payouts for balanced adresses as well as other coins.
 Systems are listed as "OS" and "Build Status". <br /> Build status are "passing"/"processing"/"failed"/"untested". <br />
 If missing one you use please reach out on discord!
 
+Status is based of of the latest "<a href="https://github.com/Exohayvan/Crypto-Seed-Project/releases/tag/stable">stable</a>" build. (Check out theses builds as well! <a href="https://github.com/Exohayvan/Crypto-Seed-Project/releases/tag/alpha">alpha</a>, <a href="https://github.com/Exohayvan/Crypto-Seed-Project/releases/tag/beta">beta</a>)
+
 ![Ubuntu][ubuntu-shield]![Build][passing]
 
 ![iOS][ios-shield]![Build][fail]
