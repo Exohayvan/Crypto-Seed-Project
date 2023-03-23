@@ -119,7 +119,7 @@ To get a local copy up and running follow these simple example steps.
   * Comfirm disk has exec perms
   * Try running
     ```
-    chmod +x run,sh
+    chmod +x run.sh
     ```
 5. Sit back and watch the magic happen.
 
