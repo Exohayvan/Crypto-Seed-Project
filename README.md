@@ -128,9 +128,10 @@ Go to latest package and download .zip for OS. Now skip to your OS.
 
 #### Windows
 
-1. Unzip package
-2. Run .exe file
-3. Yes. It was that easy.
+1. Exclude a folder for package in anti-virus and place .zip file inside (if applicable)
+2. Unzip file
+3. Run .exe file
+4. Yes. It was that easy.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
