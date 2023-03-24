@@ -195,8 +195,8 @@ Project Link: [https://github.com/Exohayvan/Crypto-Seed-Project](https://github.
 
 [gitviews]: https://shields-io-visitor-counter.herokuapp.com/badge?page=exohayvan.cryptoseedprojectmain&label=Visitors&labelColor=000000&logo=GitHub&logoColor=FFFFFF&color=1D70B8&style=for-the-badge
 
-[last-commit]: https://badgen.net/github/last-commit/Naereen/Strapdown.js
-[git-commit]: https://GitHub.com/Naereen/StrapDown.js/commit/
+[last-commit]: https://img.shields.io/github/last-commit/exohayvan/Crypto-Seed-Project?style=for-the-badge
+[git-commit]: https://GitHub.com/exohayvan/Crypto-Seed-Project/commit/
 
 [vsc]: https://img.shields.io/badge/Visual%20Studio%20Code-0078d7.svg?style=for-the-badge&logo=visual-studio-code&logoColor=white
 
