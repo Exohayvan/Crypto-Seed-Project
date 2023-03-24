@@ -77,7 +77,7 @@ Coming soon will be auto payouts for balanced adresses as well as other coins.
 ### Operating Systems list
 Systems are listed as "OS" and "Build Status". <br /> Build status are "passing"/"processing"/"failed"/"untested". <br />
 If missing one you use please reach out on discord!
-Status is based of of the latest build.
+Status is based off the latest build.
 
 ![Ubuntu][ubuntu-shield]![Build][passing]
 
@@ -108,9 +108,9 @@ To get a local copy up and running follow these simple example steps.
 
 ### Installation
 
-1. Go to latest package and download .zip for OS. Now skip to your OS.
+Go to latest package and download .zip for OS. Now skip to your OS.
 
-### Linux
+#### Linux
 
 1. Unzip package
 2. Open a termial inside the folder location.
@@ -126,7 +126,7 @@ To get a local copy up and running follow these simple example steps.
     ```
 5. Sit back and watch the magic happen.
 
-### Windows
+#### Windows
 
 1. Unzip package
 2. Run .exe file
