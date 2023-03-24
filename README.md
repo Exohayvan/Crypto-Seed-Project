@@ -6,6 +6,7 @@
 [![Issues][issues-shield]][issues-url]
 [![MIT License][license-shield]][license-url]
 [![Discord][discord-id]][discord-invite]
+![Visitors][gitviews]
 
 
 <!-- PROJECT LOGO -->
@@ -190,6 +191,8 @@ Project Link: [https://github.com/Exohayvan/Crypto-Seed-Project](https://github.
 
 [python]: https://img.shields.io/badge/python-3670A0?style=for-the-badge&logo=python&logoColor=ffdd54
 [py-version]: https://img.shields.io/badge/-v3.11%2B-lightgrey?style=for-the-badge
+
+[gitviews]: https://shields-io-visitor-counter.herokuapp.com/badge?page=exohayvan.cryptoseedprojectmain&label=Repo Views&labelColor=000000&logo=GitHub&logoColor=FFFFFF&color=1D70B8&style=for-the-badge
 
 [vsc]: https://img.shields.io/badge/Visual%20Studio%20Code-0078d7.svg?style=for-the-badge&logo=visual-studio-code&logoColor=white
 
