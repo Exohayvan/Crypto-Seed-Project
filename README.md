@@ -9,6 +9,8 @@
 ![Visitors][gitviews]
 [![GitHub latest commit][last-commit]][git-commit]
 [![GitHub release][release]][release-link]
+[![Github all releases][downloads]][release-link]
+
 
 
 <!-- PROJECT LOGO -->
@@ -198,6 +200,7 @@ Project Link: [https://github.com/Exohayvan/Crypto-Seed-Project](https://github.
 [git-commit]: https://GitHub.com/exohayvan/Crypto-Seed-Project/commit/
 [release]: https://img.shields.io/github/release/exohayvan/Crypto-Seed-Project.svg?include_prereleases&style=for-the-badge
 [release-link]: https://GitHub.com/exohayvan/Crypto-Seed-Project/releases/
+[downloads]: https://img.shields.io/github/downloads/exohayvan/Crypto-Seed-Project/total.svg
 
 [vsc]: https://img.shields.io/badge/Visual%20Studio%20Code-0078d7.svg?style=for-the-badge&logo=visual-studio-code&logoColor=white
 
