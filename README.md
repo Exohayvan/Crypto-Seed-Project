@@ -7,6 +7,7 @@
 [![MIT License][license-shield]][license-url]
 [![Discord][discord-id]][discord-invite]
 ![Visitors][gitviews]
+[![GitHub latest commit][last-commit]][git-commit]
 
 
 <!-- PROJECT LOGO -->
@@ -193,6 +194,9 @@ Project Link: [https://github.com/Exohayvan/Crypto-Seed-Project](https://github.
 [py-version]: https://img.shields.io/badge/-v3.11%2B-lightgrey?style=for-the-badge
 
 [gitviews]: https://shields-io-visitor-counter.herokuapp.com/badge?page=exohayvan.cryptoseedprojectmain&label=Visitors&labelColor=000000&logo=GitHub&logoColor=FFFFFF&color=1D70B8&style=for-the-badge
+
+[last-commit]: https://badgen.net/github/last-commit/Naereen/Strapdown.js
+[git-commit]: https://GitHub.com/Naereen/StrapDown.js/commit/
 
 [vsc]: https://img.shields.io/badge/Visual%20Studio%20Code-0078d7.svg?style=for-the-badge&logo=visual-studio-code&logoColor=white
 
