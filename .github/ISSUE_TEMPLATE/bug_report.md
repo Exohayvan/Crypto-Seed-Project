@@ -6,6 +6,7 @@ labels: ''
 assignees: ''
 
 ---
+Please fill out all of the following. If not filled out then issue will be closed after 24 hours.
 
 **Describe the bug:**
 A clear and concise description of what the bug is.
