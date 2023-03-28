@@ -139,7 +139,7 @@ Go to latest package and download .zip for OS. Now skip to your OS.
 
 <!-- USAGE EXAMPLES -->
 ## Usage
-###First Start Up:
+### First Start Up:
 Enter Public BTC Address, will create a data.json to store this info.
 (If you need to change address later on, simply delete the data.json)
 data.json is not fully implemented yet.
