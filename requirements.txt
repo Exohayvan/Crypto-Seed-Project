@@ -6,4 +6,4 @@ http-client
 requests
 speedtest-cli
 urllib3
-pyinstaller
+
