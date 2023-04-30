@@ -1,5 +1,5 @@
 aiohttp>=3.7.4.post0
-bitcoinaddress>=0.7.2
+bitcoinaddress
 colorama>=0.4.4
 discordwebhook>=0.12.1
 http-client>=3.1.0
