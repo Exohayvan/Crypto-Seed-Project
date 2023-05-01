@@ -4,9 +4,17 @@ import http.client as httplib #needed for http requests
 import requests, json #needed for http requests
 from concurrent.futures import ThreadPoolExecutor #needed for multithreading
 import zipfile, shutil #needed for extracting zip files
+import argparse #needed for passing arguments
+
+msg = "Adding description"
+parser = argparse.ArgumentParser(description = msg)
+
+parser.add_argument("-t", "--test", help = "Test script, set value to yes")
+args = parser.parse_args()
+
 
 #setting const
-version = 'v0.0.3-alpha'
+version = 'v0.0.4-alpha'
 filename = 'update.temp'
 os_type = sys.platform
 
@@ -126,6 +134,8 @@ def checkInternetHttplib(url, timeout):
         time_print(exep)
         sys.exit(Fore.LIGHTRED_EX + 'Error, no internet connection')
 def mining(proxy):
+    if proxy == 'test':
+        proxy = 0
     while True:
         if proxy == 0:
             time_print('Starting Address mining...')
@@ -161,6 +171,8 @@ def mining(proxy):
             if calls > 249:
                 proxy = random_proxy()
                 calls = 0
+        if args.test == 'true':
+            exit()
 def check_balance(address, proxy, count):
     url = f"https://blockstream.info/api/address/{address}"
     try:
@@ -220,10 +232,18 @@ def random_proxy():
     else:
         print(f"Error: {response.status_code}")
 
+
+
 #runtime order
-intro()
-checkInternetHttplib("www.google.com", 3)
-update(version)
-#discord('BTC Seed Mining Network Stats', datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S"), 0xf7931a, 'Nodes Online:', 'N/A', 'Round:', 'N/A', 'Shares:', 'N/A')
-from bitcoinaddress import Wallet
-mining(0)
+if args.test == 'true':
+    print('Testing Mode...')
+    checkInternetHttplib("www.google.com", 3)
+    from bitcoinaddress import Wallet
+    mining('test')
+else:
+    intro()
+    checkInternetHttplib("www.google.com", 3)
+    update(version)
+    #discord('BTC Seed Mining Network Stats', datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S"), 0xf7931a, 'Nodes Online:', 'N/A', 'Round:', 'N/A', 'Shares:', 'N/A')
+    from bitcoinaddress import Wallet
+    mining(0)
