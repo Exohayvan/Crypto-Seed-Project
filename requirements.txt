@@ -2,7 +2,5 @@ aiohttp
 bitcoinaddress
 colorama>=0.4.4
 discordwebhook
-http-client
 requests
-speedtest-cli
 urllib3
