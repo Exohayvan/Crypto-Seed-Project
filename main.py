@@ -17,6 +17,12 @@ args = parser.parse_args()
 version = 'v0.0.4-alpha'
 filename = 'update.temp'
 os_type = sys.platform
+filename = version +'_update.temp'
+wildfilename = '*_update.temp'
+if os_type == 'win32':
+    os_type = 'windows'
+    from colorama import just_fix_windows_console
+    just_fix_windows_console()
 
 #startup functions
 def intro():
