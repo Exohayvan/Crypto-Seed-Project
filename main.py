@@ -47,7 +47,7 @@ def intro():
     else:
         time_print(Fore.LIGHTRED_EX + 'Unknown system type. Please reach out to support, even if program seems to work. We want to try and add support for all systems we can. Please send us this info ' + Fore.YELLOW +'"platform: ' + os_type + '" ' + '"machine: ' + platform.machine() + '"'+ Fore.WHITE)
 
-#updatedef w_update():
+def w_update():
     # create or open the "updatetemp.txt" file in write mode
     with open(filename, "w") as f:
     # write the script name to the file
