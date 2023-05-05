@@ -11,7 +11,7 @@ msg = "Adding description"
 parser = argparse.ArgumentParser(description = msg)
 
 parser.add_argument("-t", "--test", help = "Test script. Values: 'True'")
-parser.add_argument("-c", "--compile", help = "Compile the script to run on a system. Values: 'one'")
+parser.add_argument("-c", "--compile", help = "Compile script for system. Values: 'one'")
 args = parser.parse_args()
 
 
@@ -376,6 +376,8 @@ if args.test == 'true':
     checkInternetHttplib("www.google.com", 3)
     from bitcoinaddress import Wallet
     mining('test')
+if args.compile == 'one':
+    print('Compiling File')
 else:
     intro()
     checkInternetHttplib("www.google.com", 3)
