@@ -10,7 +10,8 @@ import re
 msg = "Adding description"
 parser = argparse.ArgumentParser(description = msg)
 
-parser.add_argument("-t", "--test", help = "Test script, set value to yes")
+parser.add_argument("-t", "--test", help = "Test script. Values: 'True'")
+parser.add_argument("-c", "--compile", help = "Compile the script to run on a system. Values: 'one'")
 args = parser.parse_args()
 
 
