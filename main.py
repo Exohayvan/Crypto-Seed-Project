@@ -65,6 +65,7 @@ def compile():
     except FileNotFoundError:
         print('data.json not found. Please run main.py first.')
         sys.exit()
+    os.system('pip install pyinstaller')
     os.system(f'pyinstaller --onefile --exclude data.json --name {os_type}_Build-{version} main.py')
     folder_name = "build"
 
