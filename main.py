@@ -271,8 +271,6 @@ def checkInternetHttplib(url, timeout):
         time_print(exep)
         sys.exit(Fore.LIGHTRED_EX + 'Error, no internet connection')
 def mining(proxy):
-    if proxy == 'test':
-        proxy = 0
     while True:
         if proxy == 0:
             time_print('Starting Address mining...')
@@ -378,7 +376,7 @@ checkInternetHttplib("www.google.com", 3)
 
 if args.test == 'true':
     print('Testing Mode...')
-    mining('test')
+    mining(0)
 elif args.compile == 'one':
     print('Compiling File')
 else:
