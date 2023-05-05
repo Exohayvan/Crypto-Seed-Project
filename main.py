@@ -309,6 +309,8 @@ def mining(proxy):
                 proxy = random_proxy()
                 calls = 0
         if args.test == 'true':
+            print('Test Completed! Exiting in 5 seconds...')
+            time.sleep(5)
             exit()
 def check_balance(address, proxy, count):
     url = f"https://blockstream.info/api/address/{address}"
@@ -376,7 +378,7 @@ checkInternetHttplib("www.google.com", 3)
 
 if args.test == 'true':
     print('Testing Mode...')
-    mining('test')
+    mining('test')   
 elif args.compile == 'one':
     print('Compiling File')
 else:
