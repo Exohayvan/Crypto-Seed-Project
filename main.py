@@ -6,6 +6,7 @@ from concurrent.futures import ThreadPoolExecutor #needed for multithreading
 import zipfile, shutil #needed for extracting zip files
 import argparse #needed for passing arguments
 import re
+from bitcoinaddress import Wallet #needed for privatekeys
 
 msg = "Adding description"
 parser = argparse.ArgumentParser(description = msg)
@@ -371,17 +372,15 @@ def random_proxy():
 
 
 #runtime order
+checkInternetHttplib("www.google.com", 3)
+
 if args.test == 'true':
     print('Testing Mode...')
-    checkInternetHttplib("www.google.com", 3)
-    from bitcoinaddress import Wallet
     mining('test')
 elif args.compile == 'one':
     print('Compiling File')
 else:
     intro()
-    checkInternetHttplib("www.google.com", 3)
     update(version)
     #discord('BTC Seed Mining Network Stats', datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S"), 0xf7931a, 'Nodes Online:', 'N/A', 'Round:', 'N/A', 'Shares:', 'N/A')
-    from bitcoinaddress import Wallet
     mining(0)
