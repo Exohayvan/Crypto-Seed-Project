@@ -1,16 +1,19 @@
 import os, sys, time, platform, datetime #needed for system info
 from colorama import Fore, Back, Style #needed for colored text
 import http.client as httplib #needed for http requests
-import requests, json #needed for http requests
+import requests, re #needed for http requests
 from concurrent.futures import ThreadPoolExecutor #needed for multithreading
 import zipfile, shutil #needed for extracting zip files
 import argparse #needed for passing arguments
-import re
+import json
+import random
+from bitcoinaddress import Wallet #needed for privatekeys
 
-msg = "Adding description"
+msg = "Project for brute forcing private keys, using parallel processing across a network of everyone running the program! For educational use only."
 parser = argparse.ArgumentParser(description = msg)
 
-parser.add_argument("-t", "--test", help = "Test script, set value to yes")
+parser.add_argument("-t", "--test", help = "Test script. Values: 'True'")
+parser.add_argument("-c", "--compile", help = "Compile script for system. Values: 'onefile' 'ipa'")
 args = parser.parse_args()
 
 
@@ -40,13 +43,83 @@ def intro():
     print(string.center(columns))
     time_print(Fore.WHITE + 'Starting...')
     time_print('Checking System Type...')
-    if os_type == 'linux':
-        time_print(Fore.GREEN + 'Valid system type. Lunix detected.' + Fore.WHITE)
-    elif os_type == 'windows':
-        time_print(Fore.GREEN + 'Valid system type. Windows detected.' + Fore.WHITE)
+    supported_os_types = ['linux', 'windows']
+    if os_type in supported_os_types:
+        time_print(Fore.GREEN + f'Valid system type. {os_type.capitalize()} detected.' + Fore.WHITE)
     else:
         time_print(Fore.LIGHTRED_EX + 'Unknown system type. Please reach out to support, even if program seems to work. We want to try and add support for all systems we can. Please send us this info ' + Fore.YELLOW +'"platform: ' + os_type + '" ' + '"machine: ' + platform.machine() + '"'+ Fore.WHITE)
 
+def compile():
+    os_type = sys.platform.capitalize()
+    if os_type == "Win32":
+        os_type = "Windows"
+    try:
+        with open('data.json', 'r') as file:
+            # Load the existing JSON data from file
+            json_data = json.load(file)
+
+            # Import the values from the JSON data
+            version = json_data.get('version')
+            address = json_data.get('address')
+            is_node = json_data.get('is_node')
+    except FileNotFoundError:
+        print('data.json not found. Please run main.py first.')
+        sys.exit()
+    os.system(f'pyinstaller --onefile --exclude data.json --name {os_type}_Build-{version} main.py')
+    folder_name = "build"
+
+    folder_path = os.path.join(os.getcwd(), folder_name)
+
+    # Use the os.rmdir() function to delete the folder
+    shutil.rmtree(folder_path)
+    print()
+    print(f"Deleted {folder_path} folder")
+
+    # Get the current working directory, where the script is located.
+    current_directory = os.path.dirname(os.path.abspath(__file__))
+
+    # List all the files in the current directory.
+    files = os.listdir(current_directory)
+
+    # Iterate through the files.
+    for file in files:
+        # Check if the file has the '.spec' extension.
+        if file.endswith(".spec"):
+            # Construct the full path of the file.
+            file_path = os.path.join(current_directory, file)
+        
+            # Delete the file.
+            os.remove(file_path)
+            print(f"Deleted {file_path}")
+    # Get the current working directory (where your Python file is located)
+    current_dir = os.getcwd()
+
+    # Specify the source folder (dist)
+    source_folder = os.path.join(current_dir, 'dist')
+
+    # Check if the source folder exists
+    if os.path.exists(source_folder):
+        # Loop through all files in the source folder
+        for file_name in os.listdir(source_folder):
+            # Create the full file path
+            file_path = os.path.join(source_folder, file_name)
+
+            # Check if it's a file (not a directory)
+            if os.path.isfile(file_path):
+                # Move the file to the current directory
+                shutil.move(file_path, current_dir)
+
+        # Delete the dist folder after moving all the files
+        shutil.rmtree(source_folder)
+
+        print("All files have been moved and the 'dist' folder has been deleted.")
+    else:
+        print("The specified source folder doesn't exist.")
+    if os_type == "Linux":
+        with open("run.sh", "w") as f:
+            # write the script name to the file
+            f.write(f'./{os_type}_Build-{version}.bin')
+    sys.exit()
 def w_update():
     # create or open the "updatetemp.txt" file in write mode
     with open(filename, "w") as f:
@@ -269,8 +342,6 @@ def checkInternetHttplib(url, timeout):
         time_print(exep)
         sys.exit(Fore.LIGHTRED_EX + 'Error, no internet connection')
 def mining(proxy):
-    if proxy == 'test':
-        proxy = 0
     while True:
         if proxy == 0:
             time_print('Starting Address mining...')
@@ -307,6 +378,8 @@ def mining(proxy):
                 proxy = random_proxy()
                 calls = 0
         if args.test == 'true':
+            print('Test Completed! Exiting in 5 seconds...')
+            time.sleep(5)
             exit()
 def check_balance(address, proxy, count):
     url = f"https://blockstream.info/api/address/{address}"
@@ -362,7 +435,7 @@ def random_proxy():
         ip_address, port = random.choice(matches)
         time_print('Connecting to new proxy...')
         proxy = f"{ip_address}:{port}"
-        time_print(Fore.BLUE + 'IP has changed to: ' + Fore.LIGHTYELLOW_EX+ proxy)
+        time_print(Fore.BLUE + 'IP has changed to: ' + Fore.LIGHTYELLOW_EX + proxy + Fore.WHITE)
         return proxy
     else:
         print(f"Error: {response.status_code}")
@@ -370,15 +443,19 @@ def random_proxy():
 
 
 #runtime order
+checkInternetHttplib("www.google.com", 3)
+
 if args.test == 'true':
     print('Testing Mode...')
-    checkInternetHttplib("www.google.com", 3)
-    from bitcoinaddress import Wallet
-    mining('test')
+    mining(0)
+elif args.compile == 'onefile':
+    print('Compiling File')
+    compile()
+elif args.compile == 'ipa':
+    print('not ready!')
+    exit()
 else:
     intro()
-    checkInternetHttplib("www.google.com", 3)
     update(version)
     #discord('BTC Seed Mining Network Stats', datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S"), 0xf7931a, 'Nodes Online:', 'N/A', 'Round:', 'N/A', 'Shares:', 'N/A')
-    from bitcoinaddress import Wallet
     mining(0)
