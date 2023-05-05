@@ -6,7 +6,6 @@
 [![Issues][issues-shield]][issues-url]
 [![MIT License][license-shield]][license-url]
 [![Discord][discord-id]][discord-invite]
-![Visitors][gitviews]
 [![GitHub latest commit][last-commit]][git-commit]
 [![GitHub release][release]][release-link]
 [![Github all releases][downloads]][release-link]
