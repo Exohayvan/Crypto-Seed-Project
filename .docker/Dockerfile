@@ -2,7 +2,7 @@
 FROM python:3.9-slim-buster
 
 # Set working directory
-WORKDIR ../
+WORKDIR ./
 
 # Copy requirements file
 COPY requirements.txt .
