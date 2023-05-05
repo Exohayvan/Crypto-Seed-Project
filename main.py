@@ -376,7 +376,7 @@ if args.test == 'true':
     checkInternetHttplib("www.google.com", 3)
     from bitcoinaddress import Wallet
     mining('test')
-if args.compile == 'one':
+elif args.compile == 'one':
     print('Compiling File')
 else:
     intro()
