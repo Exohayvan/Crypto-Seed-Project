@@ -366,7 +366,7 @@ def random_proxy():
         ip_address, port = random.choice(matches)
         time_print('Connecting to new proxy...')
         proxy = f"{ip_address}:{port}"
-        time_print(Fore.BLUE + 'IP has changed to: ' + Fore.LIGHTYELLOW_EX+ proxy)
+        time_print(Fore.BLUE + 'IP has changed to: ' + Fore.LIGHTYELLOW_EX + proxy + Fore.WHITE)
         return proxy
     else:
         print(f"Error: {response.status_code}")
@@ -378,7 +378,7 @@ checkInternetHttplib("www.google.com", 3)
 
 if args.test == 'true':
     print('Testing Mode...')
-    mining('test')   
+    mining('test')
 elif args.compile == 'one':
     print('Compiling File')
 else:
