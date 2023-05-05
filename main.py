@@ -5,6 +5,7 @@ import requests, json #needed for http requests
 from concurrent.futures import ThreadPoolExecutor #needed for multithreading
 import zipfile, shutil #needed for extracting zip files
 import argparse #needed for passing arguments
+import re
 
 msg = "Adding description"
 parser = argparse.ArgumentParser(description = msg)
