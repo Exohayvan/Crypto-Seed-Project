@@ -1,11 +1,12 @@
 import os, sys, time, platform, datetime #needed for system info
 from colorama import Fore, Back, Style #needed for colored text
 import http.client as httplib #needed for http requests
-import requests, json #needed for http requests
+import requests, re #needed for http requests
 from concurrent.futures import ThreadPoolExecutor #needed for multithreading
 import zipfile, shutil #needed for extracting zip files
 import argparse #needed for passing arguments
-import re
+import json
+import random
 from bitcoinaddress import Wallet #needed for privatekeys
 
 msg = "Adding description"
@@ -350,9 +351,6 @@ def time_print(*args, **kwargs):
     timestamp = f"{Fore.BLUE}{Style.DIM}[{timestamp}]{Style.RESET_ALL}"
     print(timestamp, *args, **kwargs)
 def random_proxy():
-    import requests
-    import random
-    import re
     url = 'https://free-proxy-list.net/'
     headers = {
         'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.36'
