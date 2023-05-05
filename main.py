@@ -131,6 +131,53 @@ def update(version):
         time.sleep(5)
         sys.exit()
        
+def data_json():
+    # Check if the JSON file exists
+    try:
+        with open('data.json', 'r') as file:
+            # Load the existing JSON data from file
+            json_data = json.load(file)
+
+            # Import the values from the JSON data
+            jversion = json_data.get('version')
+            address = json_data.get('address')
+            is_node = json_data.get('is_node')
+    except FileNotFoundError:
+        # If the JSON file does not exist, use version as jversion
+        jversion = version
+
+        # Ask the user for input for address and check if it is a valid BTC address
+        while True:
+            address = input('Please enter a BTC address: ')
+            if is_valid_btc_address(address):
+                break
+            else:
+                print('Invalid BTC address. Please try again.')
+
+        # Set is_node to False
+        is_node = False
+
+        # Create a dictionary with the new data
+        data = {
+            "version": jversion,
+            "address": address,
+            "is_node": is_node
+        }
+
+        # Save the new data to the JSON file
+        with open('data.json', 'w') as file:
+            json.dump(data, file)
+    else:
+        # If the JSON file exists, check if jversion matches version
+        if jversion != version:
+            # If they do not match, update the JSON file with the new version
+            json_data['version'] = version
+            with open('data.json', 'w') as file:
+                json.dump(json_data, file)
+
+    # Return the imported or entered values
+    return jversion, address, is_node
+    
 #main functions
 def checkInternetHttplib(url, timeout):
     time_print(Fore.WHITE + 'Checking Network Connection...')
