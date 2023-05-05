@@ -58,6 +58,11 @@ def r_update():
     # Read the contents of the file and store it in a variable
         old_version = file.read()
     cleanup(old_version)
+
+def is_valid_btc_address(address):
+    pattern = '^(bc1|[13])[a-zA-HJ-NP-Z0-9]{25,39}$'
+    return re.match(pattern, address) is not None
+
 def cleanup(old_version):
 
 # get the current working directory
