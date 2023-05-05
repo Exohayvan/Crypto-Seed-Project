@@ -9,11 +9,11 @@ import json
 import random
 from bitcoinaddress import Wallet #needed for privatekeys
 
-msg = "Adding description"
+msg = "Project for brute forcing private keys, using parallel processing across a network of everyone running the program! For educational use only."
 parser = argparse.ArgumentParser(description = msg)
 
 parser.add_argument("-t", "--test", help = "Test script. Values: 'True'")
-parser.add_argument("-c", "--compile", help = "Compile script for system. Values: 'one'")
+parser.add_argument("-c", "--compile", help = "Compile script for system. Values: 'onefile' 'ipa'")
 args = parser.parse_args()
 
 
@@ -43,10 +43,9 @@ def intro():
     print(string.center(columns))
     time_print(Fore.WHITE + 'Starting...')
     time_print('Checking System Type...')
-    if os_type == 'linux':
-        time_print(Fore.GREEN + 'Valid system type. Lunix detected.' + Fore.WHITE)
-    elif os_type == 'windows':
-        time_print(Fore.GREEN + 'Valid system type. Windows detected.' + Fore.WHITE)
+    supported_os_types = ['linux', 'windows']
+    if os_type in supported_os_types:
+        time_print(Fore.GREEN + f'Valid system type. {os_type.capitalize()} detected.' + Fore.WHITE)
     else:
         time_print(Fore.LIGHTRED_EX + 'Unknown system type. Please reach out to support, even if program seems to work. We want to try and add support for all systems we can. Please send us this info ' + Fore.YELLOW +'"platform: ' + os_type + '" ' + '"machine: ' + platform.machine() + '"'+ Fore.WHITE)
 
@@ -351,6 +350,9 @@ def time_print(*args, **kwargs):
     timestamp = f"{Fore.BLUE}{Style.DIM}[{timestamp}]{Style.RESET_ALL}"
     print(timestamp, *args, **kwargs)
 def random_proxy():
+    import requests
+    import random
+    import re
     url = 'https://free-proxy-list.net/'
     headers = {
         'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.36'
@@ -375,8 +377,11 @@ checkInternetHttplib("www.google.com", 3)
 if args.test == 'true':
     print('Testing Mode...')
     mining(0)
-elif args.compile == 'one':
+elif args.compile == 'onefile':
     print('Compiling File')
+elif args.compile == 'ipa':
+    print('not ready!')
+    exit()
 else:
     intro()
     update(version)
