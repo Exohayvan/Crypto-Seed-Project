@@ -5,7 +5,7 @@ FROM python:3.9.9-bullseye
 WORKDIR /app
 
 # Copy requirements file
-COPY ../requirements.txt .
+COPY ./requirements.txt .
 
 # Install dependencies
 RUN pip install --no-cache-dir -r requirements.txt
