@@ -1,6 +1,6 @@
 on:
   push:
-    compile-test
+    branches: [ "compile-test" ]
 jobs:
   build:
     runs-on: ${{ matrix.os }}
