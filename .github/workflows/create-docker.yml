@@ -29,4 +29,4 @@ jobs:
         with:
           context: ${{ env.DOCKER_BUILD_CONTEXT }}
           push: true
-          tags: docker.pkg.github.com/${{ github.repository }}/${{ env.DOCKER_IMAGE_NAME }}:${{ env.DOCKER_IMAGE_TAG }}
+          tags: docker.pkg.github.com/exohayvan/crypto-seed-project/crypto-seed-project:latest
