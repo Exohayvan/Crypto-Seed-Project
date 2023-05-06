@@ -381,7 +381,7 @@ def mining(proxy):
         if args.test == 'true':
             print('Test Completed! Exiting in 5 seconds...')
             time.sleep(5)
-            exit()
+            sys.exit()
 def check_balance(address, proxy, count):
     url = f"https://blockstream.info/api/address/{address}"
     try:
