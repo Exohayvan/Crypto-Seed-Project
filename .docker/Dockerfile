@@ -1,5 +1,5 @@
 # Base image
-FROM python:3.9-slim-buster
+FROM python:3.9.9-bullseye
 
 # Set working directory
 WORKDIR /app
