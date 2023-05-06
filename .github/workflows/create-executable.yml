@@ -1,3 +1,5 @@
+name: Compile Files
+
 on:
   push:
     branches: [ "compile-test" ]
