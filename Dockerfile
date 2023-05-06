@@ -15,7 +15,3 @@ COPY . .
 
 # Run the script
 CMD [ "python3", "main.py" ]
-
-docker build -t exohayvan/crypto-seed-project:latest .
-
-docker push exohayvan/crypto-seed-project:latest
