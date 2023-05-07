@@ -1,0 +1,68 @@
+name: Create Release
+
+on:
+  workflow_run:
+    workflows: ["Compile Files"] # Name of your previous workflow
+    types:
+      - completed
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    if: ${{ github.event.workflow_run.conclusion == 'success' }}
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Download artifacts
+        uses: actions/download-artifact@v2
+        with:
+          path: artifacts
+
+      - name: Extract version
+        run: |
+          echo "VERSION=$(grep -oP '(?<=Build_)[^/]+' artifacts/* | head -1)" | tee -a $GITHUB_ENV
+
+      - name: Check if release already exists
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          releases=$(curl --silent --header "Authorization: token $GITHUB_TOKEN" "https://api.github.com/repos/${{ github.repository }}/releases")
+          if echo "$releases" | grep -q "\"tag_name\": \"v${{ env.VERSION }}\""; then
+            echo "Release v${{ env.VERSION }} already exists, skipping."
+            exit 1
+          fi
+
+      - name: Generate Changelog
+        run: |
+          latest_release_tag=$(curl --silent --header "Authorization: token ${{ secrets.GITHUB_TOKEN }}" "https://api.github.com/repos/${{ github.repository }}/releases/latest" | jq -r '.tag_name')
+          git fetch --tags
+          changelog=$(git diff "$latest_release_tag" HEAD -- main.py)
+          echo "$changelog" > changelog.txt
+
+      - name: Create Release
+        id: create_release
+        uses: actions/create-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tag_name: v${{ env.VERSION }}
+          release_name: Release v${{ env.VERSION }}
+          body_path: changelog.txt
+          draft: false
+          prerelease: ${{ contains(env.VERSION, 'alpha') || contains(env.VERSION, 'beta') }}
+
+      - name: Attach artifacts to the release
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          assets=($(ls artifacts))
+          for asset in "${assets[@]}"; do
+            echo "Uploading $asset to release"
+            curl \
+              --request POST \
+              --header "Authorization: token $GITHUB_TOKEN" \
+              --header "Content-Type: $(file -b --mime-type artifacts/$asset)" \
+              --data-binary @artifacts/$asset \
+              "https://uploads.github.com/repos/${{ github.repository }}/releases/${{ steps.create_release.outputs.id }}/assets?name=$asset"
+          done
