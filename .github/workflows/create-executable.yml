@@ -39,7 +39,7 @@ jobs:
         FILE_NAME="Build_${OS_NAME}-${VERSION}"
         echo "FILE_NAME=$FILE_NAME" | tee -a $GITHUB_ENV
 
-    - run: pyinstaller --onefile --name ${{ env.FILE_NAME }} --distpath ./dist main.py
+    - run: pyinstaller --onefile --name ${{ env.FILE_NAME }} main.py
 
     # Run the application on different operating systems
     - name: Run on Windows
