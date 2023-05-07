@@ -12,8 +12,9 @@ from bitcoinaddress import Wallet #needed for privatekeys
 msg = "Project for brute forcing private keys, using parallel processing across a network of everyone running the program! For educational use only."
 parser = argparse.ArgumentParser(description = msg)
 
-parser.add_argument("-t", "--test", help = "Test script. Values: 'True'")
+parser.add_argument("-t", "--test", help = "Test script. Values: 'true'")
 parser.add_argument("-c", "--compile", help = "Compile script for system. Values: 'onefile' 'ipa'")
+parser.add_argument("-v", "--version", help = "Check Versions. Values: 'true'")
 args = parser.parse_args()
 
 
@@ -455,6 +456,8 @@ elif args.compile == 'onefile':
 elif args.compile == 'ipa':
     print('not ready!')
     exit()
+elif args.version == 'true':
+    print(version)
 else:
     intro()
     update(version)
