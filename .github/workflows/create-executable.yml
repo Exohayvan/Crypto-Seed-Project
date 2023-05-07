@@ -41,7 +41,7 @@ jobs:
     - name: Run on Linux or macOS
       if: matrix.os != 'windows-latest'
       run: |
-        ./dist/$(echo "${{ matrix.os }}" | cut -d'-' -f1)_${{ env.VERSION }} -t true
+        ./dist/"${os_name}_${VERSION}" -t true
     - name: Upload artifact
       uses: actions/upload-artifact@v2
       with:
