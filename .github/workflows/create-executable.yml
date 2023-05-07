@@ -2,7 +2,7 @@ name: Compile Files
 
 on:
   push:
-    branches: [ "compile-test" ]
+    branches: [ "main" ]
 
 jobs:
   build:
