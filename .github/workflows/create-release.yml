@@ -33,6 +33,9 @@ jobs:
             exit 1
           fi
 
+      - name: Install jq
+        run: sudo apt-get install -y jq
+
       - name: Generate Changelog
         run: |
           latest_release_tag=$(curl --silent --header "Authorization: token ${{ secrets.GITHUB_TOKEN }}" "https://api.github.com/repos/${{ github.repository }}/releases/latest" | jq -r '.tag_name')
