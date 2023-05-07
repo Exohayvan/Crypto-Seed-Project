@@ -12,8 +12,9 @@ from bitcoinaddress import Wallet #needed for privatekeys
 msg = "Project for brute forcing private keys, using parallel processing across a network of everyone running the program! For educational use only."
 parser = argparse.ArgumentParser(description = msg)
 
-parser.add_argument("-t", "--test", help = "Test script. Values: 'True'")
+parser.add_argument("-t", "--test", help = "Test script. Values: 'true'")
 parser.add_argument("-c", "--compile", help = "Compile script for system. Values: 'onefile' 'ipa'")
+parser.add_argument("-v", "--version", help = "Check Versions. Values: 'true'")
 args = parser.parse_args()
 
 
@@ -381,7 +382,7 @@ def mining(proxy):
         if args.test == 'true':
             print('Test Completed! Exiting in 5 seconds...')
             time.sleep(5)
-            exit()
+            sys.exit()
 def check_balance(address, proxy, count):
     url = f"https://blockstream.info/api/address/{address}"
     try:
@@ -444,9 +445,10 @@ def random_proxy():
 
 
 #runtime order
-checkInternetHttplib("www.google.com", 3)
+
 
 if args.test == 'true':
+    checkInternetHttplib("www.google.com", 3)
     print('Testing Mode...')
     mining(0)
 elif args.compile == 'onefile':
@@ -455,7 +457,10 @@ elif args.compile == 'onefile':
 elif args.compile == 'ipa':
     print('not ready!')
     exit()
+elif args.version == 'true':
+    print(version)
 else:
+    checkInternetHttplib("www.google.com", 3)
     intro()
     update(version)
     #discord('BTC Seed Mining Network Stats', datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S"), 0xf7931a, 'Nodes Online:', 'N/A', 'Round:', 'N/A', 'Shares:', 'N/A')
