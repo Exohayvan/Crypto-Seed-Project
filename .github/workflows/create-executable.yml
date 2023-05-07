@@ -41,7 +41,7 @@ jobs:
     # Run the application on different operating systems
     - name: Run on Windows
       if: matrix.os == 'windows-latest'
-      run: Get-ChildItem -Path "$(Get-Location)\dist\$env:FILE_NAME"
+      run: Get-ChildItem -Path "$(Get-Location)\dist\" -Recurse
 
 
     - name: Run on Linux
