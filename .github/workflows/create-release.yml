@@ -43,17 +43,16 @@ jobs:
           changelog=$(git diff "$latest_release_tag" HEAD -- main.py)
           echo "$changelog" > changelog.txt
 
-      - name: Create Release
-        id: create_release
-        uses: actions/create-release@v1
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        with:
-          tag_name: v${{ env.VERSION }}
-          release_name: Release v${{ env.VERSION }}
-          body_path: changelog.txt
-          draft: false
-          prerelease: ${{ contains(env.VERSION, 'alpha') || contains(env.VERSION, 'beta') }}
+      - name: Generate Changelog
+        run: |
+          latest_release_tag=$(curl --silent --header "Authorization: token ${{ secrets.GITHUB_TOKEN }}" "https://api.github.com/repos/${{ github.repository }}/releases/latest" | jq -r '.tag_name')
+          git fetch --tags
+          if [ "$latest_release_tag" == "null" ]; then
+            changelog="Initial release."
+          else
+            changelog=$(git diff "$latest_release_tag" HEAD -- main.py)
+          fi
+          echo "$changelog" > changelog.txt
 
       - name: Attach artifacts to the release
         env:
