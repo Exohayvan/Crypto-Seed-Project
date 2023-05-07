@@ -2,7 +2,7 @@ name: Compile Files
 
 on:
   push:
-    branches: [ "main" ]
+    branches: [ "*" ]
 
 jobs:
   build:
