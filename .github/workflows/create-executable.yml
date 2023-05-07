@@ -42,7 +42,9 @@ jobs:
     - name: Run on Windows
       if: matrix.os == 'windows-latest'
       run: |
-          Invoke-Expression ".\dist\$FILE_NAME -t true"
+          $currentDirectory = Get-Location
+          $fullPath = Join-Path $currentDirectory "dist\$FILE_NAME"
+          Invoke-Expression "$fullPath -t true"
 
     - name: Run on Linux
       if: matrix.os == 'ubuntu-latest'
