@@ -42,7 +42,7 @@ jobs:
     - name: Run on Windows
       if: matrix.os == 'windows-latest'
       run: |
-        .\dist\$(FILE_NAME) -t true
+        .\dist\$env:FILE_NAME -t true
 
 
     - name: Run on Linux
