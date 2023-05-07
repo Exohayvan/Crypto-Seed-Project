@@ -20,7 +20,9 @@ jobs:
     - run: pip install -r requirements.txt pyinstaller
     - run: pyinstaller --onefile main.py
     - name: Get version
-      run: echo "VERSION=$(python main.py -v true)" >> $GITHUB_ENV
+      shell: bash
+      run: echo "VERSION=$(python main.py -v true)" | tee -a $GITHUB_ENV
+
     # Optionally verify that it works (provided that it does not need user interaction)
     - name: Run on Windows
       if: matrix.os == 'windows-latest'
