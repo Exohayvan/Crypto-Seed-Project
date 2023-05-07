@@ -38,9 +38,18 @@ jobs:
 
       - name: Generate Changelog
         run: |
-          latest_release_tag=$(curl --silent --header "Authorization: token ${{ secrets.GITHUB_TOKEN }}" "https://api.github.com/repos/${{ github.repository }}/releases/latest" | jq -r '.tag_name')
+          response=$(curl --silent --header "Authorization: token ${{ secrets.GITHUB_TOKEN }}" "https://api.github.com/repos/${{ github.repository }}/releases/latest")
+          latest_release_tag=$(echo "$response" | jq -r '.tag_name')
+          prerelease=$(echo "$response" | jq -r '.prerelease')
           git fetch --tags
-          changelog=$(git diff "$latest_release_tag" HEAD -- main.py)
+          if [ "$latest_release_tag" == "null" ]; then
+            changelog="Initial release."
+          elif [ "$prerelease" == "true" ]; then
+            changelog="This is a prerelease version."
+            changelog+=$(git diff "$latest_release_tag" HEAD -- main.py)
+          else
+            changelog=$(git diff "$latest_release_tag" HEAD -- main.py)
+          fi
           echo "$changelog" > changelog.txt
 
       - name: Generate Changelog
