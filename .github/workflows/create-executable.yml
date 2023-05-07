@@ -58,6 +58,4 @@ jobs:
       uses: actions/upload-artifact@v2
       with:
         name: ${{ env.VERSION }}
-        path: |
-          dist/*
-          dist\*
+        path: dist/$FILE_NAME
