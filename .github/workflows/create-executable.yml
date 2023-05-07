@@ -59,4 +59,5 @@ jobs:
       with:
         name: ${{ env.VERSION }}
         path: |
-          dist/*
+          dist/$FILE_NAME
+
