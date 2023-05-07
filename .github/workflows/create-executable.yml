@@ -32,13 +32,21 @@ jobs:
       if: matrix.os != 'windows-latest'
       run: |
         ./dist/main -t true
-    - name: Upload artifact
+    - name: Upload windows artifact
       uses: actions/upload-artifact@v2
       with:
         name: ${{ env.VERSION }}
         if: matrix.os == 'windows-latest'
         path: dist/windows/
+    - name: Upload windows artifact
+      uses: actions/upload-artifact@v2
+      with:
+        name: ${{ env.VERSION }}
         if: matrix.os == 'ubuntu-latest'
         path: dist/ubuntu/
+    - name: Upload windows artifact
+      uses: actions/upload-artifact@v2
+      with:
+        name: ${{ env.VERSION }}
         if: matrix.os == 'macos-latest'
         path: dist/macos/
