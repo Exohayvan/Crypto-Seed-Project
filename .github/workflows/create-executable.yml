@@ -53,7 +53,7 @@ jobs:
 
     - name: Run on MacOS
       if: matrix.os == 'macos-latest'
-      run: open dist/$FILE_NAME -t true
+      run: open dist/$FILE_NAME
 
     # Upload the artifact
     - name: Upload artifact
