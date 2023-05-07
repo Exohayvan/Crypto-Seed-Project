@@ -26,6 +26,7 @@ jobs:
     - name: Define names
       shell: bash
       run: |
+        echo "VERSION=$(python main.py -v true)" | tee -a $GITHUB_ENV
         if [ "${{ matrix.os }}" == "windows-latest" ]; then
           FILE_NAME="main_windows.exe"
         elif [ "${{ matrix.os }}" == "ubuntu-latest" ]; then
