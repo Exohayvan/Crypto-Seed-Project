@@ -21,30 +21,29 @@ jobs:
     - run: pyinstaller --onefile main.py
     - name: Get version
       run: echo "VERSION=$(python main.py -v true)" >> $GITHUB_ENV
+    - name: Rename and archive
+      run: |
+        os_name=""
+        case "${{ matrix.os }}" in
+          windows-latest) os_name="Windows" ;;
+          ubuntu-latest) os_name="Ubuntu" ;;
+          macos-latest) os_name="macOS" ;;
+        esac
+        file_ext=""
+        [ "${{ matrix.os }}" == "windows-latest" ] && file_ext=".exe"
+        mv "dist/main${file_ext}" "dist/${os_name}_${VERSION}${file_ext}"
+        tar czf "dist/${VERSION}.tar.gz" -C dist "${os_name}_${VERSION}${file_ext}"
     # Optionally verify that it works (provided that it does not need user interaction)
     - name: Run on Windows
       if: matrix.os == 'windows-latest'
       run: |
-        .\dist\main.exe -t true
+        .\dist\Windows_${{ env.VERSION }}.exe -t true
     - name: Run on Linux or macOS
       if: matrix.os != 'windows-latest'
       run: |
-        ./dist/main -t true
-    - name: Upload artifact for Windows
-      if: matrix.os == 'windows-latest'
+        ./dist/$(echo "${{ matrix.os }}" | cut -d'-' -f1)_${{ env.VERSION }} -t true
+    - name: Upload artifact
       uses: actions/upload-artifact@v2
       with:
-        name: windows-artifact-${{ env.VERSION }}
-        path: dist/*
-    - name: Upload artifact for Ubuntu
-      if: matrix.os == 'ubuntu-latest'
-      uses: actions/upload-artifact@v2
-      with:
-        name: ubuntu-artifact-${{ env.VERSION }}
-        path: dist/*
-    - name: Upload artifact for macOS
-      if: matrix.os == 'macos-latest'
-      uses: actions/upload-artifact@v2
-      with:
-        name: macos-artifact-${{ env.VERSION }}
-        path: dist/*
+        name: ${{ matrix.os }}-artifact-${{ env.VERSION }}
+        path: dist/${{ env.VERSION }}.tar.gz
