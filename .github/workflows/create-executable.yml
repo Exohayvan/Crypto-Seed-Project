@@ -35,5 +35,5 @@ jobs:
     - name: Upload artifact
       uses: actions/upload-artifact@v2
       with:
-        name: ${{ env.VERSION }}
-        path: dist/*
+        name: ${{ matrix.os }}_${{ env.VERSION }}
+        path: dist/main*.*
