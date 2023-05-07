@@ -56,10 +56,18 @@ jobs:
       run: ./dist/$FILE_NAME -t true
 
     # Upload the artifact
-    - name: Upload artifact
+    - name: Upload artifact Windows
+      if: matrix.os == 'windows-latest'
       uses: actions/upload-artifact@v2
       with:
         name: ${{ env.VERSION }}
         path: |
           dist/*
           dist\*
+    - name: Upload artifact Windows
+      if: matrix.os == !'windows-latest'
+      uses: actions/upload-artifact@v2
+      with:
+        name: ${{ env.VERSION }}
+        path: |
+          dist/$FILE_NAME
