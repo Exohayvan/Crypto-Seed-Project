@@ -47,10 +47,18 @@ jobs:
 
       - name: Generate Changelog
         run: |
-          latest_release_tag=$(curl --silent --header "Authorization: token ${{ secrets.GITHUB_TOKEN }}" "https://api.github.com/repos/${{ github.repository }}/releases/latest" | jq -r '.tag_name')
-          git fetch --tags
-          changelog=$(git diff "$latest_release_tag" HEAD -- main.py)
+          latest_release_tag=$(curl --silent --header "Authorization: token ${{ secrets.GITHUB_TOKEN }}" "https://api.github.com/repos/${{ github.repository }}/releases/latest" | jq -r '.tag_name // ""')
+          if [ -z "$latest_release_tag" ]; then
+            echo "No previous release found. Generating changelog from the beginning."
+            git fetch --tags
+            changelog=$(git log --pretty=format:"- %s" -- main.py)
+          else
+            echo "Generating changelog since the latest release: $latest_release_tag"
+            git fetch --tags
+            changelog=$(git log "$latest_release_tag"..HEAD --pretty=format:"- %s" -- main.py)
+          fi
           echo "$changelog" > changelog.txt
+
 
       - name: Create Release
         id: create_release
