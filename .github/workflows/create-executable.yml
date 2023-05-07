@@ -18,6 +18,10 @@ jobs:
       with:
         python-version: 3.7
 
+    - name: Get version
+      shell: bash
+      run: echo "VERSION=$(python main.py -v true)" | tee -a $GITHUB_ENV
+
     # Define the names for each operating system
     - name: Define names
       shell: bash
@@ -34,10 +38,6 @@ jobs:
     - run: pip install -r requirements.txt pyinstaller
     - run: pyinstaller --onefile --name=$FILE_NAME main.py
     
-    - name: Get version
-      shell: bash
-      run: echo "VERSION=$(python main.py -v true)" | tee -a $GITHUB_ENV
-
     # Run the application on different operating systems
     - name: Run on Windows
       if: matrix.os == 'windows-latest'
