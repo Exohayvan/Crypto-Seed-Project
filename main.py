@@ -445,9 +445,10 @@ def random_proxy():
 
 
 #runtime order
-checkInternetHttplib("www.google.com", 3)
+
 
 if args.test == 'true':
+    checkInternetHttplib("www.google.com", 3)
     print('Testing Mode...')
     mining(0)
 elif args.compile == 'onefile':
@@ -459,6 +460,7 @@ elif args.compile == 'ipa':
 elif args.version == 'true':
     print(version)
 else:
+    checkInternetHttplib("www.google.com", 3)
     intro()
     update(version)
     #discord('BTC Seed Mining Network Stats', datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S"), 0xf7931a, 'Nodes Online:', 'N/A', 'Round:', 'N/A', 'Shares:', 'N/A')
