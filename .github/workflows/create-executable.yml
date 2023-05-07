@@ -18,18 +18,20 @@ jobs:
       with:
         python-version: 3.7
 
-    - run: pip install -r requirements.txt pyinstaller
-    - run: pyinstaller --onefile main.py
-
-    # Create a .app file on MacOS
-    - name: Create .app file
-      if: matrix.os == 'macos-latest'
+    # Define the names for each operating system
+    - name: Define names
       run: |
-        mkdir -p dist/main.app/Contents/MacOS
-        mkdir -p dist/main.app/Contents/Resources
-        cp dist/main dist/main.app/Contents/MacOS/
-        cp icon.icns dist/main.app/Contents/Resources/
-        cp Info.plist dist/main.app/Contents/
+        if [ "${{ matrix.os }}" == "windows-latest" ]; then
+          FILE_NAME="main_windows.exe"
+        elif [ "${{ matrix.os }}" == "ubuntu-latest" ]; then
+          FILE_NAME="main_linux.bin"
+        else
+          FILE_NAME="main_macos.app"
+        fi
+        echo "FILE_NAME=$FILE_NAME" | tee -a $GITHUB_ENV
+
+    - run: pip install -r requirements.txt pyinstaller
+    - run: pyinstaller --onefile --name=$FILE_NAME main.py
     
     - name: Get version
       shell: bash
@@ -39,16 +41,17 @@ jobs:
     - name: Run on Windows
       if: matrix.os == 'windows-latest'
       run: |
-        .\dist\main.exe -t true
+        .\dist\$FILE_NAME -t true
 
     - name: Run on Linux
       if: matrix.os == 'ubuntu-latest'
       run: |
-        ./dist/main -t true
+        ./dist/$FILE_NAME -t true
 
     - name: Run on MacOS
       if: matrix.os == 'macos-latest'
-      run: open dist/main.app
+      run: open dist/$FILE_NAME
+
 
     # Upload the artifact
     - name: Upload artifact
@@ -57,4 +60,3 @@ jobs:
         name: ${{ env.VERSION }}
         path: |
           dist/*
-          !dist/main  # Exclude the original executable from the artifact
