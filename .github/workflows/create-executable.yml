@@ -35,5 +35,10 @@ jobs:
     - name: Upload artifact
       uses: actions/upload-artifact@v2
       with:
-        name: ${{ matrix.os }}_${{ env.VERSION }}
-        path: dist/main*.*
+        name: ${{ env.VERSION }}
+        if: matrix.os == 'windows-latest'
+        path: dist/windows/
+        if: matrix.os == 'ubuntu-latest'
+        path: dist/ubuntu/
+        if: matrix.os == 'macos-latest'
+        path: dist/macos/
