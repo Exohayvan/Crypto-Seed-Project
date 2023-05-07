@@ -18,16 +18,16 @@ jobs:
         python-version: 3.7
 
     - run: pip install -r requirements.txt pyinstaller
-    - run: pyinstaller main.py
+    - run: pyinstaller --onefile main.py
     # Optionally verify that it works (provided that it does not need user interaction)
     - name: Run on Windows
       if: matrix.os == 'windows-latest'
       run: |
-        .\dist\main\main.exe -t true
+        .\dist\main.exe -t true
     - name: Run on Linux or macOS
       if: matrix.os != 'windows-latest'
       run: |
-        ./dist/main/main -t true
+        ./dist/main -t true
     - name: Upload artifact for Windows
       if: matrix.os == 'windows-latest'
       uses: actions/upload-artifact@v2
