@@ -2,8 +2,7 @@ name: Build and Push Docker Image
 
 on:
   push:
-    branches:
-      - main
+    branches: [ "*" ]
 
 env:
   DOCKER_IMAGE_NAME: exohayvan/crypto-seed-project
