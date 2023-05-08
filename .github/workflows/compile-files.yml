@@ -74,4 +74,4 @@ jobs:
       with:
         name: ${{ env.VERSION }}
         path: |
-          dist/${{ env.FILE_NAME }}
+          dist/${{ env.FILE_NAME }}.*
