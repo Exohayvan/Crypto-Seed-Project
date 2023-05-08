@@ -470,7 +470,6 @@ def random_proxy():
 
 
 #runtime order
-jversion, address, is_node, userID = data_json()
 
 if args.test == 'true':
     checkInternetHttplib("www.google.com", 3)
@@ -487,6 +486,7 @@ elif args.version == 'true':
 else:
     checkInternetHttplib("www.google.com", 3)
     intro()
+    jversion, address, is_node, userID = data_json()
     print(f"User ID for address '{address}': {userID}")
     update(version)
     #discord('BTC Seed Mining Network Stats', datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S"), 0xf7931a, 'Nodes Online:', 'N/A', 'Round:', 'N/A', 'Shares:', 'N/A')
