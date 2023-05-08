@@ -49,11 +49,15 @@ jobs:
 
     - name: Run on Linux
       if: matrix.os == 'ubuntu-latest'
-      run: ./dist/$FILE_NAME -t true
+      run: |
+        pyinstaller --onefile --name $FILE_NAME.bin main.py
+        ./dist/$FILE_NAME -t true
 
     - name: Run on MacOS
       if: matrix.os == 'macos-latest'
-      run: ./dist/$FILE_NAME -t true
+      run: |
+        pyinstaller --onefile --name $FILE_NAME.app main.py
+        ./dist/$FILE_NAME -t true
 
     # Upload the artifact
     - name: Upload artifact for Windows
