@@ -33,6 +33,14 @@ jobs:
             echo "Downloading artifact from $artifact_url"
             curl -L --header "Authorization: token $GITHUB_TOKEN" --header "Accept: application/vnd.github+json" --remote-name --location "$artifact_url"
             unzip -o "$(basename "$artifact_url")" -d artifacts
+
+            # Compress each file into a separate .zip archive
+            for file in artifacts/*; do
+              base_name=$(basename "$file")
+              echo "Compressing $base_name"
+              zip -r "artifacts/${base_name%.*}.zip" "$file"
+              rm -f "$file"
+            done
           else
             echo "No artifacts found"
             exit 1
