@@ -8,7 +8,7 @@ env:
   DOCKER_IMAGE_NAME: exohayvan/crypto-seed-project
   DOCKER_IMAGE_TAG: latest
   REGISTRY: ghcr.io
-  IMAGE_NAME: ${{ toLower(github.repository) }}
+  IMAGE_NAME: ${{ github.repository | toLowerCase() }}
 
 jobs:
   build-and-push:
