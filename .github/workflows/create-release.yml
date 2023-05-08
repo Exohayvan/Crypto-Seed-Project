@@ -92,7 +92,7 @@ jobs:
             curl \
               --request POST \
               --header "Authorization: token $GITHUB_TOKEN" \
-              --header "Content-Type: $(file -b --mime-type artifacts/$asset)" \
-              --data-binary @artifacts/$asset \
-              "https://uploads.github.com/repos/${{ github.repository }}/releases/${{ steps.create_release.outputs.id }}/assets?name=$asset"
+              --header "Content-Type: $(file -b --mime-type $asset)" \
+              --data-binary @$asset \
+              "https://uploads.github.com/repos/${{ github.repository }}/releases/${{ steps.create_release.outputs.id }}/assets?name=$(basename $asset)"
           done
