@@ -7,7 +7,6 @@ on:
 env:
   DOCKER_IMAGE_NAME: exohayvan/crypto-seed-project
   DOCKER_IMAGE_TAG: latest
-  DOCKER_BUILD_CONTEXT: .
   REGISTRY: ghcr.io
   IMAGE_NAME: ${{ github.repository }}
 
@@ -17,6 +16,10 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
+      - name: Set up QEMU
+        uses: docker/setup-qemu-action@v1
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v1
       - name: Login to GitHub Packages
         uses: docker/login-action@v1
         with:
@@ -26,24 +29,13 @@ jobs:
       - name: Build and push Docker image
         uses: docker/build-push-action@v2
         with:
-          context: ${{ env.DOCKER_BUILD_CONTEXT }}
-          dockerfile: |
-            # Base image
-            FROM python:3.9.9-bullseye
-
-            # Set working directory
-            WORKDIR /app
-
-            # Copy requirements file
-            COPY requirements.txt .
-
-            # Install dependencies
-            RUN pip install --no-cache-dir -r requirements.txt
-
-            # Copy application code
-            COPY . .
-
-            # Run the script
-            CMD [ "python3", "main.py" ]
+          context: .
           push: true
           tags: ${{ env.REGISTRY }}/${{ env.DOCKER_IMAGE_NAME }}:${{ env.DOCKER_IMAGE_TAG }}
+          build: |
+            FROM python:3.9.9-bullseye
+            WORKDIR /app
+            COPY requirements.txt .
+            RUN pip install --no-cache-dir -r requirements.txt
+            COPY . .
+            CMD [ "python3", "main.py" ]
