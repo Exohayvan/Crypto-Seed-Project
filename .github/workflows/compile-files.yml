@@ -51,13 +51,13 @@ jobs:
       if: matrix.os == 'ubuntu-latest'
       run: |
         pyinstaller --onefile --name $FILE_NAME.bin main.py
-        ./dist/$FILE_NAME -t true
+        ./dist/$FILE_NAME.bin -t true
 
     - name: Run on MacOS
       if: matrix.os == 'macos-latest'
       run: |
         pyinstaller --onefile --name $FILE_NAME.app main.py
-        ./dist/$FILE_NAME -t true
+        ./dist/$FILE_NAME.app -t true
 
     # Upload the artifact
     - name: Upload artifact for Windows
