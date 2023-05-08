@@ -36,7 +36,7 @@ jobs:
           PRERELEASE=$(basename artifacts/* | grep -oP '(?<=-)[^-]+(?=.)' | head -1)
           ARTIFACT_NAMES=$(basename -a artifacts/*)
           FULL_VERSION="${VERSION}-${PRERELEASE}"
-          echo "VERSION=$FULL_VERSION" | tee -a $GITHUB_ENV
+          echo "FULL_VERSION=$FULL_VERSION" | tee -a $GITHUB_ENV
           echo "ARTIFACT_NAMES=$ARTIFACT_NAMES" | tee -a $GITHUB_ENV
 
       - name: Check if release already exists
@@ -70,11 +70,11 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          tag_name: v${{ env.VERSION }}
-          release_name: Release v${{ env.VERSION }}
+          tag_name: v${{ env.FULL_VERSION }}
+          release_name: Release v${{ env.FULL_VERSION }}
           body_path: changelog.txt
           draft: false
-          prerelease: ${{ contains(env.VERSION, 'alpha') || contains(env.VERSION, 'beta') }}
+          prerelease: ${{ contains(env.FULL_VERSION, 'alpha') || contains(env.FULL_VERSION, 'beta') }}
 
       - name: Attach artifacts to the release
         env:
