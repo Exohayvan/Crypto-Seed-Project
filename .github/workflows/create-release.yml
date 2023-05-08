@@ -62,14 +62,14 @@ jobs:
           if [ -z "$latest_release_tag" ]; then
             echo "No previous release found. Generating changelog from the beginning."
             git fetch --tags
-            changelog=$(git log --pretty=format:"- Added: %s" -- main.py utils.py)
+            changelog=$(git log --pretty=format:"- %s" --stat -- main.py utils.py)
           else
             echo "Generating changelog since the latest release: $latest_release_tag"
             git fetch --tags
-            changelog=$(git log "$latest_release_tag"..HEAD --pretty=format:"%s" -- main.py utils.py)
+            changelog=$(git log "$latest_release_tag"..HEAD --pretty=format:"- %s" --stat -- main.py utils.py)
           fi
-          added_changes=$(echo "$changelog" | grep -i "^added:" | sed 's/^added: /- /g')
-          removed_changes=$(echo "$changelog" | grep -i "^removed:" | sed 's/^removed: /- /g')
+          added_changes=$(echo "$changelog" | grep -i "^.*| [0-9]* [+][0-9]* " | sed 's/^.* | [0-9]* [+]\([0-9]*\) .*/- Added: \1 lines added to &/g')
+          removed_changes=$(echo "$changelog" | grep -i "^.*| [0-9]* [-][0-9]* " | sed 's/^.* | [0-9]* [-]\([0-9]*\) .*/- Removed: \1 lines removed from &/g')
           fixed_issues=$(echo "$changelog" | grep -i "^fixed issues:" | sed 's/^fixed issues: /- /g')
           known_issues=$(echo "$changelog" | grep -i "^known issues:" | sed 's/^known issues: /- /g')
           echo "Added:" > changelog.txt
