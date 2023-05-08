@@ -70,8 +70,8 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          tag_name: v${{ env.FULL_VERSION }}
-          release_name: Release v${{ env.FULL_VERSION }}
+          tag_name: v${{ env.VERSION }}
+          release_name: Release v${{ env.VERSION }}
           body_path: changelog.txt
           draft: false
           prerelease: ${{ contains(env.FULL_VERSION, 'alpha') || contains(env.FULL_VERSION, 'beta') }}
