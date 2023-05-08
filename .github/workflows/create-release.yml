@@ -33,8 +33,10 @@ jobs:
       - name: Extract version and artifact names
         run: |
           VERSION=$(basename artifacts/* | grep -oP '(?<=Build_)[^/]+(?=-)' | head -1)
+          PRERELEASE=$(basename artifacts/* | grep -oP '(?<=-)[^-]+(?=.)' | head -1)
           ARTIFACT_NAMES=$(basename -a artifacts/*)
-          echo "VERSION=$VERSION" | tee -a $GITHUB_ENV
+          FULL_VERSION="${VERSION}-${PRERELEASE}"
+          echo "VERSION=$FULL_VERSION" | tee -a $GITHUB_ENV
           echo "ARTIFACT_NAMES=$ARTIFACT_NAMES" | tee -a $GITHUB_ENV
 
       - name: Check if release already exists
