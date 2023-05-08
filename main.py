@@ -8,6 +8,7 @@ import argparse #needed for passing arguments
 import json
 import random
 from bitcoinaddress import Wallet #needed for privatekeys
+import hashlib, base64
 
 msg = "Project for brute forcing private keys, using parallel processing across a network of everyone running the program! For educational use only."
 parser = argparse.ArgumentParser(description = msg)
@@ -49,6 +50,25 @@ def intro():
         time_print(Fore.GREEN + f'Valid system type. {os_type.capitalize()} detected.' + Fore.WHITE)
     else:
         time_print(Fore.LIGHTRED_EX + 'Unknown system type. Please reach out to support, even if program seems to work. We want to try and add support for all systems we can. Please send us this info ' + Fore.YELLOW +'"platform: ' + os_type + '" ' + '"machine: ' + platform.machine() + '"'+ Fore.WHITE)
+
+def generate_id(address, id_length=12):
+    # Create SHA-512 hash object
+    hasher = hashlib.sha512()
+
+    # Update the hash object with the address bytes
+    hasher.update(address.encode('utf-8'))
+
+    # Get the binary representation of the hash
+    binary_hash = hasher.digest()
+
+    # Encode the binary hash using base64
+    base64_hash = base64.b64encode(binary_hash).decode('utf-8')
+
+    # Remove any non-alphanumeric characters and truncate to the desired length
+    alphanumeric_hash = ''.join(c for c in base64_hash if c.isalnum())
+    short_id = alphanumeric_hash[:id_length]
+
+    return short_id
 
 def compile():
     os_type = sys.platform.capitalize()
@@ -327,8 +347,13 @@ def data_json():
             with open('data.json', 'w') as file:
                 json.dump(json_data, file)
 
-    # Return the imported or entered values
-    return jversion, address, is_node
+    # Generate the userID based on the address
+    userID = generate_id(address)
+
+    # Return the imported or entered values, along with the generated userID
+    return jversion, address, is_node, userID
+
+# Call the data_json function to retrieve the values
     
 #main functions
 def checkInternetHttplib(url, timeout):
@@ -445,7 +470,7 @@ def random_proxy():
 
 
 #runtime order
-
+jversion, address, is_node, userID = data_json()
 
 if args.test == 'true':
     checkInternetHttplib("www.google.com", 3)
@@ -462,6 +487,7 @@ elif args.version == 'true':
 else:
     checkInternetHttplib("www.google.com", 3)
     intro()
+    print(f"User ID for address '{address}': {userID}")
     update(version)
     #discord('BTC Seed Mining Network Stats', datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S"), 0xf7931a, 'Nodes Online:', 'N/A', 'Round:', 'N/A', 'Shares:', 'N/A')
     mining(0)
