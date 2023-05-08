@@ -39,13 +39,13 @@ jobs:
         FILE_NAME="Build_${OS_NAME}-${VERSION}"
         echo "FILE_NAME=$FILE_NAME" | tee -a $GITHUB_ENV
 
-    - run: pyinstaller --onefile --name ${{ env.FILE_NAME }} main.py
-
     # Run the application on different operating systems
     - name: Run on Windows
       if: matrix.os == 'windows-latest'
       shell: cmd
-      run: .\dist\%FILE_NAME% -t true
+      run: |
+        pyinstaller --onefile --name %FILE_NAME% main.py
+        .\dist\%FILE_NAME% -t true
 
     - name: Run on Linux
       if: matrix.os == 'ubuntu-latest'
