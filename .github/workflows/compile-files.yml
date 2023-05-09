@@ -113,7 +113,12 @@ jobs:
     # Install Android SDK Command-line tools
     - name: Install Android SDK Command-line tools
       run: |
-        sudo apt-get install -y android-sdk cmdtest
+        wget https://dl.google.com/android/repository/commandlinetools-linux-7302050_latest.zip
+        sudo mkdir -p /usr/lib/android-sdk/cmdline-tools
+        sudo unzip commandlinetools-linux-7302050_latest.zip -d /usr/lib/android-sdk/cmdline-tools
+        sudo mv /usr/lib/android-sdk/cmdline-tools/cmdline-tools /usr/lib/android-sdk/cmdline-tools/latest
+        echo "ANDROID_SDK_ROOT=/usr/lib/android-sdk" >> $GITHUB_ENV
+        echo "/usr/lib/android-sdk/cmdline-tools/latest/bin" >> $GITHUB_PATH
 
     # Accept Android SDK licenses
     - name: Accept Android SDK licenses
