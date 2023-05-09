@@ -81,48 +81,44 @@ jobs:
           dist/${{ env.FILE_NAME }}.*
 
   build-android:
-    if: ${{ github.event.workflow_run.conclusion == 'success' }}
     runs-on: ubuntu-latest
-    needs: build
 
     steps:
     - uses: actions/checkout@v2
-    - uses: actions/setup-python@v2
-      with:
-        python-version: 3.7
 
-    - run: pip install -r requirements.txt pyinstaller
+    # Install Kivy dependencies
+    - name: Install Kivy dependencies
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y python3.7 python3.7-dev python3.7-venv python3-pip
+        sudo apt-get install -y libsdl2-dev libsdl2-image-dev libsdl2-mixer-dev libsdl2-ttf-dev libportmidi-dev libswscale-dev libavformat-dev libavcodec-dev zlib1g-dev
+        sudo apt-get install -y libgstreamer1.0-dev gstreamer1.0-plugins-base gstreamer1.0-plugins-good gstreamer1.0-plugins-ugly gstreamer1.0-plugins-bad
+        sudo apt-get install -y openjdk-11-jdk
 
-    # Get version
-    - name: Get version
-      shell: bash
-      run: echo "VERSION=$(python main.py -v true)" | tee -a $GITHUB_ENV
+    # Install Kivy
+    - name: Install Kivy
+      run: |
+        python3.7 -m pip install kivy
 
-    # Setup Java
-    - name: Set up JDK
-      uses: actions/setup-java@v2
-      with:
-        java-version: '11'
-        distribution: 'adopt'
+    # Install Buildozer
+    - name: Install Buildozer
+      run: |
+        python3.7 -m pip install --upgrade buildozer
 
-    # Cache Gradle dependencies
-    - name: Cache Gradle dependencies
-      uses: actions/cache@v2
-      with:
-        path: ~/.gradle/caches
-        key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle') }}
-        restore-keys: |
-          ${{ runner.os }}-gradle-
+    # Initialize Buildozer spec file
+    - name: Initialize Buildozer spec file
+      run: |
+        buildozer init
 
     # Build APK
     - name: Build APK
       run: |
-        cd android # Navigate to the Android project folder
-        ./gradlew assembleRelease
+        export PATH=$PATH:~/.local/bin
+        buildozer -v android debug
 
     # Upload APK artifact
     - name: Upload APK artifact
       uses: actions/upload-artifact@v2
       with:
-        name: APK-${{ env.VERSION }}
-        path: android/app/build/outputs/apk/release/*.apk
+        name: APK
+        path: bin/*.apk
