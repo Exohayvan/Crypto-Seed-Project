@@ -64,6 +64,22 @@ jobs:
             exit 1
           fi
 
+      - name: Create Milestone
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          milestones=$(curl --silent --header "Authorization: token $GITHUB_TOKEN" "https://api.github.com/repos/${{ github.repository }}/milestones")
+          if echo "$milestones" | grep -q "\"title\": \"${{ env.VERSION }}\""; then
+            echo "Milestone ${{ env.VERSION }} already exists, skipping."
+          else
+            echo "Creating milestone ${{ env.VERSION }}"
+            curl --request POST \
+              --header "Authorization: token $GITHUB_TOKEN" \
+              --header "Content-Type: application/json" \
+              --data '{"title": "'"${{ env.VERSION }}"'", "state": "open"}' \
+              "https://api.github.com/repos/${{ github.repository }}/milestones"
+          fi
+
       - name: Generate Changelog
         run: |
           latest_release_tag=$(curl --silent --header "Authorization: token ${{ secrets.GITHUB_TOKEN }}" "https://api.github.com/repos/${{ github.repository }}/releases/latest" | jq -r '.tag_name // ""')
@@ -87,6 +103,9 @@ jobs:
           echo " " >> changelog.txt
           echo "Fixed:" >> changelog.txt
           echo "${fixed_changes//- Fixed/— }" >> changelog.txt
+          echo " " >> changelog.txt
+          echo "Known Issues:" >> changelog.txt
+          echo "[Known Issues](https://github.com/${{ github.repository }}/issues?q=is%3Aissue+milestone%3A${{ env.VERSION | urlencode }})" >> changelog.txt
 
       - name: Create Release
         id: create_release
