@@ -67,6 +67,7 @@ Coming soon will be auto payouts for balanced adresses as well as other coins.
 ### Built With
 ![Python][python]![Version][py-version]![Test][python-test]
 ![VSCode][vsc]
+My Project Status: ![Test Python Script Status](https://github.com/Exohayvan/Crypto-Seed-Project/actions/workflows/python-test.yml/badge.svg)
 
 ### Supported Coins
 ![Bitcoin][btc]
