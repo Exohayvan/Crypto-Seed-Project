@@ -9,6 +9,8 @@ import json
 import random
 from bitcoinaddress import Wallet #needed for privatekeys
 import hashlib, base64
+import math
+from collections import deque
 
 msg = "Project for brute forcing private keys, using parallel processing across a network of everyone running the program! For educational use only."
 parser = argparse.ArgumentParser(description = msg)
@@ -50,6 +52,30 @@ def intro():
         time_print(Fore.GREEN + f'Valid system type. {os_type.capitalize()} detected.' + Fore.WHITE)
     else:
         time_print(Fore.LIGHTRED_EX + 'Unknown system type. Please reach out to support, even if program seems to work. We want to try and add support for all systems we can. Please send us this info ' + Fore.YELLOW +'"platform: ' + os_type + '" ' + '"machine: ' + platform.machine() + '"'+ Fore.WHITE)
+
+class AverageCounter:
+    def __init__(self, intervals):
+        self.intervals = intervals
+        self.cycle_timestamps = deque()
+
+    def add_cycle(self):
+        current_time = time.time()
+        self.cycle_timestamps.append(current_time)
+        self._remove_old_cycles()
+
+    def _remove_old_cycles(self):
+        current_time = time.time()
+        while self.cycle_timestamps and (current_time - self.cycle_timestamps[0] > max(self.intervals)):
+            self.cycle_timestamps.popleft()
+
+    def get_averages(self):
+        current_time = time.time()
+        averages = {}
+        for interval in self.intervals:
+            count = sum(1 for ts in self.cycle_timestamps if current_time - ts <= interval)
+            average = count / (interval / 60)
+            averages[interval] = math.floor(average)
+        return averages
 
 def generate_id(address, id_length=12):
     # Create SHA-512 hash object
@@ -368,7 +394,9 @@ def checkInternetHttplib(url, timeout):
     except Exception as exep:
         time_print(exep)
         sys.exit(Fore.LIGHTRED_EX + 'Error, no internet connection')
+
 def mining(proxy):
+    counter = AverageCounter([1 * 60, 15 * 60, 30 * 60, 60 * 60])
     while True:
         if proxy == 0:
             time_print('Starting Address mining...')
@@ -384,6 +412,9 @@ def mining(proxy):
             a, a, a, PrivateHex, a, a, a, PrivateWIF, a, a, a, a, PrivateWIFc, a, a, PublicKey, a, a, a, PublicKeyc, a, a, a, PublicAddress1, a, a, a, a, PublicAddress1c, a, a, a, PublicAddress3, a, a, a, a, PublicAddressbc1PKH, a, a, a, a, PublicAddressbc1WSH = walletout.split()
             addresses = [ PublicAddress1, PublicAddress1c, PublicAddress3, PublicAddressbc1PKH, PublicAddressbc1WSH]
             time_print(Fore.RED + 'Checking Private Key:' + Fore.WHITE + ' | ' + Style.DIM + PrivateHex)
+            counter.add_cycle()
+            averages = counter.get_averages()
+            time_print(f"1-min average: {averages[1 * 60]}, 15-min average: {averages[15 * 60]}, 30-min average: {averages[30 * 60]}, 60-min average: {averages[60 * 60]}")
             with ThreadPoolExecutor(max_workers=10) as executor:
                 results = []
                 for address in addresses:
