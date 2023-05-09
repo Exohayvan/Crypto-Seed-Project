@@ -67,7 +67,6 @@ Coming soon will be auto payouts for balanced adresses as well as other coins.
 ### Built With
 ![Python][python]![Version][py-version]![Test][python-test]
 ![VSCode][vsc]
-My Project Status: ![Test Python Script Status](https://github.com/Exohayvan/Crypto-Seed-Project/actions/workflows/python-test.yml/badge.svg)
 
 ### Supported Coins
 ![Bitcoin][btc]
@@ -223,7 +222,7 @@ Project Link: [https://github.com/Exohayvan/Crypto-Seed-Project](https://github.
 [discord-id]: https://img.shields.io/discord/1074536450353287188?logo=discord&style=for-the-badge
 [discord-invite]: https://discord.gg/EXFrWNpd
 
-[python-test]: https://github.com/Exohayvan/Crypto-Seed-Project/actions/workflows/python-test.yml/badge.svg?style=for-the-badge
+[python-test]: https://img.shields.io/github/actions/workflow/status/exohayvan/crypto-seed-project/python-test.yml?style=for-the-badge
 
 [untested]: https://img.shields.io/badge/-untested-lightgrey?style=for-the-badge
 [fail]: https://img.shields.io/badge/-failed-red?style=for-the-badge
