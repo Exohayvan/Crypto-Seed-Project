@@ -65,7 +65,7 @@
 Project is made to check Private Keys for a balance, using a proxy.
 Coming soon will be auto payouts for balanced adresses as well as other coins.
 ### Built With
-![Python][python]![Version][py-version][(https://github.com/Exohayvan/Crypto-Seed-Project/actions/workflows/python-test.yml/badge.svg)](https://github.com/Exohayvan/Crypto-Seed-Project/actions/workflows/python-test.yml)
+![Python][python]![Version][py-version]![(https://github.com/Exohayvan/Crypto-Seed-Project/actions/workflows/python-test.yml/badge.svg)](https://github.com/Exohayvan/Crypto-Seed-Project/actions/workflows/python-test.yml)
 
 ![VSCode][vsc]
 
