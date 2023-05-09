@@ -391,7 +391,7 @@ def checkInternetHttplib(url, timeout):
         if response.status == 200:
             time_print(Fore.GREEN + 'Connection to internet made.' + Fore.WHITE)
             return True
-                elif response.status == 301:
+        elif response.status == 301:
             time_print(Fore.LIGHTRED_EX + 'Error 301: Moved Permanently or Server Problem.')
         elif response.status == 401:
             time_print(Fore.LIGHTRED_EX + 'Error 401: Unauthorized Access.')
