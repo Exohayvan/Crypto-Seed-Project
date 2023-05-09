@@ -77,10 +77,9 @@ jobs:
         name: ${{ env.VERSION }}
         path: |
           dist/${{ env.FILE_NAME }}.*
-
     # Setup Java
     - name: Set up JDK
-      if: matrix.os == 'ubuntu-latest'
+      if: runner.os == 'Linux'
       uses: actions/setup-java@v2
       with:
         java-version: '11'
@@ -88,7 +87,7 @@ jobs:
 
     # Cache Gradle dependencies
     - name: Cache Gradle dependencies
-      if: matrix.os == 'ubuntu-latest'
+      if: runner.os == 'Linux'
       uses: actions/cache@v2
       with:
         path: ~/.gradle/caches
@@ -98,14 +97,14 @@ jobs:
 
     # Build APK
     - name: Build APK
-      if: matrix.os == 'ubuntu-latest'
+      if: runner.os == 'Linux'
       run: |
         cd android # Navigate to the Android project folder
         ./gradlew assembleRelease
 
     # Upload APK artifact
     - name: Upload APK artifact
-      if: matrix.os == 'ubuntu-latest'
+      if: runner.os == 'Linux'
       uses: actions/upload-artifact@v2
       with:
         name: APK-${{ env.VERSION }}
