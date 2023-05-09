@@ -100,15 +100,20 @@ jobs:
         sudo apt-get install -y libgstreamer1.0-dev gstreamer1.0-plugins-base gstreamer1.0-plugins-good gstreamer1.0-plugins-ugly gstreamer1.0-plugins-bad
         sudo apt-get install -y openjdk-11-jdk
 
-    # Install Kivy
-    - name: Install Kivy
+    # Install Kivy and Cython
+    - name: Install Kivy and Cython
       run: |
-        python -m pip install kivy cython aidl
+        python -m pip install kivy cython
 
     # Install Buildozer
     - name: Install Buildozer
       run: |
         python -m pip install --upgrade buildozer
+
+    # Accept Android SDK licenses
+    - name: Accept Android SDK licenses
+      run: |
+        yes | sudo ~/.buildozer/android/platform/android-sdk/tools/bin/sdkmanager --licenses
 
     # Initialize Buildozer spec file
     - name: Initialize Buildozer spec file
