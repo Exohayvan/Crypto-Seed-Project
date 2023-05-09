@@ -93,17 +93,17 @@ jobs:
             git fetch --tags
             changelog=$(git log "$latest_release_tag"..HEAD --pretty=format:"- %s" -- main.py utils.py)
           fi
-          added_changes=$(echo "$changelog" | { grep -i "^- Add" || true; })
-          removed_changes=$(echo "$changelog" | { grep -i "^- Remove" || true; })
-          fixed_changes=$(echo "$changelog" | { grep -i "^- Fix" || true; })
+          added_changes=$(echo "$changelog" | grep -Ei "^(Add(ed)?|New)" || true)
+          removed_changes=$(echo "$changelog" | grep -Ei "^Remove(d)?" || true)
+          fixed_changes=$(echo "$changelog" | grep -Ei "^Fix(ed)?" || true)
           echo "Added:" > changelog.txt
-          echo "${added_changes//- Added/— }" >> changelog.txt
+          echo "${added_changes}" | sed -E 's/^(Add(ed)?|New)/— /I' >> changelog.txt
           echo " " >> changelog.txt
           echo "Removed:" >> changelog.txt
-          echo "${removed_changes//- Removed/— }" >> changelog.txt
+          echo "${removed_changes}" | sed -E 's/^Remove(d)?/— /I' >> changelog.txt
           echo " " >> changelog.txt
           echo "Fixed:" >> changelog.txt
-          echo "${fixed_changes//- Fixed/— }" >> changelog.txt
+          echo "${fixed_changes}" | sed -E 's/^Fix(ed)?/— /I' >> changelog.txt
           echo " " >> changelog.txt
           echo "[Known Issues](https://github.com/${{ github.repository }}/issues?q=is%3Aissue+milestone%3A${{ env.VERSION }})" >> changelog.txt
 
