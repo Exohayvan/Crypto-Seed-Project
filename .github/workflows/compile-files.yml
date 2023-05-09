@@ -103,7 +103,7 @@ jobs:
     # Install Kivy
     - name: Install Kivy
       run: |
-        python -m pip install kivy cython
+        python -m pip install kivy cython aidl
 
     # Install Buildozer
     - name: Install Buildozer
