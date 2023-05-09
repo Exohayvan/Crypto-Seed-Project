@@ -93,9 +93,9 @@ jobs:
             git fetch --tags
             changelog=$(git log "$latest_release_tag"..HEAD --pretty=format:"- %s" -- main.py utils.py)
           fi
-          added_changes=$(echo "$changelog" | { grep -i "^- Added" || true; })
-          removed_changes=$(echo "$changelog" | { grep -i "^- Removed" || true; })
-          fixed_changes=$(echo "$changelog" | { grep -i "^- Fixed" || true; })
+          added_changes=$(echo "$changelog" | { grep -i "^- Add" || true; })
+          removed_changes=$(echo "$changelog" | { grep -i "^- Remove" || true; })
+          fixed_changes=$(echo "$changelog" | { grep -i "^- Fix" || true; })
           echo "Added:" > changelog.txt
           echo "${added_changes//- Added/— }" >> changelog.txt
           echo " " >> changelog.txt
@@ -105,7 +105,6 @@ jobs:
           echo "Fixed:" >> changelog.txt
           echo "${fixed_changes//- Fixed/— }" >> changelog.txt
           echo " " >> changelog.txt
-          echo "Known Issues:" >> changelog.txt
           echo "[Known Issues](https://github.com/${{ github.repository }}/issues?q=is%3Aissue+milestone%3A${{ env.VERSION }})" >> changelog.txt
 
       - name: Urlencode VERSION
