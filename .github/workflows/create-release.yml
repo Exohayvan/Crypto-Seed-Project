@@ -89,7 +89,7 @@ jobs:
           if [ -z "$added_changes" ]; then
             echo "N/A" >> changelog.txt
           else
-            echo "${added_changes}" | sed -E 's/(Add(ed)?|New)/— /I' >> changelog.txt
+            echo "${added_changes}" | sed -E 's/(Add(ed)?|New)/ /I' >> changelog.txt
           fi
           echo " " >> changelog.txt
     
@@ -97,7 +97,7 @@ jobs:
           if [ -z "$removed_changes" ]; then
             echo "N/A" >> changelog.txt
           else
-            echo "${removed_changes}" | sed -E 's/Remove(d)?/— /I' >> changelog.txt
+            echo "${removed_changes}" | sed -E 's/Remove(d)?/ /I' >> changelog.txt
           fi
           echo " " >> changelog.txt
     
@@ -105,7 +105,7 @@ jobs:
           if [ -z "$fixed_changes" ]; then
             echo "N/A" >> changelog.txt
           else
-            echo "${fixed_changes}" | sed -E 's/Fix(ed)?/— /I' >> changelog.txt
+            echo "${fixed_changes}" | sed -E 's/Fix(ed)?/ /I' >> changelog.txt
           fi
           echo " " >> changelog.txt
     
