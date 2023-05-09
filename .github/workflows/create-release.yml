@@ -93,7 +93,7 @@ jobs:
             git fetch --tags
             changelog=$(git log "$latest_release_tag"..HEAD --pretty=format:"- %s" -- main.py utils.py)
           fi
-          added_changes=$(echo "$changelog" | grep -i "^- Added")
+          added_changes=$(echo "$changelog" | { grep -i "^- Added" || true; })
           removed_changes=$(echo "$changelog" | grep -i "^- Removed")
           fixed_changes=$(echo "$changelog" | grep -i "^- Fixed")
           echo "Added:" > changelog.txt
