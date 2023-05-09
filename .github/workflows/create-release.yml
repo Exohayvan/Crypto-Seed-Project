@@ -80,13 +80,13 @@ jobs:
           removed_changes=$(echo "$changelog" | grep -i "^- Removed")
           fixed_changes=$(echo "$changelog" | grep -i "^- Fixed")
           echo "Added:" > changelog.txt
-          echo "${added_changes//- Added/- }" >> changelog.txt
+          echo "${added_changes//- Added/— }" >> changelog.txt
           echo " " >> changelog.txt
           echo "Removed:" >> changelog.txt
-          echo "${removed_changes//- Removed/- }" >> changelog.txt
+          echo "${removed_changes//- Removed/— }" >> changelog.txt
           echo " " >> changelog.txt
           echo "Fixed:" >> changelog.txt
-          echo "${fixed_changes//- Fixed/- }" >> changelog.txt
+          echo "${fixed_changes//- Fixed/— }" >> changelog.txt
 
       - name: Create Release
         id: create_release
