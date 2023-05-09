@@ -71,6 +71,7 @@ jobs:
         path: |
           dist/*
           dist\*
+
     - name: Upload artifact for Linux or MacOS
       if: matrix.os != 'windows-latest'
       uses: actions/upload-artifact@v2
@@ -78,3 +79,36 @@ jobs:
         name: ${{ env.VERSION }}
         path: |
           dist/${{ env.FILE_NAME }}.*
+
+    # Setup Java
+    - name: Set up JDK
+      if: matrix.os == 'ubuntu-latest'
+      uses: actions/setup-java@v2
+      with:
+        java-version: '11'
+        distribution: 'adopt'
+
+    # Cache Gradle dependencies
+    - name: Cache Gradle dependencies
+      if: matrix.os == 'ubuntu-latest'
+      uses: actions/cache@v2
+      with:
+        path: ~/.gradle/caches
+        key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle') }}
+        restore-keys: |
+          ${{ runner.os }}-gradle-
+
+    # Build APK
+    - name: Build APK
+      if: matrix.os == 'ubuntu-latest'
+      run: |
+        cd android # Navigate to the Android project folder
+        ./gradlew assembleRelease
+
+    # Upload APK artifact
+    - name: Upload APK artifact
+      if: matrix.os == 'ubuntu-latest'
+      uses: actions/upload-artifact@v2
+      with:
+        name: APK-${{ env.VERSION }}
+        path: android/app/build/outputs/apk/release/*.apk
