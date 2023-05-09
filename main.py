@@ -480,7 +480,7 @@ elif args.compile == 'onefile':
     compile()
 elif args.compile == 'ipa':
     print('not ready!')
-    exit()
+    sys.exit()
 elif args.version == 'true':
     print(version)
 else:
