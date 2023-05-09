@@ -105,8 +105,27 @@ jobs:
           echo "${fixed_changes//- Fixed/— }" >> changelog.txt
           echo " " >> changelog.txt
           echo "Known Issues:" >> changelog.txt
-          echo "[Known Issues](https://github.com/${{ github.repository }}/issues?q=is%3Aissue+milestone%3A${{ env.VERSION | urlencode }})" >> changelog.txt
+          echo "[Known Issues](https://github.com/${{ github.repository }}/issues?q=is%3Aissue+milestone%3A${{ env.VERSION }})" >> changelog.txt
 
+      - name: Urlencode VERSION
+        id: urlencode
+        run: |
+          urlencode() {
+            local string="${1}"
+            local strlen="${#string}"
+            local encoded=""
+            for (( pos=0 ; pos<strlen ; pos++ )); do
+              local c="${string:$pos:1}"
+              case "$c" in
+                [-_.~a-zA-Z0-9] ) encoded+="$c" ;;
+                * ) printf -v encoded '%s%%%02X' "$encoded" "'$c"
+              esac
+            done
+            echo "$encoded"
+          }
+          encoded_version=$(urlencode "${{ env.VERSION }}")
+          echo "ENCODED_VERSION=$encoded_version" | tee -a $GITHUB_ENV
+      
       - name: Create Release
         id: create_release
         uses: actions/create-release@v1
