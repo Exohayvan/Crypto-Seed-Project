@@ -1,10 +1,10 @@
 name: Compile Files
 
 on:
-  workflow_run:
-    workflows: ["Test Python Script"]
-    types:
-      - completed
+  push:
+    branches: [ "*" ]
+  pull_request:
+    branches: [ "*" ]
 
 jobs:
   build:
