@@ -81,31 +81,33 @@ jobs:
           fi
 
       - name: Generate Changelog
-        run: |
-          set -x
-          latest_release_tag=$(curl --silent --header "Authorization: token ${{ secrets.GITHUB_TOKEN }}" "https://api.github.com/repos/${{ github.repository }}/releases/latest" | jq -r '.tag_name // ""')
-          if [ -z "$latest_release_tag" ]; then
-            echo "No previous release found. Generating changelog from the beginning."
-            git fetch --tags
-            changelog=$(git log --pretty=format:"- %s" -- main.py utils.py)
-          else
-            echo "Generating changelog since the latest release: $latest_release_tag"
-            git fetch --tags
-            changelog=$(git log "$latest_release_tag"..HEAD --pretty=format:"- %s" -- main.py utils.py)
-          fi
-          added_changes=$(echo "$changelog" | grep -Ei "^(Add(ed)?|New)" || true)
-          removed_changes=$(echo "$changelog" | grep -Ei "^Remove(d)?" || true)
-          fixed_changes=$(echo "$changelog" | grep -Ei "^Fix(ed)?" || true)
-          echo "Added:" > changelog.txt
-          echo "${added_changes}" | sed -E 's/^(Add(ed)?|New)/— /I' >> changelog.txt
-          echo " " >> changelog.txt
-          echo "Removed:" >> changelog.txt
-          echo "${removed_changes}" | sed -E 's/^Remove(d)?/— /I' >> changelog.txt
-          echo " " >> changelog.txt
-          echo "Fixed:" >> changelog.txt
-          echo "${fixed_changes}" | sed -E 's/^Fix(ed)?/— /I' >> changelog.txt
-          echo " " >> changelog.txt
-          echo "[Known Issues](https://github.com/${{ github.repository }}/issues?q=is%3Aissue+milestone%3A${{ env.VERSION }})" >> changelog.txt
+  run: |
+    set -x
+    latest_release_info=$(curl --silent --header "Authorization: token ${{ secrets.GITHUB_TOKEN }}" "https://api.github.com/repos/${{ github.repository }}/releases/latest")
+    latest_release_tag=$(echo "$latest_release_info" | jq -r '.tag_name // ""')
+    latest_release_date=$(echo "$latest_release_info" | jq -r '.published_at // ""')
+    if [ -z "$latest_release_tag" ]; then
+      echo "No previous release found. Generating changelog from the beginning."
+      git fetch --tags
+      changelog=$(git log --pretty=format:"- %s")
+    else
+      echo "Generating changelog since the latest release: $latest_release_tag"
+      git fetch --tags
+      changelog=$(git log --since="$latest_release_date" --pretty=format:"- %s")
+    fi
+    added_changes=$(echo "$changelog" | grep -Ei "^(Add(ed)?|New)" || true)
+    removed_changes=$(echo "$changelog" | grep -Ei "^Remove(d)?" || true)
+    fixed_changes=$(echo "$changelog" | grep -Ei "^Fix(ed)?" || true)
+    echo "Added:" > changelog.txt
+    echo "${added_changes}" | sed -E 's/^(Add(ed)?|New)/— /I' >> changelog.txt
+    echo " " >> changelog.txt
+    echo "Removed:" >> changelog.txt
+    echo "${removed_changes}" | sed -E 's/^Remove(d)?/— /I' >> changelog.txt
+    echo " " >> changelog.txt
+    echo "Fixed:" >> changelog.txt
+    echo "${fixed_changes}" | sed -E 's/^Fix(ed)?/— /I' >> changelog.txt
+    echo " " >> changelog.txt
+    echo "[Known Issues](https://github.com/${{ github.repository }}/issues?q=is%3Aissue+milestone%3A${{ env.VERSION }})" >> changelog.txt
 
       - name: Urlencode VERSION
         id: urlencode
