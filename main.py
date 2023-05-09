@@ -22,7 +22,7 @@ args = parser.parse_args()
 
 
 #setting const
-version = 'v0.0.5-alpha'
+version = 'v0.0.6-alpha'
 filename = 'update.temp'
 os_type = sys.platform
 filename = version +'_update.temp'
@@ -384,17 +384,28 @@ def data_json():
 #main functions
 def checkInternetHttplib(url, timeout):
     time_print(Fore.WHITE + 'Checking Network Connection...')
-    connection = httplib.HTTPConnection(url,
-                                        timeout=timeout)
+    connection = httplib.HTTPConnection(url, timeout=timeout)
     try:
-        connection.request("HEAD","/")
+        connection.request("HEAD", "/")
+        response = connection.getresponse()
+        if response.status == 200:
+            time_print(Fore.GREEN + 'Connection to internet made.' + Fore.WHITE)
+            return True
+        elif response.status == 401:
+            time_print(Fore.LIGHTRED_EX + 'Error 401: Unauthorized Access.')
+        elif response.status == 402:
+            time_print(Fore.LIGHTRED_EX + 'Error 402: Payment Required.')
+        elif response.status == 404:
+            time_print(Fore.LIGHTRED_EX + 'Error 404: Not Found.')
+        elif response.status == 502:
+            time_print(Fore.LIGHTRED_EX + 'Error 502: Bad Gateway. Server Problem.')
+        else:
+            time_print(Fore.LIGHTRED_EX + 'Error ' + str(response.status) + ': Connection Error')
         connection.close()
-        time_print(Fore.GREEN + 'Connection to internet made.' + Fore.WHITE)
-        return True
+        sys.exit()
     except Exception as exep:
         time_print(exep)
         sys.exit(Fore.LIGHTRED_EX + 'Error, no internet connection')
-
 def mining(proxy):
     counter = AverageCounter([1 * 60, 15 * 60, 30 * 60, 60 * 60])
     while True:
@@ -516,6 +527,7 @@ elif args.version == 'true':
     print(version)
 else:
     checkInternetHttplib("www.google.com", 3)
+    checkInternetHttplib("https://blockstream.info", 10)
     intro()
     jversion, address, is_node, userID = data_json()
     print(f"User ID for address '{address}': {userID}")
