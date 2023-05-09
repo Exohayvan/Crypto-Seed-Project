@@ -110,10 +110,15 @@ jobs:
       run: |
         python -m pip install --upgrade buildozer
 
+    # Install Android SDK Command-line tools
+    - name: Install Android SDK Command-line tools
+      run: |
+        sudo apt-get install -y android-sdk cmdtest
+
     # Accept Android SDK licenses
     - name: Accept Android SDK licenses
       run: |
-        yes | sudo ~/.buildozer/android/platform/android-sdk/tools/bin/sdkmanager --licenses
+        yes | sdkmanager --licenses
 
     # Initialize Buildozer spec file
     - name: Initialize Buildozer spec file
