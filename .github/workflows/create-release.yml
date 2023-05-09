@@ -105,7 +105,7 @@ jobs:
           echo "${fixed_changes//- Fixed/— }" >> changelog.txt
           echo " " >> changelog.txt
           echo "Known Issues:" >> changelog.txt
-          echo "[Known Issues](https://github.com/${{ github.repository }}/issues?q=is%3Aissue+milestone%3A${{ env.VERSION ~ urlencode }})" >> changelog.txt
+          echo "[Known Issues](https://github.com/${{ github.repository }}/issues?q=is%3Aissue+milestone%3A${{ env.VERSION | urlencode }})" >> changelog.txt
 
       - name: Create Release
         id: create_release
