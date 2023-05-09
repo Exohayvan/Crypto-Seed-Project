@@ -81,9 +81,9 @@ jobs:
             echo "Generating changelog since the latest release: $latest_release_tag"
             changelog=$(git log --since="$latest_release_date" --pretty=format:"- %s (%h)" -- main.py)
           fi
-          added_changes=$(echo "$changelog" | grep -Ei "(Add(ed)?|New)" || true)
-          removed_changes=$(echo "$changelog" | grep -Ei "Remove(d)?" || true)
-          fixed_changes=$(echo "$changelog" | grep -Ei "Fix(ed)?" || true)
+          echo "${added_changes}" | sed -E 's/\.(Add(ed)?|New)/— /I' >> changelog.txt
+          echo "${removed_changes}" | sed -E 's/\.Remove(d)?/— /I' >> changelog.txt
+          echo "${fixed_changes}" | sed -E 's/\.Fix(ed)?/— /I' >> changelog.txt
 
           echo "Added:" > changelog.txt
           if [ -z "$added_changes" ]; then
