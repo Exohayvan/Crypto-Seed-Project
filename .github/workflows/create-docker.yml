@@ -1,8 +1,10 @@
 name: Build and Push Docker Image
 
 on:
-  push:
-    branches: [ "*" ]
+  workflow_run:
+    workflows: ["Test Python Script"]
+    types:
+      - completed
 
 env:
   DOCKER_IMAGE_NAME: exohayvan/crypto-seed-project
