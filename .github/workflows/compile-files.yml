@@ -122,6 +122,7 @@ jobs:
 
     - name: Install Android SDK Build-Tools
       run: |
+        yes | /usr/lib/android-sdk/cmdline-tools/latest/bin/sdkmanager --licenses
         /usr/lib/android-sdk/cmdline-tools/latest/bin/sdkmanager "build-tools;30.0.3"
 
 
