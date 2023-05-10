@@ -157,6 +157,9 @@ jobs:
     - name: Create symbolic link for tools
       run: ln -s $ANDROID_SDK_HOME/cmdline-tools/latest/bin $ANDROID_SDK_HOME/tools/bin
 
+    - name: Create symbolic link for sdkmanager
+      run: ln -s $ANDROID_SDK_ROOT/cmdline-tools/latest/bin/sdkmanager /home/runner/.buildozer/android/platform/android-sdk/tools/bin/sdkmanager
+
     - name: Initialize Buildozer spec file
       run: |
         buildozer init
