@@ -143,6 +143,7 @@ jobs:
     - name: Initialize Buildozer spec file
       run: |
         buildozer init
+        android.accept_sdk_license = True
 
     - name: Build APK
       run: buildozer android debug
