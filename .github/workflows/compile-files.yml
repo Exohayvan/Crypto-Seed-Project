@@ -82,6 +82,8 @@ jobs:
 
   build-android:
     runs-on: ubuntu-latest
+    env:
+      ANDROID_SDK_HOME: /usr/lib/android-sdk
 
     steps:
     - uses: actions/checkout@v2
@@ -124,6 +126,8 @@ jobs:
       run: |
         yes | /usr/lib/android-sdk/cmdline-tools/latest/bin/sdkmanager --licenses
         /usr/lib/android-sdk/cmdline-tools/latest/bin/sdkmanager "build-tools;30.0.3"
+      env:
+        ANDROID_SDK_HOME: ${{ env.ANDROID_SDK_HOME }}
 
 
     - name: Initialize Buildozer spec file
@@ -131,9 +135,9 @@ jobs:
         buildozer init
 
     - name: Build APK
-      run: |
-        export PATH=$PATH:~/.local/bin
-        buildozer -v android debug
+      run: buildozer android debug
+      env:
+        ANDROID_SDK_HOME: ${{ env.ANDROID_SDK_HOME }}
 
     - name: Upload APK artifact
       uses: actions/upload-artifact@v2
