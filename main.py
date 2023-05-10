@@ -529,7 +529,6 @@ elif args.version == 'true':
     print(version)
 else:
     checkInternetHttplib("www.google.com", 3)
-    checkInternetHttplib("www.blockstream.info", 10)
     intro()
     jversion, address, is_node, userID = data_json()
     print(f"User ID for address '{address}': {userID}")
