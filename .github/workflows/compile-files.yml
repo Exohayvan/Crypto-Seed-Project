@@ -84,6 +84,8 @@ jobs:
     runs-on: ubuntu-latest
     env:
       ANDROID_SDK_HOME: /home/runner/android-sdk
+      ANDROID_SDK_ROOT: /usr/lib/android-sdk
+      ANDROID_HOME: /usr/lib/android-sdk
 
     steps:
     - uses: actions/checkout@v2
@@ -92,6 +94,15 @@ jobs:
       uses: actions/setup-python@v2
       with:
         python-version: 3.7
+
+    - name: Install Android SDK
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y android-sdk
+        sudo apt-get install -y android-sdk-platform-tools
+        sudo apt-get install -y android-sdk-build-tools
+        echo "y" | sudo $ANDROID_SDK_ROOT/cmdline-tools/latest/bin/sdkmanager --install "platforms;android-31" "build-tools;31.0.0" "extras;android;m2repository" "extras;google;m2repository"
+        echo "y" | sudo $ANDROID_SDK_ROOT/cmdline-tools/latest/bin/sdkmanager --licenses
 
     - name: Install Kivy dependencies
       run: |
