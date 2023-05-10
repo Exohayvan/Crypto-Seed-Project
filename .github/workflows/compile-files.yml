@@ -152,10 +152,10 @@ jobs:
       run: ln -s $ANDROID_SDK_ROOT/build-tools /home/runner/.buildozer/android/platform/android-sdk/build-tools
 
     - name: Create Android SDK tools directory
-      run: mkdir -p $ANDROID_SDK_ROOT/tools
+      run: mkdir -p $ANDROID_SDK_HOME/tools
 
     - name: Create symbolic link for tools
-      run: ln -s $ANDROID_SDK_ROOT/cmdline-tools/latest/bin $ANDROID_SDK_ROOT/tools/bin
+      run: ln -s $ANDROID_SDK_HOME/cmdline-tools/latest/bin $ANDROID_SDK_HOME/tools/bin
 
     - name: Initialize Buildozer spec file
       run: |
