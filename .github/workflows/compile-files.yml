@@ -97,12 +97,12 @@ jobs:
 
     - name: Install Android SDK
       run: |
-        echo ${{ secrets.SUDO_PASSWORD }} | sudo -S apt-get update
-        echo ${{ secrets.SUDO_PASSWORD }} | sudo -S apt-get install -y android-sdk
-        echo ${{ secrets.SUDO_PASSWORD }} | sudo -S apt-get install -y android-sdk-platform-tools
-        echo ${{ secrets.SUDO_PASSWORD }} | sudo -S apt-get install -y android-sdk-build-tools
-        echo "y" | sudo -S $ANDROID_SDK_ROOT/cmdline-tools/latest/bin/sdkmanager --install "platforms;android-31" "build-tools;31.0.0" "extras;android;m2repository" "extras;google;m2repository"
-        echo "y" | sudo -S $ANDROID_SDK_ROOT/cmdline-tools/latest/bin/sdkmanager --licenses
+        sudo apt-get update
+        sudo apt-get install -y android-sdk
+        sudo apt-get install -y android-sdk-platform-tools
+        sudo apt-get install -y android-sdk-build-tools
+        echo "y" | $ANDROID_SDK_ROOT/cmdline-tools/latest/bin/sdkmanager --install "platforms;android-31" "build-tools;31.0.0" "extras;android;m2repository" "extras;google;m2repository"
+        echo "y" | $ANDROID_SDK_ROOT/cmdline-tools/latest/bin/sdkmanager --licenses
 
     - name: Install Kivy dependencies
       run: |
