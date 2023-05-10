@@ -95,15 +95,6 @@ jobs:
       with:
         python-version: 3.7
 
-    - name: Install Android SDK
-      run: |
-        sudo apt-get update
-        sudo apt-get install -y android-sdk
-        sudo apt-get install -y android-sdk-platform-tools
-        sudo apt-get install -y android-sdk-build-tools
-        echo "y" | $ANDROID_SDK_ROOT/cmdline-tools/latest/bin/sdkmanager --install "platforms;android-31" "build-tools;31.0.0" "extras;android;m2repository" "extras;google;m2repository"
-        echo "y" | $ANDROID_SDK_ROOT/cmdline-tools/latest/bin/sdkmanager --licenses
-
     - name: Install Kivy dependencies
       run: |
         sudo apt-get update
@@ -173,6 +164,15 @@ jobs:
 
     - name: Create symbolic link for sdkmanager
       run: ln -s $ANDROID_SDK_ROOT/cmdline-tools/latest/bin/sdkmanager /home/runner/.buildozer/android/platform/android-sdk/tools/bin/sdkmanager
+
+    - name: Install Android SDK
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y android-sdk
+        sudo apt-get install -y android-sdk-platform-tools
+        sudo apt-get install -y android-sdk-build-tools
+        echo "y" | $ANDROID_SDK_ROOT/cmdline-tools/latest/bin/sdkmanager --install "platforms;android-31" "build-tools;31.0.0" "extras;android;m2repository" "extras;google;m2repository"
+        echo "y" | $ANDROID_SDK_ROOT/cmdline-tools/latest/bin/sdkmanager --licenses
 
     - name: Initialize Buildozer spec file
       run: |
