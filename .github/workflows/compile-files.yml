@@ -171,8 +171,9 @@ jobs:
         sudo apt-get install -y android-sdk
         sudo apt-get install -y android-sdk-platform-tools
         sudo apt-get install -y android-sdk-build-tools
-        echo "y" | $ANDROID_SDK_ROOT/cmdline-tools/latest/bin/sdkmanager --install "platforms;android-31" "build-tools;31.0.0" "extras;android;m2repository" "extras;google;m2repository"
-        echo "y" | $ANDROID_SDK_ROOT/cmdline-tools/latest/bin/sdkmanager --licenses
+        sudo chmod -R 777 $ANDROID_SDK_ROOT
+        echo "y" | $ANDROID_SDK_ROOT/cmdline-tools/latest/bin/sdkmanager --sdk_root=$ANDROID_SDK_ROOT --install "platforms;android-31" "build-tools;31.0.0" "extras;android;m2repository" "extras;google;m2repository"
+        echo "y" | $ANDROID_SDK_ROOT/cmdline-tools/latest/bin/sdkmanager --sdk_root=$ANDROID_SDK_ROOT --licenses
 
     - name: Initialize Buildozer spec file
       run: |
