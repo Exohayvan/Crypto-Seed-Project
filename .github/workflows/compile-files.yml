@@ -145,6 +145,9 @@ jobs:
     - name: Create .buildozer directory
       run: mkdir -p /home/runner/.buildozer/android/platform
 
+    - name: Create android-sdk directory
+      run: mkdir -p /home/runner/.buildozer/android/platform/android-sdk
+
     - name: Create symbolic link for build-tools
       run: ln -s $ANDROID_SDK_ROOT/build-tools /home/runner/.buildozer/android/platform/android-sdk/build-tools
 
