@@ -83,7 +83,7 @@ jobs:
   build-android:
     runs-on: ubuntu-latest
     env:
-      ANDROID_SDK_HOME: /usr/lib/android-sdk
+      ANDROID_SDK_HOME: /home/runner/android-sdk
 
     steps:
     - uses: actions/checkout@v2
@@ -124,10 +124,16 @@ jobs:
 
     - name: Install Android SDK Build-Tools
       run: |
-        yes | /usr/lib/android-sdk/cmdline-tools/latest/bin/sdkmanager --licenses
-        /usr/lib/android-sdk/cmdline-tools/latest/bin/sdkmanager "build-tools;30.0.3"
+        mkdir -p /home/runner/android-sdk/cmdline-tools
+        cd /home/runner/android-sdk/cmdline-tools
+        curl -L https://dl.google.com/android/repository/commandlinetools-linux-7583922_latest.zip -o cmdline-tools.zip
+        unzip cmdline-tools.zip
+        rm cmdline-tools.zip
+        mv cmdline-tools latest
+        yes | /home/runner/android-sdk/cmdline-tools/latest/bin/sdkmanager --licenses
+        /home/runner/android-sdk/cmdline-tools/latest/bin/sdkmanager "build-tools;30.0.3"
       env:
-        ANDROID_SDK_HOME: ${{ env.ANDROID_SDK_HOME }}
+        ANDROID_SDK_HOME: /home/runner/android-sdk
 
 
     - name: Initialize Buildozer spec file
@@ -138,6 +144,7 @@ jobs:
       run: buildozer android debug
       env:
         ANDROID_SDK_HOME: ${{ env.ANDROID_SDK_HOME }}
+
 
     - name: Upload APK artifact
       uses: actions/upload-artifact@v2
