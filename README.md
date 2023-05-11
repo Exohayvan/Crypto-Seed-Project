@@ -9,7 +9,7 @@
 [![GitHub latest commit][last-commit]][git-commit]
 [![GitHub release][release]][release-link]
 [![Github all releases][downloads]][release-link]
-[![Size][repo-size]
+![Size][repo-size]
 
 
 <!-- PROJECT LOGO -->
