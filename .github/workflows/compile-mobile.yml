@@ -10,7 +10,13 @@ jobs:
   build-android:
     runs-on: ubuntu-latest
     env:
+      ANDROID_HOME: /usr/local/lib/android/sdk
       ANDROID_SDK_ROOT: /usr/local/lib/android/sdk
+      ANDROID_SDK: /usr/local/lib/android/sdk
+      ANDROID_SDK_HOME: /usr/local/lib/android/sdk
+      PATH: /usr/local/lib/android/sdk/cmdline-tools/latest/bin:/usr/local/lib/android/sdk/tools/bin:/usr/local/lib/android/sdk/platform-tools:/usr/local/lib/android/sdk/build-tools/30.0.3:/home/runner/.local/bin:/opt/pipx_bin:/home/runner/.cargo/bin:/home/runner/.config/composer/vendor/bin:/usr/local/.ghcup/bin:/home/runner/.dotnet/tools:/snap/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin
+      pythonLocation: /opt/hostedtoolcache/Python/3.7.16/x64
+      LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.7.16/x64/lib
 
     steps:
     - uses: actions/checkout@v2
@@ -67,6 +73,9 @@ jobs:
 
     - name: Create symbolic link for sdkmanager
       run: ln -s ${{ env.ANDROID_SDK_ROOT }}/cmdline-tools/latest/bin/sdkmanager /home/runner/.buildozer/android/platform/android-sdk/tools/bin/sdkmanager
+
+    - name: Create symbolic link for android binary
+      run: ln -s ${{ env.ANDROID_SDK_ROOT }}/cmdline-tools/latest/bin/avdmanager ${{ env.ANDROID_SDK_ROOT }}/tools/bin/android
 
     - name: Initialize Buildozer spec file
       run: |
