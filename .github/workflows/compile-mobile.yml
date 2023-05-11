@@ -82,7 +82,7 @@ jobs:
       run: mkdir -p $ANDROID_SDK_HOME/tools
 
     - name: Create symbolic link for tools
-      run: ln -s $ANDROID_SDK_ROOT/cmdline-tools/latest/bin $ANDROID_SDK_ROOT/tools/bin
+      run: ln -s ${{ env.ANDROID_SDK_ROOT }}/cmdline-tools/latest/bin ${{ env.ANDROID_SDK_ROOT }}/tools/bin
 
     - name: Create android-sdk tools bin directory
       run: mkdir -p /home/runner/.buildozer/android/platform/android-sdk/tools/bin
