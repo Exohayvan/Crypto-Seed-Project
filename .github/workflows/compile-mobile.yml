@@ -12,10 +12,12 @@ jobs:
     env:
       ANDROID_HOME: /usr/local/lib/android/sdk
       ANDROID_SDK_ROOT: /usr/local/lib/android/sdk
-      PATH: ${{ env.ANDROID_HOME }}/cmdline-tools/latest/bin:${{ env.ANDROID_HOME }}/platform-tools:${{ env.ANDROID_HOME }}/build-tools/30.0.3:$PATH
 
     steps:
     - uses: actions/checkout@v2
+
+    - name: Set environment variables
+      run: echo "PATH=${{ env.ANDROID_HOME }}/cmdline-tools/latest/bin:${{ env.ANDROID_HOME }}/platform-tools:${{ env.ANDROID_HOME }}/build-tools/30.0.3:$PATH" >> $GITHUB_ENV
 
     - name: Set up Python 3.7
       uses: actions/setup-python@v2
