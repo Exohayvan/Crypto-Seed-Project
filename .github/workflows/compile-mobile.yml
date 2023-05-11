@@ -51,13 +51,14 @@ jobs:
         sudo unzip commandlinetools-linux-7302050_latest.zip -d ${{ env.ANDROID_SDK_ROOT }}/cmdline-tools
         sudo mv ${{ env.ANDROID_SDK_ROOT }}/cmdline-tools/cmdline-tools ${{ env.ANDROID_SDK_ROOT }}/cmdline-tools/latest
 
+    - name: Install Android SDK components
+      run: |
+        sdkmanager --install "platform-tools" "build-tools;30.0.3" "platforms;android-30"
+        sdkmanager "platform-tools" "build-tools;30.0.3" "platforms;android-30"
+
     - name: Accept Android SDK licenses
       run: |
         yes | sdkmanager --licenses
-
-    - name: Install Android SDK components
-      run: |
-        sdkmanager "platform-tools" "build-tools;30.0.3" "platforms;android-30"
 
     - name: Create .buildozer directory
       run: mkdir -p /home/runner/.buildozer/android/platform
