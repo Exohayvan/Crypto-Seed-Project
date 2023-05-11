@@ -84,6 +84,14 @@ jobs:
     - name: Set log_level to 2
       run: sed -i 's/^log_level = 1/log_level = 2/' buildozer.spec
 
+    - name: Debug Android SDK
+      run: |
+        echo "ANDROID_SDK=$ANDROID_SDK"
+        echo "ANDROID_SDK_HOME=$ANDROID_SDK_HOME"
+        echo "ANDROID_SDK_ROOT=$ANDROID_SDK_ROOT"
+        echo "Listing Android SDK directory:"
+        ls -la $ANDROID_SDK
+
     - name: Build APK
       run: buildozer android debug
 
