@@ -1,0 +1,124 @@
+name: Compile Files (Mobile)
+
+on:
+  workflow_run:
+    workflows: ["Test Python Script"]
+    types:
+      - completed
+      
+  build-android:
+    runs-on: ubuntu-latest
+    env:
+      ANDROID_HOME: /usr/local/lib/android/sdk
+      ANDROID_SDK_ROOT: /usr/local/lib/android/sdk
+      PATH: ${{ env.ANDROID_HOME }}/cmdline-tools/latest/bin:${{ env.ANDROID_HOME }}/platform-tools:${{ env.ANDROID_HOME }}/build-tools/30.0.3:$PATH
+
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: Set up Python 3.7
+      uses: actions/setup-python@v2
+      with:
+        python-version: 3.7
+
+    - name: Install Kivy dependencies
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y libunwind-dev
+        sudo apt-get install -y libsdl2-dev libsdl2-image-dev libsdl2-mixer-dev libsdl2-ttf-dev libportmidi-dev libswscale-dev libavformat-dev libavcodec-dev zlib1g-dev
+        sudo apt-get install -y libgstreamer1.0-dev gstreamer1.0-plugins-base gstreamer1.0-plugins-good gstreamer1.0-plugins-ugly gstreamer1.0-plugins-bad
+        sudo apt-get install -y openjdk-11-jdk
+        sudo apt-get update
+        sudo apt-get install build-essential
+        sudo apt-get install libstdc++6
+        sudo apt-get install aidl
+
+    - name: Install Kivy and Cython
+      run: |
+        python -m pip install kivy cython
+
+    - name: Install Buildozer
+      run: |
+        python -m pip install --upgrade buildozer
+
+    - name: Install Android SDK Command-line tools
+      run: |
+        wget https://dl.google.com/android/repository/commandlinetools-linux-7302050_latest.zip
+        sudo mkdir -p /usr/lib/android-sdk/cmdline-tools
+        sudo unzip commandlinetools-linux-7302050_latest.zip -d /usr/lib/android-sdk/cmdline-tools
+        sudo mv /usr/lib/android-sdk/cmdline-tools/cmdline-tools /usr/lib/android-sdk/cmdline-tools/latest
+        echo "ANDROID_SDK_ROOT=/usr/lib/android-sdk" >> $GITHUB_ENV
+        echo "/usr/lib/android-sdk/cmdline-tools/latest/bin" >> $GITHUB_PATH
+
+    - name: Accept Android SDK licenses
+      run: |
+        yes | sdkmanager --licenses
+
+    - name: Install Android SDK Build-Tools
+      run: |
+        mkdir -p /home/runner/android-sdk/cmdline-tools
+        cd /home/runner/android-sdk/cmdline-tools
+        curl -L https://dl.google.com/android/repository/commandlinetools-linux-7583922_latest.zip -o cmdline-tools.zip
+        unzip cmdline-tools.zip
+        rm cmdline-tools.zip
+        mv cmdline-tools latest
+        yes | /home/runner/android-sdk/cmdline-tools/latest/bin/sdkmanager --licenses
+        /home/runner/android-sdk/cmdline-tools/latest/bin/sdkmanager "build-tools;30.0.3" "platform-tools" # Added "platform-tools"
+
+    - name: Add platform-tools to PATH
+      run: echo "$ANDROID_SDK_ROOT/platform-tools" >> $GITHUB_PATH
+
+    - name: Create .buildozer directory
+      run: mkdir -p /home/runner/.buildozer/android/platform
+
+    - name: Create android-sdk directory
+      run: mkdir -p /home/runner/.buildozer/android/platform/android-sdk
+
+    - name: Create symbolic link for build-tools
+      run: ln -s $ANDROID_SDK_ROOT/build-tools /home/runner/.buildozer/android/platform/android-sdk/build-tools
+
+    - name: Create Android SDK tools directory
+      run: mkdir -p $ANDROID_SDK_HOME/tools
+
+    - name: Create symbolic link for tools
+      run: ln -s $ANDROID_SDK_HOME/cmdline-tools/latest/bin $ANDROID_SDK_HOME/tools/bin
+    
+    - name: Create android-sdk tools bin directory
+      run: mkdir -p /home/runner/.buildozer/android/platform/android-sdk/tools/bin
+
+    - name: Create symbolic link for sdkmanager
+      run: ln -s $ANDROID_SDK_ROOT/cmdline-tools/latest/bin/sdkmanager /home/runner/.buildozer/android/platform/android-sdk/tools/bin/sdkmanager
+
+    - name: Install Android SDK
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y android-sdk
+        sudo apt-get install -y android-sdk-platform-tools
+        sudo apt-get install -y android-sdk-build-tools
+        sudo chmod -R 777 $ANDROID_SDK_ROOT
+        echo "y" | $ANDROID_SDK_ROOT/cmdline-tools/latest/bin/sdkmanager --sdk_root=$ANDROID_SDK_ROOT --install "platforms;android-31" "build-tools;31.0.0" "extras;android;m2repository" "extras;google;m2repository"
+        echo "y" | $ANDROID_SDK_ROOT/cmdline-tools/latest/bin/sdkmanager --sdk_root=$ANDROID_SDK_ROOT --licenses
+    - name: Install Android SDK command-line tools
+      run: |
+        echo "y" | sudo sdkmanager --install "cmdline-tools;latest"
+        echo "y" | sudo sdkmanager --install "platform-tools"
+        echo "y" | sudo sdkmanager --install "build-tools;30.0.3"
+        echo "y" | sudo sdkmanager --licenses
+
+    - name: Initialize Buildozer spec file
+      run: |
+        buildozer init
+    - name: Set log_level to 2
+      run: sed -i 's/^log_level = 1/log_level = 2/' buildozer.spec
+
+    - name: Build APK
+      run: buildozer android debug
+      env:
+        ANDROID_SDK_HOME: ${{ env.ANDROID_SDK_HOME }}
+
+
+    - name: Upload APK artifact
+      uses: actions/upload-artifact@v2
+      with:
+        name: APK
+        path: bin/*.apk
