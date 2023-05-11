@@ -5,7 +5,8 @@ on:
     workflows: ["Test Python Script"]
     types:
       - completed
-      
+
+jobs:
   build-android:
     runs-on: ubuntu-latest
     env:
