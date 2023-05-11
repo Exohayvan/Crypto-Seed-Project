@@ -62,6 +62,12 @@ jobs:
     - name: Create symbolic link for build-tools
       run: ln -s ${{ env.ANDROID_SDK_ROOT }}/build-tools /home/runner/.buildozer/android/platform/android-sdk/build-tools
 
+    - name: Create android-sdk tools bin directory
+      run: mkdir -p /home/runner/.buildozer/android/platform/android-sdk/tools/bin
+
+    - name: Create symbolic link for sdkmanager
+      run: ln -s ${{ env.ANDROID_SDK_ROOT }}/cmdline-tools/latest/bin/sdkmanager /home/runner/.buildozer/android/platform/android-sdk/tools/bin/sdkmanager
+
     - name: Initialize Buildozer spec file
       run: |
         buildozer init
