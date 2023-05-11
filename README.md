@@ -76,17 +76,17 @@ Systems are listed as "OS" and "Build Status". <br /> Build status are "passing"
 If missing one you use please reach out on discord!
 Status is based off the latest build.
 
-![Ubuntu][ubuntu-shield]![Build][passing]
+![Ubuntu][ubuntu-shield]![Build][compile-files]
 
 ![iOS][ios-shield]![Build][fail]
 
-![Windows][windows-shield]![Build][passing]
+![Windows][windows-shield]![Build][compile-files]
 
-![MacOS][macos-shield]![Build][processing]
+![MacOS][macos-shield]![Build][compile-files]
 
 ![OpenWRT][openwrt-shield]![Build][untested]
 
-![Android][android-shield]![Build][fail]
+![Android][android-shield]![Build][compile-files]
 
 ![Debian][debian-shield]![Build][untested]
 
@@ -223,6 +223,7 @@ Project Link: [https://github.com/Exohayvan/Crypto-Seed-Project](https://github.
 [discord-invite]: https://discord.gg/EXFrWNpd
 
 [python-test]: https://img.shields.io/github/actions/workflow/status/exohayvan/crypto-seed-project/python-test.yml?style=for-the-badge
+[compile-files]: https://img.shields.io/github/actions/workflow/status/exohayvan/Crypto-Seed-Project/compile-files.yml?style=for-the-badge
 
 [untested]: https://img.shields.io/badge/-untested-lightgrey?style=for-the-badge
 [fail]: https://img.shields.io/badge/-failed-red?style=for-the-badge
