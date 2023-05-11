@@ -82,8 +82,8 @@ jobs:
       run: mkdir -p $ANDROID_SDK_HOME/tools
 
     - name: Create symbolic link for tools
-      run: ln -s $ANDROID_SDK_HOME/cmdline-tools/latest/bin $ANDROID_SDK_HOME/tools/bin
-    
+      run: ln -s $ANDROID_SDK_ROOT/cmdline-tools/latest/bin $ANDROID_SDK_ROOT/tools/bin
+
     - name: Create android-sdk tools bin directory
       run: mkdir -p /home/runner/.buildozer/android/platform/android-sdk/tools/bin
 
@@ -115,8 +115,7 @@ jobs:
     - name: Build APK
       run: buildozer android debug
       env:
-        ANDROID_SDK_HOME: ${{ env.ANDROID_SDK_HOME }}
-
+        ANDROID_SDK_ROOT: ${{ env.ANDROID_SDK_ROOT }}
 
     - name: Upload APK artifact
       uses: actions/upload-artifact@v2
