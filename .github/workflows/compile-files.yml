@@ -178,6 +178,8 @@ jobs:
     - name: Initialize Buildozer spec file
       run: |
         buildozer init
+    - name: Set log_level to 2
+      run: sed -i 's/^log_level = 1/log_level = 2/' buildozer.spec
 
     - name: Build APK
       run: buildozer android debug
