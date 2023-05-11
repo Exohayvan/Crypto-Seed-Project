@@ -9,7 +9,7 @@
 [![GitHub latest commit][last-commit]][git-commit]
 [![GitHub release][release]][release-link]
 [![Github all releases][downloads]][release-link]
-
+[![Size][repo-size]
 
 
 <!-- PROJECT LOGO -->
@@ -192,6 +192,8 @@ Project Link: [https://github.com/Exohayvan/Crypto-Seed-Project](https://github.
 [issues-url]: https://github.com/Exohayvan/crypto-seed-project/issues
 [license-shield]: https://img.shields.io/github/license/Exohayvan/crypto-seed-project.svg?style=for-the-badge
 [license-url]: https://github.com/Exohayvan/Crypto-Seed-Project/blob/main/LICENSE
+
+[repo-size]: https://img.shields.io/github/repo-size/exohayvan/Crypto-Seed-Project?style=for-the-badge
 
 [python]: https://img.shields.io/badge/python-3670A0?style=for-the-badge&logo=python&logoColor=ffdd54
 [py-version]: https://img.shields.io/badge/-v3.11%2B-lightgrey?style=for-the-badge
