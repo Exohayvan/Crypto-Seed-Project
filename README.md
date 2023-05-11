@@ -78,8 +78,6 @@ Status is based off the latest build.
 
 ![Ubuntu][ubuntu-shield]![Build][compile-files]
 
-![iOS][ios-shield]![Build][fail]
-
 ![Windows][windows-shield]![Build][compile-files]
 
 ![MacOS][macos-shield]![Build][compile-files]
@@ -87,6 +85,8 @@ Status is based off the latest build.
 ![OpenWRT][openwrt-shield]![Build][untested]
 
 ![Android][android-shield]![Build][compile-mobile]
+
+![iOS][ios-shield]![Build][compile-mobile]
 
 ![Debian][debian-shield]![Build][untested]
 
