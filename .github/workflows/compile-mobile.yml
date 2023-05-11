@@ -115,6 +115,14 @@ jobs:
         echo "Listing build-tools:"
         ls -la $ANDROID_SDK/build-tools/30.0.3
 
+    - name: More Debug things
+      run: |
+        echo $ANDROID_HOME
+        echo $ANDROID_SDK_ROOT
+        echo $PATH
+        which sdkmanager
+        sdkmanager --list
+
     - name: Build APK
       run: buildozer android debug
 
