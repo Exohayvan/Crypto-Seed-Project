@@ -105,6 +105,15 @@ jobs:
         echo "$ANDROID_SDK/platform-tools" >> $GITHUB_PATH
         echo "$ANDROID_SDK/build-tools/30.0.3" >> $GITHUB_PATH
 
+    - name: Check Android SDK directories
+      run: |
+        echo "Listing cmdline-tools:"
+        ls -la $ANDROID_SDK/cmdline-tools/latest/bin
+        echo "Listing platform-tools:"
+        ls -la $ANDROID_SDK/platform-tools
+        echo "Listing build-tools:"
+        ls -la $ANDROID_SDK/build-tools/30.0.3
+
     - name: Build APK
       run: buildozer android debug
 
