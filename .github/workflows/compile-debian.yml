@@ -27,7 +27,7 @@ jobs:
     # Get version
     - name: Get version
       shell: bash
-      run: echo "VERSION=$(python main.py -v true)" | tee -a $GITHUB_ENV
+      run: echo "VERSION=$(python3 main.py -v true)" | tee -a $GITHUB_ENV
 
     # Define the names for each operating system
     - name: Define names
