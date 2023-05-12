@@ -47,10 +47,10 @@ jobs:
           }
           EOF
           nix-build; \
-          tar czvf my-python-app.nix.tar.gz result"
+          tar czvf result.tar.gz result"
 
     - name: Upload Nix package
       uses: actions/upload-artifact@v2
       with:
         name: my-python-app.nix
-        path: my-python-app.nix.tar.gz
+        path: result.tar.gz
