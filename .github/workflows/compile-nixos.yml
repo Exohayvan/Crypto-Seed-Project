@@ -17,35 +17,7 @@ jobs:
       run: |
         docker pull nixos/nix
         docker run --rm -v $PWD:/app -w /app nixos/nix sh -c '
-          cat > default.nix << EOF
-          { pkgs ? import <nixpkgs> {} }:
-
-          let
-            python = pkgs.python38;
-            nuitka = python.pkgs.nuitka;
-          in pkgs.stdenv.mkDerivation rec {
-            pname = "my-python-app";
-            version = "0.1.0";
-
-            src = ./.;
-
-            buildInputs = [ python nuitka ];
-
-            buildPhase = ""
-              python -m nuitka --follow-imports main.py --output-dir=$out --unstripped --remove-output
-            "";
-
-            installPhase = ""
-              mkdir -p $out/bin
-              cp main.bin $out/bin/main
-            "";
-
-            meta = with pkgs.stdenv.lib; {
-              description = "My Python application compiled with Nuitka";
-              maintainers = with maintainers; [ ];
-            };
-          }
-          EOF
+          printf "{ pkgs ? import <nixpkgs> {} }:\n\nlet\n  python = pkgs.python38;\n  nuitka = python.pkgs.nuitka;\nin pkgs.stdenv.mkDerivation rec {\n  pname = \"my-python-app\";\n  version = \"0.1.0\";\n\n  src = ./.;\n\n  buildInputs = [ python nuitka ];\n\n  buildPhase = \"\"\"\n    python -m nuitka --follow-imports main.py --output-dir=$out --unstripped --remove-output\n  \"\"\";\n\n  installPhase = \"\"\"\n    mkdir -p $out/bin\n    cp main.bin $out/bin/main\n  \"\"\";\n\n  meta = with pkgs.stdenv.lib; {\n    description = \"My Python application compiled with Nuitka\";\n    maintainers = with maintainers; [ ];\n  };\n}\n" > default.nix
           nix-build; \
           tar czvf result.tar.gz result'
 
