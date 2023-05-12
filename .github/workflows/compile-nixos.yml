@@ -18,7 +18,9 @@ jobs:
         docker pull nixos/nix
 
         docker run --rm -v $PWD:/app -w /app nixos/nix sh -c "\
-          nix-env -iA nixpkgs.python38 nixpkgs.nuitka; \
+          echo '{ nuitka = import (fetchTarball https://github.com/Nuitka/Nuitka/archive/0.6.18.4.tar.gz) { }; }' > nuitka.nix; \
+          nix-env -iA nuitka -f nuitka.nix; \
+          nix-env -iA nixpkgs.python38; \
           python3.8 -m nuitka --follow-imports main.py --output-dir=/app/output --unstripped --remove-output; \
           tar czvf main_executable.tar.gz -C /app/output ."
 
