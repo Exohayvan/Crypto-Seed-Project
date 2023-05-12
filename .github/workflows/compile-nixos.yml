@@ -1,0 +1,38 @@
+name: Compile main.py with NixOS and PyInstaller
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v2
+
+    - name: Set up Docker Buildx
+      uses: docker/setup-buildx-action@v1
+
+    - name: Build and run the Docker image
+      run: |
+        cat <<EOF > Dockerfile
+        FROM nixos/nix
+        RUN nix-env -iA nixpkgs.python3 nixpkgs.pyinstaller nixpkgs.python3Packages.pip
+        COPY . /app
+        WORKDIR /app
+        RUN pip install --upgrade pip && pip install -r requirements.txt
+        RUN pyinstaller --onefile main.py
+        EOF
+        docker build -t my-nixos-app .
+        docker create --name my-nixos-container my-nixos-app
+        docker cp my-nixos-container:/app/dist/main ./main
+        docker rm my-nixos-container
+
+    - name: Upload compiled binary
+      uses: actions/upload-artifact@v2
+      with:
+        name: main-binary
+        path: ./main
