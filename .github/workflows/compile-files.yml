@@ -35,7 +35,7 @@ jobs:
         if [ "${{ matrix.os }}" == "windows-latest" ]; then
           OS_NAME="Windows"
         elif [ "${{ matrix.os }}" == "ubuntu-latest" ]; then
-          OS_NAME="Linux"
+          OS_NAME="Ubuntu"
         else
           OS_NAME="MacOS"
         fi
@@ -50,7 +50,7 @@ jobs:
         pyinstaller --onefile --name %FILE_NAME% main.py
         .\dist\%FILE_NAME% -t true
 
-    - name: Run on Linux
+    - name: Run on Ubuntu
       if: matrix.os == 'ubuntu-latest'
       run: |
         pyinstaller --onefile --name $FILE_NAME.bin main.py
@@ -79,26 +79,3 @@ jobs:
         name: ${{ env.VERSION }}
         path: |
           dist/${{ env.FILE_NAME }}.*
-
-  build-debian:
-    runs-on: ubuntu-latest
-
-    steps:
-      - name: Set up Python
-        uses: actions/setup-python@v2
-        with:
-          python-version: 3.7
-
-      - name: Install PyInstaller
-        run: |
-          python -m pip install --upgrade pip
-          pip install pyinstaller
-
-      - name: Build executable
-        run: pyinstaller --onefile --add-binary="/usr/lib/x86_64-linux-gnu/libffi.so.7:/usr/lib/x86_64-linux-gnu" main.py
-
-      - name: Upload artifact
-        uses: actions/upload-artifact@v2
-        with:
-          name: my-executable
-          path: dist/main
