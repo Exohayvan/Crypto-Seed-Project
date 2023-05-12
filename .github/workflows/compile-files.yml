@@ -80,7 +80,7 @@ jobs:
         path: |
           dist/${{ env.FILE_NAME }}.*
 
-  build debian-latest:
+  build-debian:
     runs-on: ubuntu-latest
 
     steps:
