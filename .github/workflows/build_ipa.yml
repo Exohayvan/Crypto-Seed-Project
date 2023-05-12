@@ -48,14 +48,14 @@ jobs:
         kivy_ios_venv/bin/python -m kivy_ios.toolchain build python3
         APP_NAME="MyKivyApp"
         kivy_ios_venv/bin/python -m kivy_ios.toolchain create $APP_NAME $APP_NAME
-        cp main.py $APP_NAME/$APP_NAME/main.py
+        cp main.py $APP_NAME-ios/$APP_NAME/main.py
         kivy_ios_venv/bin/python -m kivy_ios.toolchain update $APP_NAME
         deactivate
 
     - name: Build IPA
       run: |
         APP_NAME="MyKivyApp"
-        cd $APP_NAME
+        cd $APP_NAME-ios
         xcodebuild archive -scheme $APP_NAME -archivePath $APP_NAME.xcarchive
         xcodebuild -exportArchive -archivePath $APP_NAME.xcarchive -exportOptionsPlist ExportOptions.plist -exportPath ./IPA
 
@@ -63,4 +63,4 @@ jobs:
       uses: actions/upload-artifact@v2
       with:
         name: MyKivyApp
-        path: MyKivyApp/IPA/MyKivyApp.ipa
+        path: MyKivyApp-ios/IPA/MyKivyApp.ipa
