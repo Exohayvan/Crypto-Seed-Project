@@ -20,7 +20,7 @@ jobs:
     - name: Install dependencies
       run: |
         pip install kivy
-        pip install kivy-ios
+        pip install git+https://github.com/kivy/kivy-ios.git
 
     - name: Build the Kivy-ios toolchain
       run: |
