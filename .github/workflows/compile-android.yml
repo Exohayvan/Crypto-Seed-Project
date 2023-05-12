@@ -1,6 +1,6 @@
 name: Compile Files (Android)
 
-on:
+  on:
   workflow_run:
     workflows: ["Test Python Script"]
     types:
