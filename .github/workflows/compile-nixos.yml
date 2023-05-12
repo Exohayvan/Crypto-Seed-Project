@@ -16,7 +16,7 @@ jobs:
     - name: Build Nix package
       run: |
         docker pull nixos/nix
-        docker run --rm -v $PWD:/app -w /app nixos/nix sh -c "\
+        docker run --rm -v $PWD:/app -w /app nixos/nix sh -c '
           cat > default.nix << EOF
           { pkgs ? import <nixpkgs> {} }:
 
@@ -24,30 +24,30 @@ jobs:
             python = pkgs.python38;
             nuitka = python.pkgs.nuitka;
           in pkgs.stdenv.mkDerivation rec {
-            pname = \"my-python-app\";
-            version = \"0.1.0\";
+            pname = "my-python-app";
+            version = "0.1.0";
 
             src = ./.;
 
             buildInputs = [ python nuitka ];
 
-            buildPhase = ''
+            buildPhase = ""
               python -m nuitka --follow-imports main.py --output-dir=$out --unstripped --remove-output
-            '';
+            "";
 
-            installPhase = ''
+            installPhase = ""
               mkdir -p $out/bin
               cp main.bin $out/bin/main
-            '';
+            "";
 
             meta = with pkgs.stdenv.lib; {
-              description = \"My Python application compiled with Nuitka\";
+              description = "My Python application compiled with Nuitka";
               maintainers = with maintainers; [ ];
             };
           }
           EOF
           nix-build; \
-          tar czvf result.tar.gz result"
+          tar czvf result.tar.gz result'
 
     - name: Upload Nix package
       uses: actions/upload-artifact@v2
