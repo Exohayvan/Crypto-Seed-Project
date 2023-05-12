@@ -35,6 +35,7 @@ jobs:
         pip install --upgrade pip
         pip install cython==0.29.17
         pip install git+https://github.com/kivy/kivy-ios.git
+        kivy_ios_venv/bin/python -m kivy_ios.toolchain build python3
         kivy_ios_venv/bin/python -m kivy_ios.toolchain create MyKivyApp MyKivyApp
         cp main.py MyKivyApp/MyKivyApp/main.py
         kivy_ios_venv/bin/python -m kivy_ios.toolchain update MyKivyApp
