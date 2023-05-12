@@ -1,0 +1,46 @@
+name: Build IPA
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: macos-latest
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v2
+
+    - name: Set up Python 3.8
+      uses: actions/setup-python@v2
+      with:
+        python-version: 3.8
+
+    - name: Install dependencies
+      run: |
+        pip install kivy
+        pip install kivy-ios
+
+    - name: Build the Kivy-ios toolchain
+      run: |
+        kivy-ios -m pip install cython==0.29.17
+        kivy-ios new-toolchain
+        kivy-ios build kivy
+
+    - name: Create Xcode project
+      run: |
+        kivy-ios create-xcode-project --name MyKivyApp
+        cp main.py MyKivyApp/MyKivyApp/main.py
+
+    - name: Build IPA
+      run: |
+        cd MyKivyApp
+        xcodebuild archive -scheme MyKivyApp -archivePath MyKivyApp.xcarchive
+        xcodebuild -exportArchive -archivePath MyKivyApp.xcarchive -exportOptionsPlist ExportOptions.plist -exportPath ./IPA
+
+    - name: Upload IPA as artifact
+      uses: actions/upload-artifact@v2
+      with:
+        name: MyKivyApp
+        path: MyKivyApp/IPA/MyKivyApp.ipa
