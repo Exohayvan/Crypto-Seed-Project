@@ -49,7 +49,7 @@ jobs:
         APP_NAME="MyKivyApp"
         kivy_ios_venv/bin/python -m kivy_ios.toolchain create $APP_NAME $APP_NAME
         cp main.py $APP_NAME-ios/$APP_NAME/main.py
-        kivy_ios_venv/bin/python -m kivy_ios.toolchain update $APP_NAME
+        kivy_ios_venv/bin/python -m kivy_ios.toolchain update $APP_NAME-ios
         deactivate
 
     - name: Build IPA
