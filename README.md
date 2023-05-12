@@ -88,7 +88,7 @@ Status is based off the latest build.
 
 ![iOS][ios-shield]![Build][compile-iOS]
 
-![Debian][debian-shield]![Build][untested]
+![Debian][debian-shield]![Build][compile-debian]
 
 ![ChromeOS][chromeos-shield]![Build][untested]
 
@@ -229,6 +229,7 @@ Project Link: [https://github.com/Exohayvan/Crypto-Seed-Project](https://github.
 [compile-files]: https://img.shields.io/github/actions/workflow/status/exohayvan/Crypto-Seed-Project/compile-files.yml?style=for-the-badge
 [compile-android]: https://img.shields.io/github/actions/workflow/status/exohayvan/Crypto-Seed-Project/compile-android.yml?style=for-the-badge
 [compile-ios]: https://img.shields.io/github/actions/workflow/status/exohayvan/Crypto-Seed-Project/compile-iOS.yml?style=for-the-badge
+[compile-debian]: https://img.shields.io/github/actions/workflow/status/exohayvan/Crypto-Seed-Project/compile-debian.yml?style=for-the-badge
 [compile-openwrt]: https://img.shields.io/github/actions/workflow/status/exohayvan/Crypto-Seed-Project/compile-openwrt.yml?style=for-the-badge
 
 
