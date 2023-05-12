@@ -1,4 +1,4 @@
-name: Compile and Upload main.py with NixOS
+name: Package and Upload main.py with NixOS
 
 on:
   push:
@@ -17,7 +17,7 @@ jobs:
       run: |
         docker pull nixos/nix
         docker run --rm -v $PWD:/app -w /app nixos/nix sh -c '
-          printf "{ pkgs ? import <nixpkgs> {} }:\n\nlet\n  python = pkgs.python38;\n  pythonPackages = python.pkgs;\nin pythonPackages.buildPythonPackage rec {\n  pname = \"my-python-app\";\n  version = \"0.1.0\";\n\n  src = ./.;\n\n  propagatedBuildInputs = [ python ];\n\n  meta = with pkgs.stdenv.lib; {\n    description = \"My Python application\";\n    maintainers = with maintainers; [ ];\n  };\n}\n" > default.nix
+          printf "{ pkgs ? import <nixpkgs> {} }:\n\nlet\n  python = pkgs.python38;\nin pkgs.stdenv.mkDerivation rec {\n  pname = \"my-python-app\";\n  version = \"0.1.0\";\n\n  src = ./.;\n\n  buildInputs = [ python ];\n\n  phases = [ \"installPhase\" ];\n\n  installPhase = \"\"\"\n    mkdir -p $out/bin\n    cp main.py $out/bin/main\n    chmod +x $out/bin/main\n  \"\"\";\n\n  meta = with pkgs.stdenv.lib; {\n    description = \"My Python application\";\n    maintainers = with maintainers; [ ];\n  };\n}\n" > default.nix
           nix-build; \
           tar czvf result.tar.gz result'
 
