@@ -46,19 +46,19 @@ jobs:
         pip install cython==0.29.17
         pip install git+https://github.com/kivy/kivy-ios.git
         kivy_ios_venv/bin/python -m kivy_ios.toolchain build python3
-        kivy_ios_venv/bin/python -m kivy_ios.toolchain create mykivyapp-ios mykivyapp-ios
-        cp main.py mykivyapp-ios/mykivyapp/main.py
-        kivy_ios_venv/bin/python -m kivy_ios.toolchain update mykivyapp-ios
+        kivy_ios_venv/bin/python -m kivy_ios.toolchain create mykivyapp-ios-ios mykivyapp-ios-ios
+        cp main.py mykivyapp-ios-ios/mykivyapp-ios/main.py
+        kivy_ios_venv/bin/python -m kivy_ios.toolchain update mykivyapp-ios-ios
         deactivate
 
     - name: Build IPA
       run: |
-        cd mykivyapp-ios
-        xcodebuild archive -scheme mykivyapp -archivePath mykivyapp.xcarchive
-        xcodebuild -exportArchive -archivePath mykivyapp.xcarchive -exportOptionsPlist ExportOptions.plist -exportPath ./IPA
+        cd mykivyapp-ios-ios
+        xcodebuild archive -scheme mykivyapp-ios -archivePath mykivyapp-ios.xcarchive
+        xcodebuild -exportArchive -archivePath mykivyapp-ios.xcarchive -exportOptionsPlist ExportOptions.plist -exportPath ./IPA
 
     - name: Upload IPA as artifact
       uses: actions/upload-artifact@v2
       with:
         name: MyKivyApp
-        path: mykivyapp-ios/IPA/mykivyapp.ipa
+        path: mykivyapp-ios-ios/IPA/mykivyapp-ios.ipa
