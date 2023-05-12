@@ -20,6 +20,9 @@ jobs:
       - name: Check current directory
         run: ls -la
 
+      - name: Generate default.nix
+        run: echo "TODO: Generate or copy the content of default.nix here" > default.nix
+
       - name: Build Nix package
         run: |
           docker pull nixos/nix
