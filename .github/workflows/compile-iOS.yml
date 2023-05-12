@@ -1,12 +1,13 @@
-name: Build IPA
+name: Compile Files (iOS)
 
 on:
-  push:
-    branches:
-      - main
+  workflow_run:
+    workflows: ["Test Python Script"]
+    types:
+      - completed
 
 jobs:
-  build:
+  build-iOS:
     runs-on: macos-latest
     steps:
     - name: Checkout repository
