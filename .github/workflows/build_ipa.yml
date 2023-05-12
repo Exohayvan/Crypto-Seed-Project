@@ -29,8 +29,9 @@ jobs:
         pip install --upgrade pip
         pip install cython==0.29.17
         pip install git+https://github.com/kivy/kivy-ios.git
-        python -m kivy_ios.toolchain new-toolchain
-        python -m kivy_ios.toolchain build kivy
+        python -m kivy_ios.toolchain create --name MyKivyApp
+        cp main.py MyKivyApp/MyKivyApp/main.py
+        python -m kivy_ios.toolchain update MyKivyApp
         deactivate
 
     - name: Create Xcode project
