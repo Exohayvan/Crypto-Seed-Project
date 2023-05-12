@@ -21,7 +21,7 @@ jobs:
       run: |
         pip install kivy
         pip install git+https://github.com/kivy/kivy-ios.git
-        pip install requirements.txt
+        pip install -r requirements.txt
 
     - name: Install system dependencies
       run: |
