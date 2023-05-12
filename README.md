@@ -84,9 +84,9 @@ Status is based off the latest build.
 
 ![OpenWRT][openwrt-shield]![Build][untested]
 
-![Android][android-shield]![Build][compile-mobile]
+![Android][android-shield]![Build][compile-android]
 
-![iOS][ios-shield]![Build][compile-mobile]
+![iOS][ios-shield]![Build][compile-iOS]
 
 ![Debian][debian-shield]![Build][untested]
 
@@ -227,7 +227,9 @@ Project Link: [https://github.com/Exohayvan/Crypto-Seed-Project](https://github.
 
 [python-test]: https://img.shields.io/github/actions/workflow/status/exohayvan/crypto-seed-project/python-test.yml?style=for-the-badge
 [compile-files]: https://img.shields.io/github/actions/workflow/status/exohayvan/Crypto-Seed-Project/compile-files.yml?style=for-the-badge
-[compile-mobile]: https://img.shields.io/github/actions/workflow/status/exohayvan/Crypto-Seed-Project/compile-mobile.yml?style=for-the-badge
+[compile-android]: https://img.shields.io/github/actions/workflow/status/exohayvan/Crypto-Seed-Project/compile-android.yml?style=for-the-badge
+[compile-ios]: https://img.shields.io/github/actions/workflow/status/exohayvan/Crypto-Seed-Project/compile-iOS.yml?style=for-the-badge
+
 
 [untested]: https://img.shields.io/badge/-untested-lightgrey?style=for-the-badge
 [fail]: https://img.shields.io/badge/-failed-red?style=for-the-badge
