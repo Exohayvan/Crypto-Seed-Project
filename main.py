@@ -22,7 +22,7 @@ args = parser.parse_args()
 
 
 #setting const
-version = 'v0.0.6-alpha'
+version = 'v0.0.7-alpha'
 filename = 'update.temp'
 os_type = sys.platform
 filename = version +'_update.temp'
