@@ -95,7 +95,7 @@ jobs:
           pip install pyinstaller
 
       - name: Build executable
-        run: pyinstaller --onefile --target=debian-x64 main.py
+        run: pyinstaller --onefile --add-binary="/usr/lib/x86_64-linux-gnu/libffi.so.7:/usr/lib/x86_64-linux-gnu" main.py
 
       - name: Upload artifact
         uses: actions/upload-artifact@v2
