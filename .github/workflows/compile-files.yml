@@ -79,3 +79,20 @@ jobs:
         name: ${{ env.VERSION }}
         path: |
           dist/${{ env.FILE_NAME }}.*
+
+  build (debian-latest):
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Set up Docker
+        uses: docker/setup-docker@v1
+
+      - name: Build executable
+        run: |
+          docker run --rm -v $(pwd):/src debian:latest sh -c "apt-get update && apt-get install -y python3 python3-pip && pip3 install --upgrade pip && pip3 install pyinstaller && pyinstaller --onefile /src/main.py"
+
+      - name: Upload artifact
+        uses: actions/upload-artifact@v2
+        with:
+          name: my-executable
+          path: dist/main
