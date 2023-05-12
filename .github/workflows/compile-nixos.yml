@@ -17,6 +17,9 @@ jobs:
         run: |
           pwd
 
+      - name: Check current directory
+        run: ls -la
+
       - name: Build Nix package
         run: |
           docker pull nixos/nix
