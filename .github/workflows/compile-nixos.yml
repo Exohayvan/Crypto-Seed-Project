@@ -10,19 +10,19 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Checkout repository
-      uses: actions/checkout@v2
+      - name: Checkout repository
+        uses: actions/checkout@v2
 
-    - name: Build Nix package
-      run: |
-        docker pull nixos/nix
-        docker run --rm -v $PWD:/app -w /app nixos/nix sh -c '
-          printf "{ pkgs ? import <nixpkgs> {} }:\n\nlet\n  pythonPackages = pkgs.python38Packages;\nin pythonPackages.buildPythonApplication {\n  pname = \"my-python-app\";\n  version = \"0.1.0\";\n\n  src = ./.;\n\n  propagatedBuildInputs = [\n    pythonPackages.setuptools\n  ];\n\n  installPhase = \"install -D -t $out/bin main.py\";\n\n  buildInputs = [\n    pkgs.python38\n  ];\n\n  meta = with pkgs.stdenv.lib; {\n    description = \"My Python application\";\n    maintainers = with maintainers; [ ];\n  };\n}\n" > default.nix
+      - name: Build Nix package
+        run: |
+          docker pull nixos/nix
+          docker run --rm -v $PWD:/app -w /app nixos/nix sh -c '
+            printf "{ pkgs ? import <nixpkgs> {} }:\n\nlet\n  pythonPackages = pkgs.python38Packages;\nin pythonPackages.buildPythonApplication {\n  pname = \"my-python-app\";\n  version = \"0.1.0\";\n\n  src = ./.;\n\n  propagatedBuildInputs = [\n    pythonPackages.setuptools\n  ];\n\n  buildInputs = [\n    pkgs.python38\n  ];\n\n  postInstall = ''\n    mkdir -p $out/bin\n    cp main.py $out/bin/main\n    chmod +x $out/bin/main\n  '';\n\n  meta = with pkgs.stdenv.lib; {\n    description = \"My Python application\";\n    maintainers = with maintainers; [ ];\n  };\n}\n" > default.nix
           nix-build --out-link result; \
           tar czvf result.tar.gz -C result .'
 
-    - name: Upload Nix package
-      uses: actions/upload-artifact@v2
-      with:
-        name: my-python-app.nix
-        path: result.tar.gz
+      - name: Upload Nix package
+        uses: actions/upload-artifact@v2
+        with:
+          name: my-python-app.nix
+          path: result.tar.gz
