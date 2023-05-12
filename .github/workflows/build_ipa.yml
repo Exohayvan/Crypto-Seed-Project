@@ -21,6 +21,12 @@ jobs:
       run: |
         pip install kivy
         pip install git+https://github.com/kivy/kivy-ios.git
+        pip install requirements.txt
+
+    - name: Install system dependencies
+      run: |
+        brew install autoconf automake libtool pkg-config
+        brew link libtool
 
     - name: Build the Kivy-ios toolchain
       run: |
@@ -33,11 +39,6 @@ jobs:
         cp main.py MyKivyApp/MyKivyApp/main.py
         kivy_ios_venv/bin/python -m kivy_ios.toolchain update MyKivyApp
         deactivate
-
-    - name: Create Xcode project
-      run: |
-        kivy-ios create-xcode-project --name MyKivyApp
-        cp main.py MyKivyApp/MyKivyApp/main.py
 
     - name: Build IPA
       run: |
