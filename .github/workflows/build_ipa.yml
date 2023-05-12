@@ -52,6 +52,12 @@ jobs:
         kivy_ios_venv/bin/python -m kivy_ios.toolchain update $APP_NAME-ios
         deactivate
 
+    - name: List Xcode schemes
+      run: |
+        APP_NAME="MyKivyApp"
+        cd $APP_NAME-ios
+        xcodebuild -list
+
     - name: Build IPA
       run: |
         APP_NAME="MyKivyApp"
