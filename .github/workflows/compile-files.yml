@@ -39,7 +39,7 @@ jobs:
         else
           OS_NAME="MacOS"
         fi
-        FILE_NAME="Build_${OS_NAME}-${VERSION}"
+        FILE_NAME="Build_${OS_NAME}-${VERSION}x86_64"
         echo "FILE_NAME=$FILE_NAME" | tee -a $GITHUB_ENV
 
     # Run the application on different operating systems
