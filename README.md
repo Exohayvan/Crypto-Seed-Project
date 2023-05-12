@@ -82,7 +82,7 @@ Status is based off the latest build.
 
 ![MacOS][macos-shield]![Build][compile-files]
 
-![OpenWRT][openwrt-shield]![Build][untested]
+![OpenWRT][openwrt-shield]![Build][compile-openwrt]
 
 ![Android][android-shield]![Build][compile-android]
 
@@ -90,9 +90,9 @@ Status is based off the latest build.
 
 ![Debian][debian-shield]![Build][untested]
 
-![ChromeOS][chromeos-shield]![Build][fail]
+![ChromeOS][chromeos-shield]![Build][untested]
 
-![NixOS][nixos-shield]![Build][fail]
+![NixOS][nixos-shield]![Build][untested]
 
 ![Alpine Linux][alpine-shield]![Build][untested]
 
@@ -229,6 +229,7 @@ Project Link: [https://github.com/Exohayvan/Crypto-Seed-Project](https://github.
 [compile-files]: https://img.shields.io/github/actions/workflow/status/exohayvan/Crypto-Seed-Project/compile-files.yml?style=for-the-badge
 [compile-android]: https://img.shields.io/github/actions/workflow/status/exohayvan/Crypto-Seed-Project/compile-android.yml?style=for-the-badge
 [compile-ios]: https://img.shields.io/github/actions/workflow/status/exohayvan/Crypto-Seed-Project/compile-iOS.yml?style=for-the-badge
+[compile-openwrt]: https://img.shields.io/github/actions/workflow/status/exohayvan/Crypto-Seed-Project/compile-openwrt.yml?style=for-the-badge
 
 
 [untested]: https://img.shields.io/badge/-untested-lightgrey?style=for-the-badge
