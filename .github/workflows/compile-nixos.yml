@@ -22,7 +22,7 @@ jobs:
         FROM nixos/nix
         COPY . /app
         WORKDIR /app
-        RUN nix-shell -p python3 python3Packages.pip python3Packages.pyinstaller --run "\
+        RUN nix-shell -E 'with import <nixpkgs> {}; python3.withPackages (ps: with ps; [ pip setuptools wheel pyinstaller ])' --run "\
           pip install --upgrade pip && \
           pip install -r requirements.txt && \
           pyinstaller --onefile main.py"
