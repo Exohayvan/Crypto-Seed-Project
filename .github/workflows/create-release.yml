@@ -11,6 +11,25 @@ jobs:
     runs-on: ubuntu-latest
     if: ${{ github.event.workflow_run.conclusion == 'success' }}
     steps:
+      - name: Fetch workflow run details
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          pc_workflow_run=$(curl --silent --header "Authorization: token $GITHUB_TOKEN" "https://api.github.com/repos/${{ github.repository }}/actions/workflow-runs/${{ github.event.workflow_run.id }}")
+          pc_conclusion=$(echo "$pc_workflow_run" | jq -r '.conclusion')
+
+          debian_workflow_run_id=$(curl --silent --header "Authorization: token $GITHUB_TOKEN" "https://api.github.com/repos/${{ github.repository }}/actions/workflows/Compile%20Files%20(Debian)/runs" | jq -r '.workflow_runs[] | select(.head_sha == ${{ github.sha }}) | .id')
+
+          debian_workflow_run=$(curl --silent --header "Authorization: token $GITHUB_TOKEN" "https://api.github.com/repos/${{ github.repository }}/actions/workflow-runs/$debian_workflow_run_id")
+          debian_conclusion=$(echo "$debian_workflow_run" | jq -r '.conclusion')
+
+          echo "PC_CONCLUSION=$pc_conclusion" | tee -a $GITHUB_ENV
+          echo "DEBIAN_CONCLUSION=$debian_conclusion" | tee -a $GITHUB_ENV
+
+      - name: Check if both workflow runs were successful
+        if: ${{ env.PC_CONCLUSION == 'success' && env.DEBIAN_CONCLUSION == 'success' }}
+        run: echo "Both workflow runs were successful."
+
       - name: Checkout repository
         uses: actions/checkout@v2
 
