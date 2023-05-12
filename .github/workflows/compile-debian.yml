@@ -22,6 +22,19 @@ jobs:
         python3 -m pip install --upgrade pip
         pip3 install -r requirements.txt
         pip3 install pyinstaller
+    - run: pip install -r requirements.txt pyinstaller
+
+    # Get version
+    - name: Get version
+      shell: bash
+      run: echo "VERSION=$(python main.py -v true)" | tee -a $GITHUB_ENV
+
+    # Define the names for each operating system
+    - name: Define names
+      shell: bash
+      run: |
+        FILE_NAME="Debian-${VERSION}-x86_64"
+        echo "FILE_NAME=$FILE_NAME" | tee -a $GITHUB_ENV
 
     - name: Compile Python script
       run: |
