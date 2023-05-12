@@ -75,6 +75,9 @@ jobs:
     - name: Create symbolic link for sdkmanager
       run: ln -s ${{ env.ANDROID_SDK_ROOT }}/cmdline-tools/latest/bin/sdkmanager /home/runner/.buildozer/android/platform/android-sdk/tools/bin/sdkmanager
 
+    - name: Create symbolic link for deprecated android binary
+      run: ln -s ${{ env.ANDROID_SDK_ROOT }}/cmdline-tools/latest/bin/sdkmanager ${{ env.ANDROID_SDK_ROOT }}/cmdline-tools/latest/bin/android
+
     - name: Create symbolic link for android binary
       run: ln -s ${{ env.ANDROID_SDK_ROOT }}/cmdline-tools/latest/bin/avdmanager ${{ env.ANDROID_SDK_ROOT }}/tools/bin/android
 
