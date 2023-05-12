@@ -1,4 +1,4 @@
-name: Compile Files (Mobile)
+name: Compile Files (Android)
 
 on:
   workflow_run:
