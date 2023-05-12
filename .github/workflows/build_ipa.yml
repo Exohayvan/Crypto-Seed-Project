@@ -61,8 +61,9 @@ jobs:
     - name: Build IPA
       run: |
         APP_NAME="MyKivyApp"
+        SCHEME_NAME="mykivyapp"
         cd $APP_NAME-ios
-        xcodebuild archive -scheme $APP_NAME -archivePath $APP_NAME.xcarchive
+        xcodebuild archive -scheme $SCHEME_NAME -archivePath $APP_NAME.xcarchive
         xcodebuild -exportArchive -archivePath $APP_NAME.xcarchive -exportOptionsPlist ExportOptions.plist -exportPath ./IPA
 
     - name: Upload IPA as artifact
