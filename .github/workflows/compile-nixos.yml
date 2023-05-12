@@ -20,11 +20,12 @@ jobs:
       run: |
         cat <<EOF > Dockerfile
         FROM nixos/nix
-        RUN nix-env -iA nixpkgs.python3 nixpkgs.pyinstaller nixpkgs.python3Packages.pip
         COPY . /app
         WORKDIR /app
-        RUN pip install --upgrade pip && pip install -r requirements.txt
-        RUN pyinstaller --onefile main.py
+        RUN nix-shell -p python3 python3Packages.pip python3Packages.pyinstaller --run "\
+          pip install --upgrade pip && \
+          pip install -r requirements.txt && \
+          pyinstaller --onefile main.py"
         EOF
         docker build -t my-nixos-app .
         docker create --name my-nixos-container my-nixos-app
