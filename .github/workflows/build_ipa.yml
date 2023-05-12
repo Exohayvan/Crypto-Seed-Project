@@ -24,9 +24,14 @@ jobs:
 
     - name: Build the Kivy-ios toolchain
       run: |
-        kivy-ios -m pip install cython==0.29.17
-        kivy-ios new-toolchain
-        kivy-ios build kivy
+        python -m venv kivy_ios_venv
+        source kivy_ios_venv/bin/activate
+        pip install --upgrade pip
+        pip install cython==0.29.17
+        pip install git+https://github.com/kivy/kivy-ios.git
+        python -m kivy_ios.toolchain new-toolchain
+        python -m kivy_ios.toolchain build kivy
+        deactivate
 
     - name: Create Xcode project
       run: |
