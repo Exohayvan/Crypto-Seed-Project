@@ -1,4 +1,4 @@
-name: Compile main.py with NixOS and PyInstaller
+name: Compile and Upload main.py with NixOS
 
 on:
   push:
@@ -13,27 +13,17 @@ jobs:
     - name: Checkout repository
       uses: actions/checkout@v2
 
-    - name: Set up Docker Buildx
-      uses: docker/setup-buildx-action@v1
-
-    - name: Build and run the Docker image
+    - name: Compile and upload using NixOS
       run: |
-        cat <<EOF > Dockerfile
-        FROM nixos/nix
-        COPY . /app
-        WORKDIR /app
-        RUN nix-shell -E 'with import <nixpkgs> {}; python3.withPackages (ps: with ps; [ pip setuptools wheel pyinstaller ])' --run "\
-          pip install --upgrade pip && \
-          pip install -r requirements.txt && \
-          pyinstaller --onefile main.py"
-        EOF
-        docker build -t my-nixos-app .
-        docker create --name my-nixos-container my-nixos-app
-        docker cp my-nixos-container:/app/dist/main ./main
-        docker rm my-nixos-container
+        docker pull nixos/nix
 
-    - name: Upload compiled binary
+        docker run --rm -v $PWD:/app -w /app nixos/nix sh -c "\
+          nix-env -iA nixpkgs.python38 nixpkgs.nuitka; \
+          python3.8 -m nuitka --follow-imports main.py --output-dir=/app/output --unstripped --remove-output; \
+          tar czvf main_executable.tar.gz -C /app/output ."
+
+    - name: Upload compiled executable
       uses: actions/upload-artifact@v2
       with:
-        name: main-binary
-        path: ./main
+        name: main_executable
+        path: main_executable.tar.gz
