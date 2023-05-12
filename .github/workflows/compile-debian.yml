@@ -1,9 +1,10 @@
 name: Compile Files (Debian)
 
 on:
-  push:
-    branches:
-      - main
+  workflow_run:
+    workflows: ["Test Python Script"]
+    types:
+      - completed
 
 jobs:
   build:
