@@ -17,7 +17,7 @@ jobs:
       run: |
         docker pull nixos/nix
         docker run --rm -v $PWD:/app -w /app nixos/nix sh -c '
-          printf "{ pkgs ? import <nixpkgs> {} }:\n\nlet\n  pythonPackages = pkgs.python38Packages;\nin pythonPackages.buildPythonApplication {\n  pname = \"my-python-app\";\n  version = \"0.1.0\";\n\n  src = ./.;\n\n  propagatedBuildInputs = [\n    pythonPackages.setuptools\n  ];\n\n  installPhase = \"install -D -t $out/bin main.py\";\n\n  meta = with pkgs.stdenv.lib; {\n    description = \"My Python application\";\n    maintainers = with maintainers; [ ];\n  };\n}\n" > default.nix
+          printf "{ pkgs ? import <nixpkgs> {} }:\n\nlet\n  pythonPackages = pkgs.python38Packages;\nin pythonPackages.buildPythonApplication {\n  pname = \"my-python-app\";\n  version = \"0.1.0\";\n\n  src = ./.;\n\n  propagatedBuildInputs = [\n    pythonPackages.setuptools\n  ];\n\n  installPhase = \"install -D -t $out/bin main.py\";\n\n  buildInputs = [\n    pkgs.python38\n  ];\n\n  meta = with pkgs.stdenv.lib; {\n    description = \"My Python application\";\n    maintainers = with maintainers; [ ];\n  };\n}\n" > default.nix
           nix-build --out-link result; \
           tar czvf result.tar.gz -C result .'
 
