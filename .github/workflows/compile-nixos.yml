@@ -13,19 +13,44 @@ jobs:
     - name: Checkout repository
       uses: actions/checkout@v2
 
-    - name: Compile and upload using NixOS
+    - name: Build Nix package
       run: |
         docker pull nixos/nix
-
         docker run --rm -v $PWD:/app -w /app nixos/nix sh -c "\
-          echo '{ nuitka = import (fetchTarball https://github.com/Nuitka/Nuitka/archive/0.6.18.4.tar.gz) { }; }' > nuitka.nix; \
-          nix-env -iA nuitka -f nuitka.nix; \
-          nix-env -iA nixpkgs.python38; \
-          python3.8 -m nuitka --follow-imports main.py --output-dir=/app/output --unstripped --remove-output; \
-          tar czvf main_executable.tar.gz -C /app/output ."
+          cat > default.nix << EOF
+          { pkgs ? import <nixpkgs> {} }:
 
-    - name: Upload compiled executable
+          let
+            python = pkgs.python38;
+            nuitka = python.pkgs.nuitka;
+          in pkgs.stdenv.mkDerivation rec {
+            pname = \"my-python-app\";
+            version = \"0.1.0\";
+
+            src = ./.;
+
+            buildInputs = [ python nuitka ];
+
+            buildPhase = ''
+              python -m nuitka --follow-imports main.py --output-dir=$out --unstripped --remove-output
+            '';
+
+            installPhase = ''
+              mkdir -p $out/bin
+              cp main.bin $out/bin/main
+            '';
+
+            meta = with pkgs.stdenv.lib; {
+              description = \"My Python application compiled with Nuitka\";
+              maintainers = with maintainers; [ ];
+            };
+          }
+          EOF
+          nix-build; \
+          tar czvf my-python-app.nix.tar.gz result"
+
+    - name: Upload Nix package
       uses: actions/upload-artifact@v2
       with:
-        name: main_executable
-        path: main_executable.tar.gz
+        name: my-python-app.nix
+        path: my-python-app.nix.tar.gz
