@@ -69,15 +69,15 @@ jobs:
             IFS=',' read -ra ADDR <<< "$ARTIFACT_NAMES"
             for asset_path in "${ADDR[@]}"; do
               asset_name=$(basename $asset_path)
-              asset="${asset_path%.*}.zip"
               if [[ $existing_assets != *"$asset_name"* ]]; then
-                missing_assets+="$asset,"
+                missing_assets+="$asset_path,"
               fi
             done
             missing_assets=${missing_assets%?}
             echo "MISSING_ASSETS=$missing_assets"
             echo "MISSING_ASSETS=$(echo "$missing_assets" | base64 -w0)" | tee -a $GITHUB_ENV
           fi
+
 
       - name: Generate Changelog
         run: |
