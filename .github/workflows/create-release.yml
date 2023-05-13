@@ -61,8 +61,6 @@ jobs:
           echo "Checking release and artifacts for version: v${{ env.VERSION }}"
     
           releases=$(curl --silent --header "Authorization: token $GITHUB_TOKEN" "https://api.github.com/repos/${{ github.repository }}/releases")
-          echo "All releases:"
-          echo "$releases"
     
           existing_release_info=$(echo "$releases" | jq -r --arg version "v${{ env.VERSION }}" '.[] | select(.tag_name == $version) // ""')
           echo "Existing release info:"
@@ -86,6 +84,7 @@ jobs:
             echo "MISSING_ASSETS=$missing_assets"
             echo "MISSING_ASSETS=$(echo "$missing_assets" | base64 -w0)" | tee -a $GITHUB_ENV
           fi
+
 
       - name: Generate Changelog
         run: |
