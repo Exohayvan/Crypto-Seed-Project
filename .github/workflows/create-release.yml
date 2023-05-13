@@ -9,7 +9,7 @@ on:
 jobs:
   release:
     runs-on: ubuntu-latest
-    if: ${{ github.event.workflow_run.conclusion == 'success' }}
+    if: ${{ github.event.workflow_run.event == 'workflow_run' && github.event.workflow_run.conclusion == 'success' && (env.PC_CONCLUSION == 'success' && env.DEBIAN_CONCLUSION == 'success') }}
     steps:
       - name: Fetch workflow run details
         env:
