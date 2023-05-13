@@ -163,6 +163,7 @@ jobs:
           exit 1
 
       - name: Create Release
+        if: ${{ env.MISSING_ASSETS == '' }}
         id: create_release
         uses: actions/create-release@v1
         env:
