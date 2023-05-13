@@ -62,7 +62,7 @@ jobs:
           existing_release_info=$(echo "$releases" | jq -r --arg version "v${{ env.VERSION }}" '.[] | select(.tag_name == $version) // ""')
           if [ -n "$existing_release_info" ]; then
             echo "Release v${{ env.VERSION }} already exists, checking artifacts."
-            existing_assets=$(echo "$existing_release_info" | jq -r '.assets | map(.name) | join(",")')
+            existing_release_info=$(echo "$releases" | jq -r --arg version "v${{ env.VERSION }}" '.[] | select(.tag_name == $version) // ""')
             echo "Existing assets: $existing_assets"
 
             missing_assets=""
