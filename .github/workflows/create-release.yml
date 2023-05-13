@@ -83,7 +83,8 @@ jobs:
       - name: Create Release
         uses: softprops/action-gh-release@v1
         with:
-          body: Release ${{ env.VERSION }}
+          tag_name: ${{ env.VERSION }}
+          body: ${{ env.VERSION }}
           draft: false
           files: artifacts/*.zip
         env:
