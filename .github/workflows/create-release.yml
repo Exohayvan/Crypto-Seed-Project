@@ -62,7 +62,7 @@ jobs:
           existing_release_info=$(echo "$releases" | jq -r --arg version "v${{ env.VERSION }}" '.[] | select(.tag_name == $version) // ""')
           if [ -n "$existing_release_info" ]; then
             echo "Release v${{ env.VERSION }} already exists, checking artifacts."
-            existing_release_info=$(echo "$releases" | jq -r --arg version "v${{ env.VERSION }}" '.[] | select(.tag_name == $version) // ""')
+            existing_assets=$(echo "$existing_release_info" | jq -r '.assets | map(.name) | join(",")')
             echo "Existing assets: $existing_assets"
 
             missing_assets=""
@@ -73,9 +73,9 @@ jobs:
                 missing_assets+="$asset_path,"
               fi
             done
-              missing_assets=${missing_assets%?}
-              echo "MISSING_ASSETS=$missing_assets"
-              echo "MISSING_ASSETS=$(echo "$missing_assets" | base64 -w0)" | tee -a $GITHUB_ENV
+            missing_assets=${missing_assets%?}
+            echo "MISSING_ASSETS=$missing_assets"
+            echo "MISSING_ASSETS=$(echo "$missing_assets" | base64 -w0)" | tee -a $GITHUB_ENV
           fi
 
       - name: Generate Changelog
