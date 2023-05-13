@@ -54,7 +54,7 @@ jobs:
           echo "VERSION=$VERSION" | tee -a $GITHUB_ENV
           echo "ARTIFACT_NAMES=$ARTIFACT_NAMES" | tee -a $GITHUB_ENV
 
-      - name: Check if release      - name: Check if release exists and artifacts are uploaded
+      - name: Check if release exists and artifacts are uploaded
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
