@@ -18,7 +18,7 @@ jobs:
           pc_workflow_run=$(curl --silent --header "Authorization: token $GITHUB_TOKEN" "https://api.github.com/repos/${{ github.repository }}/actions/workflow-runs/${{ github.event.workflow_run.id }}")
           pc_conclusion=$(echo "$pc_workflow_run" | jq -r '.conclusion')
 
-          debian_workflow_run_id=$(curl --silent --header "Authorization: token $GITHUB_TOKEN" "https://api.github.com/repos/${{ github.repository }}/actions/workflows/Compile%20Files%20(Debian)/runs" | jq -r '.workflow_runs[] | select(.head_sha == ${{ github.sha }}) | .id')
+          debian_workflow_run_id=$(curl --silent --header "Authorization: token $GITHUB_TOKEN" "https://api.github.com/repos/Exohayvan/Crypto-Seed-Project/actions/workflows/Compile%20Files%20(Debian)/runs" | jq -r '.workflow_runs[] | select(.head_sha == "2b004ef559f9aab5770b9fb1b2b9eae8c6a78c14") | .id')
 
           debian_workflow_run=$(curl --silent --header "Authorization: token $GITHUB_TOKEN" "https://api.github.com/repos/${{ github.repository }}/actions/workflow-runs/$debian_workflow_run_id")
           debian_conclusion=$(echo "$debian_workflow_run" | jq -r '.conclusion')
