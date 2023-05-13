@@ -74,7 +74,8 @@ jobs:
               fi
             done
             echo "MISSING_ASSETS=${missing_assets%?}" | tee -a $GITHUB_ENV
-            exit 1
+            # Change exit status to 0 when there are missing assets
+            [ -z "$missing_assets" ] && exit 1 || exit 0
           fi
 
       - name: Generate Changelog
