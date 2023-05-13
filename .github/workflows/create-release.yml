@@ -7,11 +7,14 @@ on:
       - completed
 
 jobs:
-  release:
+  fetch_workflow_run_details:
     runs-on: ubuntu-latest
-    if: ${{ github.event.workflow_run.event == 'workflow_run' && github.event.workflow_run.conclusion == 'success' && (env.PC_CONCLUSION == 'success' && env.DEBIAN_CONCLUSION == 'success') }}
+    outputs:
+      pc_conclusion: ${{ steps.fetch.outputs.pc_conclusion }}
+      debian_conclusion: ${{ steps.fetch.outputs.debian_conclusion }}
     steps:
       - name: Fetch workflow run details
+        id: fetch
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
@@ -30,8 +33,12 @@ jobs:
           echo "PC_CONCLUSION=$pc_conclusion" | tee -a $GITHUB_ENV
           echo "DEBIAN_CONCLUSION=$debian_conclusion" | tee -a $GITHUB_ENV
 
+  release:
+    runs-on: ubuntu-latest
+    needs: fetch_workflow_run_details
+    if: ${{ needs.fetch_workflow_run_details.outputs.pc_conclusion == 'success' && needs.fetch_workflow_run_details.outputs.debian_conclusion == 'success' }}
+    steps:
       - name: Check if both workflow runs were successful
-        if: ${{ env.PC_CONCLUSION == 'success' && env.DEBIAN_CONCLUSION == 'success' }}
         run: echo "Both workflow runs were successful."
 
       - name: Checkout repository
