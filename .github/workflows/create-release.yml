@@ -54,13 +54,26 @@ jobs:
           echo "VERSION=$VERSION" | tee -a $GITHUB_ENV
           echo "ARTIFACT_NAMES=$ARTIFACT_NAMES" | tee -a $GITHUB_ENV
 
-      - name: Check if release already exists
+      - name: Check if release exists and artifacts are uploaded
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           releases=$(curl --silent --header "Authorization: token $GITHUB_TOKEN" "https://api.github.com/repos/${{ github.repository }}/releases")
-          if echo "$releases" | grep -q "\"tag_name\": \"v${{ env.VERSION }}\""; then
-            echo "Release v${{ env.VERSION }} already exists, skipping."
+          existing_release_info=$(echo "$releases" | jq -r --arg version "v${{ env.VERSION }}" '.[] | select(.tag_name == $version) // ""')
+          if [ -n "$existing_release_info" ]; then
+            echo "Release v${{ env.VERSION }} already exists, checking artifacts."
+            existing_assets=$(echo "$existing_release_info" | jq -r '.assets | map(.name) | join(",")')
+            echo "Existing assets: $existing_assets"
+
+            missing_assets=""
+            IFS=',' read -ra ADDR <<< "$ARTIFACT_NAMES"
+            for asset in "${ADDR[@]}"; do
+              asset_name=$(basename $asset)
+              if [[ $existing_assets != *"$asset_name"* ]]; then
+                missing_assets+="$asset,"
+              fi
+            done
+            echo "MISSING_ASSETS=${missing_assets%?}" | tee -a $GITHUB_ENV
             exit 1
           fi
 
@@ -130,6 +143,25 @@ jobs:
           encoded_version=$(urlencode "${{ env.VERSION }}")
           echo "ENCODED_VERSION=$encoded_version" | tee -a $GITHUB_ENV
       
+      - name: Upload missing artifacts to existing release
+        if: ${{ env.MISSING_ASSETS != '' }}
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          echo "Uploading missing artifacts to existing release: $MISSING_ASSETS"
+          release_id=$(echo "$existing_release_info" | jq -r '.id')
+          IFS=',' read -ra ADDR <<< "$MISSING_ASSETS"
+          for asset in "${ADDR[@]}"; do
+            echo "Uploading $asset to existing release"
+            curl \
+              --request POST \
+              --header "Authorization: token $GITHUB_TOKEN" \
+              --header "Content-Type: $(file -b --mime-type $asset)" \
+              --data-binary @$asset \
+              "https://uploads.github.com/repos/${{ github.repository }}/releases/$release_id/assets?name=$(basename $asset)"
+          done
+          exit 1
+
       - name: Create Release
         id: create_release
         uses: actions/create-release@v1
