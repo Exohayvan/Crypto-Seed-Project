@@ -86,7 +86,6 @@ jobs:
 
       - name: Generate Changelog
         run: |
-          set -x
           releases=$(curl --silent --header "Authorization: token ${{ secrets.GITHUB_TOKEN }}" "https://api.github.com/repos/${{ github.repository }}/releases")
           latest_release_info=$(echo "$releases" | jq -r 'sort_by(.created_at) | reverse | .[0]')
           latest_release_tag=$(echo "$latest_release_info" | jq -r '.tag_name // ""')
@@ -166,11 +165,12 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
+          set -x
           release_id=$(jq -r '.id' <<< "$existing_release_info")
           IFS=',' read -ra ADDR <<< "$MISSING_ASSETS"
           for asset in "${ADDR[@]}"; do
             echo "Uploading $asset to release"
-            curl -# \
+            curl \
               --request POST \
               --header "Authorization: token $GITHUB_TOKEN" \
               --header "Content-Type: $(file -b --mime-type $asset)" \
