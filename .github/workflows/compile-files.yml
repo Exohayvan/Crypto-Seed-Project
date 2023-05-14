@@ -253,14 +253,16 @@ jobs:
   build-raspbian:
     runs-on: ubuntu-latest
     container:
-      image: balenalib/raspberrypi3-debian-python:3.7-buster-build
+      image: balenalib/raspberry-pi-python:3.7-buster-build
 
     steps:
     - name: Checkout repository
       uses: actions/checkout@v2
 
     - name: Print OS information
-      run: cat /etc/*release | grep ^ID
+      run: |
+        echo "ID information:"
+        cat /etc/*release | grep ^ID
 
     - name: Install dependencies
       run: |
@@ -290,4 +292,5 @@ jobs:
         name: ${{ env.VERSION }}
         path: |
           dist/${{ env.FILE_NAME }}.*
+
 
