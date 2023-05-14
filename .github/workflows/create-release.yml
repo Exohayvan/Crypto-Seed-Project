@@ -81,10 +81,8 @@ jobs:
               fi
             done
             missing_assets=${missing_assets%?}
-            echo "MISSING_ASSETS=$missing_assets"
-            echo "MISSING_ASSETS=$(echo "$missing_assets" | base64 -w0)" | tee -a $GITHUB_ENV
+            echo "MISSING_ASSETS=$missing_assets" | tee -a $GITHUB_ENV
           fi
-
 
       - name: Generate Changelog
         run: |
@@ -153,14 +151,12 @@ jobs:
           echo "ENCODED_VERSION=$encoded_version" | tee -a $GITHUB_ENV
 
       - name: Upload missing artifacts to existing release
-        if: ${{ env.MISSING_ASSETS != '' }}
+        if: ${{ env.MISSING_ASSETS != '' && env.MISSING_ASSETS != 'null' }}
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          missing_assets=$(echo "$MISSING_ASSETS" | base64 -d)
-          echo "Uploading missing artifacts to existing release: $missing_assets"
           release_id=$(echo "$existing_release_info" | jq -r '.id')
-          IFS=',' read -ra ADDR <<< "$missing_assets"
+          IFS=',' read -ra ADDR <<< "$MISSING_ASSETS"
           for asset in "${ADDR[@]}"; do
             echo "Uploading $asset to existing release"
             curl \
