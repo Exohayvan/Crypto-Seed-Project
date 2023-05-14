@@ -164,9 +164,10 @@ jobs:
       - name: Install GitHub CLI
         run: |
           curl -fsSL https://github.com/cli/cli/releases/download/v2.3.0/gh_2.3.0_linux_amd64.tar.gz -o gh.tar.gz
-          tar -xzf gh.tar.gz --strip-components=1 -C ./
-          sudo mv gh_*_amd64/bin/gh /usr/local/bin/
-          rm -rf gh_*_amd64 gh.tar.gz
+          tar -xzf gh.tar.gz
+          sudo mv gh_*/bin/gh /usr/local/bin/
+          rm -rf gh_* gh.tar.gz
+
 
       - name: Upload missing artifacts to existing release
         if: ${{ env.MISSING_ASSETS != '' && env.MISSING_ASSETS != 'null' }}
