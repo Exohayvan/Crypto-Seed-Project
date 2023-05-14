@@ -468,25 +468,6 @@ def check_balance(address, proxy, count):
     except KeyError as err:
         return (address, f"Unexpected response format: {err}")
 
-#status/misc functions       
-def discord(title, message, color, field1, value1, field2, value2, field3, value3):
-    from discordwebhook import Discord
-    webhook_url = 'https://discord.com/api/webhooks/1076028464802570281/Pvq3XXe2WvZF-0PLQpCWtZ38AgRSJgP-6KyjL5R2lRV9Prff7r0SogtVJ_arvpLKiDHW'
-    discord = Discord(url=webhook_url)
-    discord.post(
-        embeds=[
-            {
-                "title": title,
-                "description": message,
-                "color": color,
-                "fields": [
-                    {"name": field1, "value": value1, "inline": True},
-                    {"name": field2, "value": value2, "inline": True},
-                    {"name": field3, "value": value3},
-                ],
-            }
-        ],
-    )
 def time_print(*args, **kwargs):
     timestamp = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
     timestamp = f"{Fore.BLUE}{Style.DIM}[{timestamp}]{Style.RESET_ALL}"
@@ -534,5 +515,4 @@ else:
     jversion, address, is_node, userID = data_json()
     print(f"User ID for address '{address}': {userID}")
     update(version)
-    #discord('BTC Seed Mining Network Stats', datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S"), 0xf7931a, 'Nodes Online:', 'N/A', 'Round:', 'N/A', 'Shares:', 'N/A')
     mining(0)
