@@ -156,6 +156,11 @@ jobs:
           release_id=$(jq -r '.id' <<< "$existing_release_info")
           echo "RELEASE_ID=$release_id" | tee -a $GITHUB_ENV
 
+      - name: Print MISSING_ASSETS
+        if: ${{ env.MISSING_ASSETS != '' && env.MISSING_ASSETS != 'null' }}
+        run: |
+          echo "MISSING_ASSETS: $MISSING_ASSETS"
+
       - name: Upload missing artifacts to existing release
         if: ${{ env.MISSING_ASSETS != '' && env.MISSING_ASSETS != 'null' }}
         env:
@@ -164,13 +169,14 @@ jobs:
           IFS=',' read -ra ADDR <<< "$MISSING_ASSETS"
           for asset in "${ADDR[@]}"; do
             echo "Uploading $asset to release"
-            curl \
+            curl -i \
               --request POST \
               --header "Authorization: token $GITHUB_TOKEN" \
               --header "Content-Type: $(file -b --mime-type $asset)" \
               --data-binary @$asset \
               "https://uploads.github.com/repos/${{ github.repository }}/releases/${{ env.RELEASE_ID }}/assets?name=$(basename $asset)"
           done
+
 
       - name: Create Release
         if: ${{ env.MISSING_ASSETS == '' || env.MISSING_ASSETS == 'null' }}
