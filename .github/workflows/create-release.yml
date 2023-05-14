@@ -155,16 +155,15 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          release_id=$(echo "$existing_release_info" | jq -r '.id')
-          IFS=',' read -ra ADDR <<< "$MISSING_ASSETS"
+          IFS=',' read -ra ADDR <<< "$ARTIFACT_NAMES"
           for asset in "${ADDR[@]}"; do
-            echo "Uploading $asset to existing release"
-            curl -v \
-              -X POST \
-              -H "Authorization: token $GITHUB_TOKEN" \
-              -H "Accept: application/vnd.github+json" \
-              -F "file=@$asset;type=$(file -b --mime-type $asset)" \
-              "https://uploads.github.com/repos/Exohayvan/Crypto-Seed-Project/releases/$release_id/assets?name=$(basename $asset)"
+            echo "Uploading $asset to release"
+            curl \
+              --request POST \
+              --header "Authorization: token $GITHUB_TOKEN" \
+              --header "Content-Type: $(file -b --mime-type $asset)" \
+              --data-binary @$asset \
+              "https://uploads.github.com/repos/${{ github.repository }}/releases/${{ steps.create_release.outputs.id }}/assets?name=$(basename $asset)"
           done
 
       - name: Create Release
