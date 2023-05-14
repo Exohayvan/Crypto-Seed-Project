@@ -46,13 +46,13 @@ jobs:
             exit 1
           fi
 
-      - name: Get version and artifact names
-        shell: bash
+      - name: Check for existing release
         run: |
-          VERSION=$(python main.py -v true)
-          ARTIFACT_NAMES=$(ls artifacts/* | tr '\n' ',')
-          echo "VERSION=$VERSION" | tee -a $GITHUB_ENV
-          echo "ARTIFACT_NAMES=$ARTIFACT_NAMES" | tee -a $GITHUB_ENV
+          existing_release_info=$(curl -s --header "Authorization: token ${{ secrets.GITHUB_TOKEN }}" --header "Accept: application/vnd.github+json" "https://api.github.com/repos/Exohayvan/Crypto-Seed-Project/releases/tags/${{ env.RELEASE_TAG }}")
+          if [ -n "$existing_release_info" ]; then
+            echo "Existing release info: $existing_release_info"
+            echo "EXISTING_RELEASE_INFO=$existing_release_info" | tee -a $GITHUB_ENV
+          fi
 
       - name: Check if release exists and artifacts are uploaded
         env:
