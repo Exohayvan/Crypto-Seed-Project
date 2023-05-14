@@ -259,6 +259,9 @@ jobs:
     - name: Checkout repository
       uses: actions/checkout@v2
 
+    - name: Print OS information
+      run: cat /etc/*release | grep ^ID
+
     - name: Install dependencies
       run: |
         python3 -m pip install --upgrade pip
@@ -287,3 +290,4 @@ jobs:
         name: ${{ env.VERSION }}
         path: |
           dist/${{ env.FILE_NAME }}.*
+
