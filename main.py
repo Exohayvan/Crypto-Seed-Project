@@ -500,9 +500,6 @@ if args.test == 'true':
     checkInternetHttplib("www.google.com", 3)
     print('Testing Mode...')
     time_print(Fore.LIGHTRED_EX + Fore.YELLOW +'"platform: ' + os_type + '" ' + '"machine: ' + platform.machine() + '"'+ Fore.WHITE)
-    if os_type == "linux":
-        distribution = platform.linux_distribution()
-        print(distribution)
     mining(0)
 elif args.compile == 'onefile':
     print('Compiling File')
