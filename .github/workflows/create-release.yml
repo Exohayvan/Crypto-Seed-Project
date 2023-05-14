@@ -161,23 +161,25 @@ jobs:
         run: |
           echo "MISSING_ASSETS: $MISSING_ASSETS"
 
+
+      - name: Install GitHub CLI
+        run: |
+          sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-key C99B11DEB97541F0
+          sudo apt-add-repository https://cli.github.com/packages
+          sudo apt update
+          sudo apt install gh
+
       - name: Upload missing artifacts to existing release
         if: ${{ env.MISSING_ASSETS != '' && env.MISSING_ASSETS != 'null' }}
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
+          gh auth login --with-token <<< "$GITHUB_TOKEN"
           IFS=',' read -ra ADDR <<< "$MISSING_ASSETS"
           for asset in "${ADDR[@]}"; do
             echo "Uploading $asset to release"
-            curl -i -L \
-              --request POST \
-              --header "Authorization: token $GITHUB_TOKEN" \
-              -H "Accept: application/vnd.github+json" \
-              -F "file=@$asset" \
-              "https://uploads.github.com/repos/${{ github.repository }}/releases/${{ env.RELEASE_ID }}/assets?name=$(basename $asset)"
+            gh release upload "${{ env.RELEASE_TAG }}" "$asset" --repo "${{ github.repository }}"
           done
-
-
 
       - name: Create Release
         if: ${{ env.MISSING_ASSETS == '' || env.MISSING_ASSETS == 'null' }}
