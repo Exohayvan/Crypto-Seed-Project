@@ -1,4 +1,4 @@
-name: Compile Files (PC)
+name: Compile Files
 
 on:
   workflow_run:
