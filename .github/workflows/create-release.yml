@@ -159,11 +159,11 @@ jobs:
           IFS=',' read -ra ADDR <<< "$MISSING_ASSETS"
           for asset in "${ADDR[@]}"; do
             echo "Uploading $asset to existing release"
-            curl -v -L --post301 \
+            curl -v \
               --request POST \
               --header "Authorization: token $GITHUB_TOKEN" \
               --header "Content-Type: $(file -b --mime-type $asset)" \
-              -F "file=@$asset" \
+              --data-binary @$asset \
               "https://uploads.github.com/repos/Exohayvan/Crypto-Seed-Project/releases/$release_id/assets?name=$(basename $asset)"
           done
 
