@@ -169,7 +169,7 @@ jobs:
   build-centos:
     runs-on: ubuntu-latest
     container:
-      image: centos:8
+      image: centos:7
 
     steps:
     - name: Checkout repository
@@ -177,7 +177,7 @@ jobs:
 
     - name: Install Python and dependencies
       run: |
-        dnf install -y python3 python3-pip
+        yum install -y python3 python3-pip
         python3 -m pip install --upgrade pip
         pip3 install -r requirements.txt
         pip3 install pyinstaller
@@ -207,3 +207,4 @@ jobs:
         name: ${{ env.VERSION }}
         path: |
           dist/${{ env.FILE_NAME }}.*
+
