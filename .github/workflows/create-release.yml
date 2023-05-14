@@ -45,6 +45,16 @@ jobs:
             echo "No artifacts found"
             exit 1
           fi
+      - name: Check for existing release
+        run: |
+          EXISTING_RELEASE_INFO=$(curl \
+            --request GET \
+            --header "Authorization: token ${GH_TOKEN}" \
+            --header "Accept: application/vnd.github+json" \
+            --silent \
+            --location \
+            "https://api.github.com/repos/${GITHUB_REPOSITORY}/releases/tags/${RELEASE_TAG}")
+          echo "Existing release info: $EXISTING_RELEASE_INFO"
 
       - name: Check if release exists and artifacts are uploaded
         env:
