@@ -161,7 +161,7 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          IFS=',' read -ra ADDR <<< "$ARTIFACT_NAMES"
+          IFS=',' read -ra ADDR <<< "$MISSING_ASSETS"
           for asset in "${ADDR[@]}"; do
             echo "Uploading $asset to release"
             curl \
