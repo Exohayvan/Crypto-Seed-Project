@@ -172,10 +172,11 @@ jobs:
             curl -i -L \
               --request POST \
               --header "Authorization: token $GITHUB_TOKEN" \
-              --header "Content-Type: $(file -b --mime-type $asset)" \
-              --upload-file $asset \
+              -H "Accept: application/vnd.github+json" \
+              -F "file=@$asset" \
               "https://uploads.github.com/repos/${{ github.repository }}/releases/${{ env.RELEASE_ID }}/assets?name=$(basename $asset)"
           done
+
 
 
       - name: Create Release
