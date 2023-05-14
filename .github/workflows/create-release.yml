@@ -171,12 +171,9 @@ jobs:
       - name: Upload missing artifacts to existing release
         if: ${{ env.MISSING_ASSETS != '' && env.MISSING_ASSETS != 'null' }}
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          unset GITHUB_TOKEN
-          export GITHUB_TOKEN=$GH_TOKEN
-          gh auth login --with-token <<< "$GITHUB_TOKEN"
+          gh auth login --with-token <<< "${{ env.GH_TOKEN }}"
           IFS=',' read -ra ADDR <<< "$MISSING_ASSETS"
           for asset in "${ADDR[@]}"; do
             echo "Uploading $asset to release"
