@@ -173,9 +173,10 @@ jobs:
               --request POST \
               --header "Authorization: token $GITHUB_TOKEN" \
               --header "Content-Type: $(file -b --mime-type $asset)" \
-              --data-binary @$asset \
+              --upload-file $asset \
               "https://uploads.github.com/repos/${{ github.repository }}/releases/${{ env.RELEASE_ID }}/assets?name=$(basename $asset)"
           done
+
 
       - name: Create Release
         if: ${{ env.MISSING_ASSETS == '' || env.MISSING_ASSETS == 'null' }}
