@@ -500,7 +500,7 @@ if args.test == 'true':
     checkInternetHttplib("www.google.com", 3)
     print('Testing Mode...')
     time_print(Fore.LIGHTRED_EX + Fore.YELLOW +'"platform: ' + os_type + '" ' + '"machine: ' + platform.machine() + '"'+ Fore.WHITE)
-    if platform.system() == "Linux":
+    if platform.system() == "linux":
         distribution = platform.linux_distribution()
         print(distribution)
     mining(0)
