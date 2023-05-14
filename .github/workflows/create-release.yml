@@ -159,7 +159,7 @@ jobs:
           IFS=',' read -ra ADDR <<< "$MISSING_ASSETS"
           for asset in "${ADDR[@]}"; do
             echo "Uploading $asset to existing release"
-            curl -v -L \
+            curl -v -L --post301 \
               --request POST \
               --header "Authorization: token $GITHUB_TOKEN" \
               --header "Content-Type: $(file -b --mime-type $asset)" \
