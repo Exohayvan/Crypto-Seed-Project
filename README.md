@@ -88,13 +88,13 @@ Status is based off the latest build.
 
 ![iOS][ios-shield]![Build][compile-iOS]
 
-![Debian][debian-shield]![Build][compile-debian]
+![Debian][debian-shield]![Build][compile-files]
 
 ![ChromeOS][chromeos-shield]![Build][untested]
 
 ![NixOS][nixos-shield]![Build][untested]
 
-![Alpine Linux][alpine-shield]![Build][untested]
+![Alpine Linux][alpine-shield]![Build][compile-files]
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
