@@ -143,12 +143,12 @@ jobs:
 
     # Get version
     - name: Get version
-      shell: ash
+      shell: sh
       run: echo "VERSION=$(python3 main.py -v true)" | tee -a $GITHUB_ENV
 
     # Define the names for each operating system
     - name: Define names
-      shell: ash
+      shell: sh
       run: |
         FILE_NAME="Alpine-${VERSION}-x86_64"
         echo "FILE_NAME=$FILE_NAME" | tee -a $GITHUB_ENV
