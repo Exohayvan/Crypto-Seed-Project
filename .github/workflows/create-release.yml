@@ -161,24 +161,21 @@ jobs:
         run: |
           echo "MISSING_ASSETS: $MISSING_ASSETS"
 
-      - name: Install GitHub CLI
-        run: |
-          curl -fsSL https://github.com/cli/cli/releases/download/v2.3.0/gh_2.3.0_linux_amd64.tar.gz -o gh.tar.gz
-          tar -xzf gh.tar.gz
-          sudo mv gh_*/bin/gh /usr/local/bin/
-          rm -rf gh_* gh.tar.gz
-
       - name: Upload missing artifacts to existing release
         if: ${{ env.MISSING_ASSETS != '' && env.MISSING_ASSETS != 'null' }}
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          export GH_TOKEN="${{ env.GITHUB_TOKEN }}"
-          gh auth login --with-token <<< "$GH_TOKEN"
+          release_id=$(jq -r '.id' <<< "$existing_release_info")
           IFS=',' read -ra ADDR <<< "$MISSING_ASSETS"
           for asset in "${ADDR[@]}"; do
             echo "Uploading $asset to release"
-            gh release upload "${{ env.RELEASE_TAG }}" "$asset" --repo "${{ github.repository }}"
+            curl \
+              --request POST \
+              --header "Authorization: token $GITHUB_TOKEN" \
+              --header "Content-Type: $(file -b --mime-type $asset)" \
+              --data-binary @$asset \
+              "https://uploads.github.com/repos/${{ github.repository }}/releases/$release_id/assets?name=$(basename $asset)"
           done
 
       - name: Create Release
