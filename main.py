@@ -501,8 +501,8 @@ if args.test == 'true':
     print('Testing Mode...')
     time_print(Fore.LIGHTRED_EX + Fore.YELLOW +'"platform: ' + os_type + '" ' + '"machine: ' + platform.machine() + '"'+ Fore.WHITE)
     if platform.system() == "Linux":
-    distribution = platform.linux_distribution()
-    print(distribution)
+        distribution = platform.linux_distribution()
+        print(distribution)
     mining(0)
 elif args.compile == 'onefile':
     print('Compiling File')
