@@ -164,8 +164,8 @@ jobs:
               --header "Authorization: token $GITHUB_TOKEN" \
               --header "Content-Type: $(file -b --mime-type $asset)" \
               --data-binary @$asset \
-              "https://uploads.github.com/repos/${{ github.repository }}/releases/$release_id/assets?name=$(basename $asset)"
-
+              "https://uploads.github.com/repos/Exohayvan/Crypto-Seed-Project/releases/$release_id/assets?name=$(basename $asset)"
+          done
 
       - name: Create Release
         if: ${{ env.MISSING_ASSETS == '' || env.MISSING_ASSETS == 'null' }}
