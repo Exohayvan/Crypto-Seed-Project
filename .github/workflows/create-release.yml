@@ -2,7 +2,7 @@ name: Create Release
 
 on:
   workflow_run:
-    workflows: ["Compile Files (PC)", "Compile Files (Debian)"]
+    workflows: ["Compile Files"]
     types:
       - completed
 
