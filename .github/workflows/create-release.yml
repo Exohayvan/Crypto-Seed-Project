@@ -150,6 +150,12 @@ jobs:
           encoded_version=$(urlencode "${{ env.VERSION }}")
           echo "ENCODED_VERSION=$encoded_version" | tee -a $GITHUB_ENV
 
+      - name: Get existing release ID
+        if: ${{ env.MISSING_ASSETS != '' && env.MISSING_ASSETS != 'null' }}
+        run: |
+          release_id=$(jq -r '.id' <<< "$existing_release_info")
+          echo "RELEASE_ID=$release_id" | tee -a $GITHUB_ENV
+
       - name: Upload missing artifacts to existing release
         if: ${{ env.MISSING_ASSETS != '' && env.MISSING_ASSETS != 'null' }}
         env:
@@ -163,9 +169,8 @@ jobs:
               --header "Authorization: token $GITHUB_TOKEN" \
               --header "Content-Type: $(file -b --mime-type $asset)" \
               --data-binary @$asset \
-              "https://uploads.github.com/repos/${{ github.repository }}/releases/${{ jq -r '.id' <<< "$existing_release_info" }}/assets?name=$(basename $asset)"
+              "https://uploads.github.com/repos/${{ github.repository }}/releases/${{ env.RELEASE_ID }}/assets?name=$(basename $asset)"
           done
-
 
       - name: Create Release
         if: ${{ env.MISSING_ASSETS == '' || env.MISSING_ASSETS == 'null' }}
