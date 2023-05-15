@@ -254,30 +254,29 @@ jobs:
         path: |
           dist/${{ env.FILE_NAME }}.*
 
-  build-raspbian:
+  build:
     runs-on: ubuntu-latest
-    container:
-      image: balenalib/raspberry-pi-python:3.7-buster-build
-
     steps:
-    - name: Checkout repository
-      uses: actions/checkout@v2
+    - uses: actions/checkout@v2
 
-    - name: Print OS information
-      run: ./print_os_info.sh
+    - name: Set up QEMU
+      uses: pguyot/arm-runner-action@v2
+      with:
+        base_image: balenalib/raspberry-pi-python:3.7-buster-build
+        commands: |
+          python3 -m pip install --upgrade pip
+          pip3 install -r requirements.txt
+          pip3 install pyinstaller
+          echo "VERSION=$(python3 main.py -v true)" >> $GITHUB_ENV
+          FILE_NAME="Raspbian-${VERSION}-armhf"
+          echo "FILE_NAME=$FILE_NAME" >> $GITHUB_ENV
+          pyinstaller --onefile --name $FILE_NAME.bin main.py
+          ./dist/$FILE_NAME.bin -t true
 
-    - name: Install dependencies
-      run: |
-        python3 -m pip install --upgrade pip
-        pip3 install -r requirements.txt
-        pip3 install pyinstaller
-
-    - name: Get version
-      shell: bash
-      run: echo "VERSION=$(python3 main.py -v true)" | tee -a $GITHUB_ENV
-
-    - name: Define names
-      shell: bash
-      run: |
-        FILE_NAME="Raspbian-${VERSION}-armhf"
-        echo "FILE_NAME=$FILE_NAME" | tee -a
+    - name: Upload artifact
+      if: github.ref != 'refs/heads/main'
+      uses: actions/upload-artifact@v2
+      with:
+        name: ${{ env.VERSION }}
+        path: |
+          dist/${{ env.FILE_NAME }}.*
