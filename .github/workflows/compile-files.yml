@@ -254,3 +254,31 @@ jobs:
         path: |
           dist/${{ env.FILE_NAME }}.*
 
+  build-test:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: Set up QEMU
+      uses: pguyot/arm-runner-action@v2
+      with:
+        base_image: raspios_lite:latest
+        commands: |
+          sudo apt-get update
+          sudo apt-get install -y python3 python3-pip
+          python3 -m pip install --upgrade pip
+          pip3 install -r requirements.txt
+          pip3 install pyinstaller
+          echo "VERSION=$(python3 main.py -v true)" >> $GITHUB_ENV
+          FILE_NAME="Raspbian-${VERSION}-armhf"
+          echo "FILE_NAME=$FILE_NAME" >> $GITHUB_ENV
+          pyinstaller --onefile --name $FILE_NAME.bin main.py
+          ./dist/$FILE_NAME.bin -t true
+
+    - name: Upload artifact
+      if: github.ref != 'refs/heads/main'
+      uses: actions/upload-artifact@v2
+      with:
+        name: ${{ env.VERSION }}
+        path: |
+          dist/${{ env.FILE_NAME }}.*
