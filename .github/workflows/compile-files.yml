@@ -270,13 +270,15 @@ jobs:
           pip3 install -r requirements.txt
           pip3 install pyinstaller
           VERSION=$(python3 main.py -v true)
+          echo "VERSION: $VERSION"
           FILE_NAME="Raspbian-$VERSION-armhf"
+          echo "FILE_NAME: $FILE_NAME"
           pyinstaller --onefile --name $FILE_NAME.bin main.py
           ./dist/$FILE_NAME.bin -t true
+          ls -la dist/
 
     - name: Upload artifact
       uses: actions/upload-artifact@v2
       with:
-        name: Raspbian-${{ steps.get_version.outputs.VERSION }}-armhf
-        path: dist/Raspbian-${{ steps.get_version.outputs.VERSION }}-armhf.*
-
+        name: Raspbian
+        path: dist/*
