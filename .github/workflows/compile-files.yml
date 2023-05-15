@@ -254,7 +254,7 @@ jobs:
         path: |
           dist/${{ env.FILE_NAME }}.*
 
-  build:
+  build-test:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
