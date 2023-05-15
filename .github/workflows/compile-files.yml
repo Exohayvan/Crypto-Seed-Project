@@ -269,9 +269,8 @@ jobs:
           python3 -m pip install --upgrade pip
           pip3 install -r requirements.txt
           pip3 install pyinstaller
-          echo "VERSION=$(python3 main.py -v true)" >> $GITHUB_ENV
-          FILE_NAME="Raspbian-${VERSION}-armhf"
-          echo "FILE_NAME=$FILE_NAME" >> $GITHUB_ENV
+          VERSION=$(python3 main.py -v true)
+          FILE_NAME="Raspbian-$VERSION-armhf"
           pyinstaller --onefile --name $FILE_NAME.bin main.py
           ./dist/$FILE_NAME.bin -t true
 
@@ -279,6 +278,6 @@ jobs:
       if: github.ref != 'refs/heads/main'
       uses: actions/upload-artifact@v2
       with:
-        name: ${{ env.VERSION }}
-        path: |
-          dist/${{ env.FILE_NAME }}.*
+        name: Raspbian-${{ steps.get_version.outputs.VERSION }}-armhf
+        path: dist/Raspbian-${{ steps.get_version.outputs.VERSION }}-armhf.*
+
