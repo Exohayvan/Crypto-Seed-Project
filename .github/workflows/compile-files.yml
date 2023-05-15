@@ -84,7 +84,7 @@ jobs:
     name: build (debian-latest)
     runs-on: ubuntu-latest
     container:
-      image: debian:10
+      image: debian:latest
 
     steps:
     - name: Checkout repository
@@ -128,7 +128,7 @@ jobs:
     name: build (alpine-latest)
     runs-on: ubuntu-latest
     container:
-      image: alpine:3.14
+      image: alpine:latest
 
     steps:
     - name: Checkout repository
@@ -172,7 +172,7 @@ jobs:
     name: build (centos-latest)
     runs-on: ubuntu-latest
     container:
-      image: centos:7
+      image: centos:latest
 
     steps:
     - name: Checkout repository
@@ -215,7 +215,7 @@ jobs:
     name: build (fedora-latest)
     runs-on: ubuntu-latest
     container:
-      image: fedora:34
+      image: fedora:latest
 
     steps:
     - name: Checkout repository
