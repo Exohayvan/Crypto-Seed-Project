@@ -254,7 +254,7 @@ jobs:
         path: |
           dist/${{ env.FILE_NAME }}.*
 
-  build-test:
+  build-raspios_lite:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
@@ -275,7 +275,6 @@ jobs:
           ./dist/$FILE_NAME.bin -t true
 
     - name: Upload artifact
-      if: github.ref != 'refs/heads/main'
       uses: actions/upload-artifact@v2
       with:
         name: Raspbian-${{ steps.get_version.outputs.VERSION }}-armhf
