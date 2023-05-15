@@ -81,6 +81,7 @@ jobs:
           dist/${{ env.FILE_NAME }}.*
 
   build-debian:
+    name: build (debian-latest)
     runs-on: ubuntu-latest
     container:
       image: debian:10
@@ -124,6 +125,7 @@ jobs:
           dist/${{ env.FILE_NAME }}.*
 
   build-alpine:
+    name: build (alpine-latest)
     runs-on: ubuntu-latest
     container:
       image: alpine:3.14
@@ -167,6 +169,7 @@ jobs:
           dist/${{ env.FILE_NAME }}.*
 
   build-centos:
+    name: build (centos-latest)
     runs-on: ubuntu-latest
     container:
       image: centos:7
@@ -209,6 +212,7 @@ jobs:
           dist/${{ env.FILE_NAME }}.*
 
   build-fedora:
+    name: build (fedora-latest)
     runs-on: ubuntu-latest
     container:
       image: fedora:34
