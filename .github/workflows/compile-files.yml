@@ -172,7 +172,7 @@ jobs:
     name: build (centos-latest)
     runs-on: ubuntu-latest
     container:
-      image: centos:latest
+      image: centos:stream
 
     steps:
     - name: Checkout repository
