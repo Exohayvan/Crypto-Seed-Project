@@ -210,3 +210,46 @@ jobs:
         name: ${{ env.VERSION }}
         path: |
           dist/${{ env.FILE_NAME }}.*
+
+  build-rhel:
+    name: build (rhel-latest)
+    runs-on: ubuntu-latest
+    container:
+      image: registry.access.redhat.com/ubi8/ubi:latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v2
+
+    - name: Install Python and dependencies
+      run: |
+        dnf install -y python3 python3-pip
+        python3 -m pip install --upgrade pip
+        pip3 install -r requirements.txt
+        pip3 install pyinstaller
+    - run: pip install -r requirements.txt pyinstaller
+
+    # Get version
+    - name: Get version
+      shell: bash
+      run: echo "VERSION=$(python3 main.py -v true)" | tee -a $GITHUB_ENV
+
+    # Define the names for each operating system
+    - name: Define names
+      shell: bash
+      run: |
+        FILE_NAME="RHEL-${VERSION}-x86_64"
+        echo "FILE_NAME=$FILE_NAME" | tee -a $GITHUB_ENV
+
+    - name: Compile Python script
+      run: |
+        pyinstaller --onefile --name $FILE_NAME.bin main.py
+        ./dist/$FILE_NAME.bin -t true
+
+    - name: Upload artifact
+      if: matrix.os != 'windows-latest'
+      uses: actions/upload-artifact@v2
+      with:
+        name: ${{ env.VERSION }}
+        path: |
+          dist/${{ env.FILE_NAME }}.*
