@@ -27,7 +27,7 @@ jobs:
         sudo apt-get install -y python3 python3-pip
         python3 -m pip install --upgrade pip
         pip3 install -r requirements.txt
-        pip3 install pyOpenSSL
+        pip3 install pyOpenSSL SSL
         openssl version -d
         OPENSSL_DIR=$(openssl version -d | awk -F\" '{print $2}')
         OPENSSL_CONF="${OPENSSL_DIR}/openssl.cnf"
