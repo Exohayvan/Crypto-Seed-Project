@@ -106,6 +106,7 @@ Go to latest package and download .zip for OS. Now skip to your OS.
 
 #### Linux
 
+( Linux instructions are out dated, will update in the future )
 1. Unzip package
 2. Open a termial inside the folder location.
 3. Run the program with
