@@ -8,7 +8,7 @@ import argparse #needed for passing arguments
 import json
 import random
 from bitcoinaddress import Wallet #needed for privatekeys
-import hashlib, base64
+import hashlib, base64, ssl
 import math
 from collections import deque
 
