@@ -448,10 +448,10 @@ def mining(proxy):
             if calls > 249:
                 proxy = random_proxy()
                 calls = 0
-        if args.test == 'true':
-            print('Test Completed! Exiting in 5 seconds...')
-            time.sleep(5)
-            sys.exit()
+            if args.test == 'true':
+                print('Test Completed! Exiting in 5 seconds...')
+                time.sleep(5)
+                sys.exit()
 def check_balance(address, proxy, count):
     url = f"https://blockstream.info/api/address/{address}"
     try:
