@@ -3,4 +3,3 @@ colorama>=0.4.4
 discordwebhook
 requests
 urllib3
-python3-openssl
