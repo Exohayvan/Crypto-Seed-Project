@@ -29,6 +29,7 @@ jobs:
         pip3 install -r requirements.txt
         openssl version -d
         OPENSSL_DIR=$(openssl version -d | awk -F\" '{print $2}')
+        echo "OPENSSL_DIR is ${OPENSSL_DIR}"
         grep -q 'openssl_conf\s*=\s*openssl_init' $OPENSSL_CONF || echo 'openssl_conf = openssl_init' | sudo tee -a $OPENSSL_CONF
         grep -q '\[openssl_init\]' $OPENSSL_CONF || echo -e '\n[openssl_init]' | sudo tee -a $OPENSSL_CONF
         grep -q 'legacy_provider\s*=\s*legacy_provider_section' $OPENSSL_CONF || echo 'legacy_provider = legacy_provider_section' | sudo tee -a $OPENSSL_CONF
