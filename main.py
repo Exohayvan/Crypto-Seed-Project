@@ -77,6 +77,40 @@ class AverageCounter:
             averages[interval] = math.floor(average)
         return averages
 
+def ask_run():
+    choices = {
+        "1": "Solo (Not Recommended)",
+        "2": "Worker (Recommended)",
+        "3": "Node (Experienced users only | Not Recommended)"
+    }
+
+    config_file = 'config.json'
+
+    if os.path.isfile(config_file):
+        with open(config_file, 'r') as f:
+            data = json.load(f)
+            if 'run_mode' in data:
+                print("The value already exists in the config file. Skipping user input.")
+                return
+
+    print("How would you like to run this program?")
+    print("(If unsure choose 'Worker')")
+    for key, value in choices.items():
+        print(f"{key}) {value}")
+    
+    user_choice = input("Enter your choice (1, 2, or 3): ")
+
+    while user_choice not in choices:
+        print("Invalid choice. Please choose either 1, 2, or 3.")
+        user_choice = input("Enter your choice (1, 2, or 3): ")
+
+    choice_data = {"run_mode": choices[user_choice]}
+
+    with open(config_file, 'w') as f:
+        json.dump(choice_data, f)
+
+    print("Your choice has been saved to config.json.")
+
 def generate_id(address, id_length=12):
     # Create SHA-512 hash object
     hasher = hashlib.sha512()
@@ -510,6 +544,7 @@ elif args.compile == 'ipa':
 elif args.version == 'true':
     print(version)
 else:
+    ask_run()
     checkInternetHttplib("www.google.com", 3)
     intro()
     jversion, address, is_node, userID = data_json()
