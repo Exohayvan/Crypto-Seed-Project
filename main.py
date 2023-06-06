@@ -11,7 +11,7 @@ from bitcoinaddress import Wallet #needed for privatekeys
 import hashlib, base64, ssl
 import math
 from collections import deque
-from packages.proxy import proxy as random_proxy
+from packages.proxy import random_proxy
 
 msg = "Project for brute forcing private keys, using parallel processing across a network of everyone running the program! For educational use only."
 parser = argparse.ArgumentParser(description = msg)
