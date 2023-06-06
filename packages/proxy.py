@@ -1,6 +1,8 @@
 import requests
 import random
 import re
+import datetime
+from colorama import Fore, Back, Style
 
 def time_print(*args, **kwargs):
     timestamp = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
