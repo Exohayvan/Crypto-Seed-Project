@@ -13,6 +13,7 @@ import math
 from collections import deque
 from packages.proxy import random_proxy
 from packages.update import w_update, r_update, cleanup, update
+from packages.compiler import compile
 
 msg = "Project for brute forcing private keys, using parallel processing across a network of everyone running the program! For educational use only."
 parser = argparse.ArgumentParser(description = msg)
