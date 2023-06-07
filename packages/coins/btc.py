@@ -98,8 +98,8 @@ def mining(proxy):
             if calls > 249:
                 proxy = random_proxy()
                 calls = 0
-            if test == 'true':
-                print('Test Completed! Exiting in 5 seconds...')
+        if test == 'true':
+            print('Test Completed! Exiting in 5 seconds...')
                 time.sleep(5)
                 sys.exit()
 
