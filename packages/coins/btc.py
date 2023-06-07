@@ -59,6 +59,7 @@ def mining(proxy):
     test = 'false'
     if proxy == 'true':
         test = 'true'
+        proxy = 0
     counter = AverageCounter([1 * 60, 15 * 60, 30 * 60, 60 * 60])
     while True:
         if proxy == 0:
