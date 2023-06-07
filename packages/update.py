@@ -1,4 +1,4 @@
-import os
+import os, sys
 import requests
 import time
 import zipfile
@@ -106,4 +106,3 @@ def update(version, os_type):
         time_print("Update is required. Exiting in 5 seconds...")
         time.sleep(5)
         sys.exit()
-
