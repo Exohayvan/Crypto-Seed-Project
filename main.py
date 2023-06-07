@@ -23,7 +23,7 @@ parser.add_argument("-v", "--version", help = "Check Versions. Values: 'true'")
 args = parser.parse_args()
 
 #setting const
-version = 'v0.0.8-alpha'
+version = 'v0.0.6-alpha'
 filename = 'update.temp'
 os_type = sys.platform
 filename = version +'_update.temp'
@@ -373,5 +373,5 @@ else:
     intro()
     jversion, address, is_node, userID = data_json()
     print(f"User ID for address '{address}': {userID}")
-    update(version)
+    update(version, os_type)
     mining(0)
