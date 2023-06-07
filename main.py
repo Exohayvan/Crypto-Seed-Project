@@ -272,7 +272,7 @@ if args.test == 'true':
     checkInternetHttplib("www.google.com", 3)
     print('Testing Mode...')
     time_print(Fore.LIGHTRED_EX + Fore.YELLOW +'"platform: ' + os_type + '" ' + '"machine: ' + platform.machine() + '"'+ Fore.WHITE)
-    mining(args.test)
+    btc_mining(args.test)
 elif args.compile == 'onefile':
     print('Compiling File')
     compile()
@@ -289,3 +289,4 @@ else:
     print(f"User ID for address '{address}': {userID}")
     update(version, os_type)
     btc_mining(0)
+    
