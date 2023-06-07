@@ -1,3 +1,10 @@
+import time
+import random
+from concurrent.futures import ThreadPoolExecutor
+import requests
+from colorama import Fore, Style
+import sys
+
 def mining(proxy):
     counter = AverageCounter([1 * 60, 15 * 60, 30 * 60, 60 * 60])
     while True:
@@ -42,6 +49,7 @@ def mining(proxy):
             print('Test Completed! Exiting in 5 seconds...')
             time.sleep(5)
             sys.exit()
+
 def check_balance(address, proxy, count):
     url = f"https://blockstream.info/api/address/{address}"
     try:
