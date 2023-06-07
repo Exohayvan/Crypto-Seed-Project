@@ -23,7 +23,7 @@ parser.add_argument("-v", "--version", help = "Check Versions. Values: 'true'")
 args = parser.parse_args()
 
 #setting const
-version = 'v0.0.6-alpha'
+version = 'v0.0.9-alpha'
 filename = 'update.temp'
 os_type = sys.platform
 filename = version +'_update.temp'
