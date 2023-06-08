@@ -6,8 +6,9 @@ from colorama import Fore, Style
 import re
 from collections import deque
 import os, sys, time, platform, datetime
-import ecdsa
 import math
+from pycoin.key import Key
+from pycoin.encoding import sec_to_public_pair
 
 class AverageCounter:
     def __init__(self, intervals):
@@ -56,12 +57,11 @@ def time_print(*args, **kwargs):
     print(timestamp, *args, **kwargs)
 
 def generate_dogecoin_address():
-    sk = ecdsa.SigningKey.generate(curve=ecdsa.SECP256k1)
-    vk = sk.get_verifying_key()
-    private_key = sk.to_string().hex()
-    public_key = vk.to_string().hex()
-    address = vk.to_string().hex()
-    return private_key, address
+    secret_exponent = random.getrandbits(256)
+    key = Key(secret_exponent=secret_exponent, netcode="DOGE")
+    public_pair = sec_to_public_pair(key.sec())
+    address = key.address()
+    return key.wif(), address
 
 def mining(proxy):
     test = 'false'
@@ -108,16 +108,19 @@ def mining(proxy):
             sys.exit()
 
 def check_balance(address, proxy, count):
-    url = f"https://dogechain.info/api/v1/address/balance/{address}"
+    url = f"https://api.blockchair.com/dogecoin/dashboards/address/{address}"
     try:
         response = requests.get(url, proxies={'http': proxy})
         response.raise_for_status()
-        balance = float(response.text)
+        data = response.json()
+        balance = data["data"][address]["address"]["balance"]
         count += 0
         return (address, balance, count)
     except requests.exceptions.HTTPError as err:
         return (address, f"HTTP error: {err}")
     except requests.exceptions.RequestException as err:
         return (address, f"Request error: {err}")
+    except KeyError as err:
+        return (address, f"Unexpected response format: {err}")
 
 mining(proxy='true')
