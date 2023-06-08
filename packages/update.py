@@ -2,6 +2,7 @@ import os, sys
 import requests
 import time
 import zipfile
+import glob
 
 def time_print(message):
     print(f"[{time.strftime('%Y-%m-%d %H:%M:%S')}] {message}")
@@ -10,14 +11,13 @@ def w_update(filename, version):
     with open(filename, "w") as f:
         f.write(version)
 
-def r_update(wildfilename):
-    if not os.path.exists('*.temp'):
-        return
+def r_update():
+    temp_files = glob.glob('*.temp')
 
-    with open(wildfilename, 'r') as file:
-        old_version = file.read()
-
-    cleanup(old_version)
+    for file in temp_files:
+        with open(file, 'r') as f:
+            old_version = f.read()
+        cleanup(old_version)
 
 def cleanup(old_version):
     time_print("Cleaning up old version files...")
