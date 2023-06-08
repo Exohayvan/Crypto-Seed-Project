@@ -57,6 +57,7 @@ def time_print(*args, **kwargs):
 
 def mining(proxy):
     test = 'false'
+    count = 0
     if proxy == 'true':
         test = 'true'
         proxy = 0
@@ -68,7 +69,6 @@ def mining(proxy):
             time.sleep(5)
             tbal = 0
             calls = 0
-            count = 0
             index = 0
         else:
             wallet = Wallet()
