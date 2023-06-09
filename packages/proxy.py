@@ -2,6 +2,7 @@ import requests
 import random
 import re
 import datetime
+from colorama import Fore, Back, Style
 from .time_print import time_print
 
 def random_proxy():
