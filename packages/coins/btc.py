@@ -9,6 +9,7 @@ import os, sys, time, platform, datetime
 from bitcoinaddress import Wallet
 import math
 from ..proxy import random_proxy
+from ..time_print import time_print
 
 class AverageCounter:
     def __init__(self, intervals):
@@ -33,11 +34,6 @@ class AverageCounter:
             average = count / (interval / 60)
             averages[interval] = math.floor(average)
         return averages
-
-def time_print(*args, **kwargs):
-    timestamp = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
-    timestamp = f"{Fore.BLUE}{Style.DIM}[{timestamp}]{Style.RESET_ALL}"
-    print(timestamp, *args, **kwargs)
 
 def mining(proxy):
     test = 'false'
