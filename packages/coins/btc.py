@@ -8,7 +8,7 @@ from collections import deque
 import os, sys, time, platform, datetime
 from bitcoinaddress import Wallet
 import math
-from .. import proxy as random_proxy
+from .. import random_proxy
 
 class AverageCounter:
     def __init__(self, intervals):
