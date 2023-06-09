@@ -2,7 +2,7 @@ import requests
 import random
 import re
 import datetime
-from time_print import time_print
+from .time_print import time_print
 
 def random_proxy():
     url = 'https://free-proxy-list.net/'
