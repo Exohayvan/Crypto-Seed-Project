@@ -2,12 +2,7 @@ import requests
 import random
 import re
 import datetime
-from colorama import Fore, Back, Style
-
-def time_print(*args, **kwargs):
-    timestamp = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
-    timestamp = f"{Fore.BLUE}{Style.DIM}[{timestamp}]{Style.RESET_ALL}"
-    print(timestamp, *args, **kwargs)
+from time_print import time_print
 
 def random_proxy():
     url = 'https://free-proxy-list.net/'
