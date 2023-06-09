@@ -11,6 +11,7 @@ import hashlib, base64, ssl
 from packages.proxy import random_proxy
 from packages.update import update
 from packages.coins.btc import mining as btc_mining
+from packages.time_print import time_print
 
 msg = "Project for brute forcing private keys, using parallel processing across a network of everyone running the program! For educational use only."
 parser = argparse.ArgumentParser(description = msg)
@@ -262,10 +263,6 @@ def checkInternetHttplib(url, timeout):
         time_print(exep)
         sys.exit(Fore.LIGHTRED_EX + 'Error, no internet connection')
 
-def time_print(*args, **kwargs):
-    timestamp = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
-    timestamp = f"{Fore.BLUE}{Style.DIM}[{timestamp}]{Style.RESET_ALL}"
-    print(timestamp, *args, **kwargs)
 #runtime order
 
 if args.test == 'true':

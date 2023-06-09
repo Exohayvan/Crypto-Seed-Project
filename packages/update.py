@@ -3,9 +3,8 @@ import requests
 import time
 import zipfile
 import glob
-
-def time_print(message):
-    print(f"[{time.strftime('%Y-%m-%d %H:%M:%S')}] {message}")
+from colorama import Fore, Back, Style
+from .time_print import time_print
 
 def w_update(filename, version):
     with open(filename, "w") as f:
