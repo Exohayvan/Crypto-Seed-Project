@@ -3,7 +3,7 @@ import requests
 import time
 import zipfile
 import glob
-from time_print import time_print
+from .time_print import time_print
 
 def w_update(filename, version):
     with open(filename, "w") as f:
