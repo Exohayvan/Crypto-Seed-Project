@@ -1,3 +1,8 @@
+import sys
+import json
+import os
+import shutil
+
 def compile():
     os_type = sys.platform.capitalize()
     if os_type == "Win32":
