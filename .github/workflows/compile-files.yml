@@ -90,11 +90,6 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v2
   
-      - name: Set ownership and permissions for pip cache directory
-        run: |
-          sudo chown -R $USER:$USER /github/home/.cache/pip
-          sudo chmod -R 777 /github/home/.cache/pip
-  
       # Get version
       - name: Get version
         shell: bash
