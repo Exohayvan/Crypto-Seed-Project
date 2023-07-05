@@ -85,11 +85,11 @@ jobs:
     runs-on: ubuntu-latest
     container:
       image: debian:latest
-
+  
     steps:
     - name: Checkout repository
       uses: actions/checkout@v2
-
+  
     - name: Install Python and dependencies
       run: |
         apt-get update
@@ -97,7 +97,11 @@ jobs:
         python3 -m pip install --upgrade pip
         pip3 install -r requirements.txt
         pip3 install pyinstaller
-    - run: pip install -r requirements.txt pyinstaller
+  
+    - name: Set ownership and permissions for pip cache directory
+      run: |
+        sudo chown -R $USER:$USER /github/home/.cache/pip
+        sudo chmod -R 777 /github/home/.cache/pip
 
     # Get version
     - name: Get version
