@@ -90,14 +90,6 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v2
   
-      - name: Install Python and dependencies
-        run: |
-          apt-get update
-          apt-get install -y python3 python3-pip
-          python3 -m pip install --upgrade pip
-          pip3 install -r requirements.txt
-          pip3 install pyinstaller
-  
       - name: Set ownership and permissions for pip cache directory
         run: |
           sudo chown -R $USER:$USER /github/home/.cache/pip
@@ -123,6 +115,7 @@ jobs:
       - name: Install dependencies in virtual environment
         run: |
           pip install -r requirements.txt
+          pip install pyinstaller
   
       - name: Compile Python script with PyInstaller
         run: |
