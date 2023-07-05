@@ -226,7 +226,7 @@ Project Link: [https://github.com/Exohayvan/Crypto-Seed-Project](https://github.
 [discord-invite]: https://discord.gg/EXFrWNpd
 
 [python-test]: https://img.shields.io/github/actions/workflow/status/exohayvan/crypto-seed-project/python-test.yml?style=for-the-badge
-[compile-files]: https://img.shields.io/github/actions/workflow/status/exohayvan/Crypto-Seed-Project/latest/compile-files.yml?style=for-the-badge&cacheSeconds=900
+[compile-files]: https://img.shields.io/github/actions/workflow/status/exohayvan/Crypto-Seed-Project/compile-files.yml?style=for-the-badge&cacheSeconds=900
 [compile-android]: https://img.shields.io/github/actions/workflow/status/exohayvan/Crypto-Seed-Project/compile-android.yml?style=for-the-badge
 [compile-ios]: https://img.shields.io/github/actions/workflow/status/exohayvan/Crypto-Seed-Project/compile-iOS.yml?style=for-the-badge
 [compile-debian]: https://img.shields.io/github/actions/workflow/status/exohayvan/Crypto-Seed-Project/compile-debian.yml?style=for-the-badge
