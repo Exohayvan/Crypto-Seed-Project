@@ -1,0 +1,5 @@
+
+*.json
+*.pyc
+.github/.DS_Store
+.DS_Store
