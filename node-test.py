@@ -1,6 +1,11 @@
 import libtorrent as lt
 import time
 
+# Function to read the key from the key.pem file
+def read_key_from_file():
+    with open('key.pem', 'r') as file:
+        return file.read().strip()
+
 # Create a session
 ses = lt.session()
 
@@ -11,8 +16,9 @@ ses.add_dht_router("router.utorrent.com", 6881)
 # Start the DHT
 ses.start_dht()
 
-# Use a unique info-hash for your application
-info_hash = lt.sha1_hash(b"your_unique_application_identifier")
+# Read the key from the key.pem file
+key = read_key_from_file()
+info_hash = lt.sha1_hash(key.encode())
 
 # Keep searching for peers with the same info-hash
 while True:
