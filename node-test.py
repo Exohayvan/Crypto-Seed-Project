@@ -1,4 +1,4 @@
-import libtorrent as lt
+import qBittorrent as lt
 import time
 
 # Function to read the key from the key.pem file
