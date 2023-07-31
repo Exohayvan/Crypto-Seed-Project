@@ -191,7 +191,7 @@ Project Link: [https://github.com/Exohayvan/Crypto-Seed-Project](https://github.
 [issues-shield]: https://img.shields.io/github/issues/Exohayvan/crypto-seed-project.svg?style=for-the-badge
 [issues-url]: https://github.com/Exohayvan/crypto-seed-project/issues
 [license-shield]: https://img.shields.io/github/license/Exohayvan/crypto-seed-project.svg?style=for-the-badge
-[license-url]: https://github.com/Exohayvan/Crypto-Seed-Project/blob/main/docs/LICENSE.md
+[license-url]: https://github.com/Exohayvan/Crypto-Seed-Project/blob/main/LICENSE.md
 
 [repo-size]: https://img.shields.io/github/repo-size/exohayvan/Crypto-Seed-Project?style=for-the-badge
 [code-size]: https://img.shields.io/github/languages/code-size/exohayvan/crypto-seed-project?style=for-the-badge
