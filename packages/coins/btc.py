@@ -77,6 +77,8 @@ def mining(proxy):
                         print(f"#{index+1}: Address {result[0]} - {result[1]}")
             if tbal < 0:
                 time_print(Fore.GREEN + 'BTC Found!')
+                print("Press 'ENTER' key to continue...")
+                input()
             if calls > 249:
                 proxy = random_proxy()
                 calls = 0
