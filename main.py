@@ -57,8 +57,8 @@ def intro():
 def ask_run():
     choices = {
         "1": "Solo (Not Recommended)",
-        "2": "Worker (Recommended)",
-        "3": "Node (Experienced users only | Not Recommended)"
+        "2": "Worker (Recommended) THIS IS NOT WORKING RIGHT NOW!",
+        "3": "Node (Experienced users only | Not Recommended) THIS IS NOT WORKING RIGHT NOW!"
     }
 
     config_file = 'config.json'
