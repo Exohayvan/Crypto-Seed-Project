@@ -21,6 +21,7 @@ parser = argparse.ArgumentParser(description = msg)
 parser.add_argument("-t", "--test", help = "Test script. Values: 'true'")
 parser.add_argument("-c", "--compile", help = "Compile script for system. Values: 'onefile' 'ipa'")
 parser.add_argument("-v", "--version", help = "Check Versions. Values: 'true'")
+parser.add_argument("-coin", help = "Choose coin type. Values: 'btc'")
 args = parser.parse_args()
 
 #setting const
