@@ -50,7 +50,7 @@ def mining(proxy):
     counter = AverageCounter([1 * 60, 15 * 60, 30 * 60, 60 * 60])
     while True:
         if proxy == 0:
-            time_print('Starting Address mining...')
+            time_print('Starting Address mining with' + max_workers + 'cores...')
             proxy = random_proxy()
             time.sleep(5)
             tbal = 0
