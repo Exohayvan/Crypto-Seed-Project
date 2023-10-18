@@ -39,6 +39,11 @@ class AverageCounter:
 def mining(proxy):
     test = 'false'
     count = 0
+    
+    #Set workers based on core count
+    num_cores = os.cpu_count() or 4
+    max_workers = 4 * num_cores
+    
     if proxy == 'true':
         test = 'true'
         proxy = 0
@@ -60,7 +65,7 @@ def mining(proxy):
             counter.add_cycle()
             averages = counter.get_averages()
             time_print(f"1-min average: {averages[1 * 60]}, 15-min average: {averages[15 * 60]}, 30-min average: {averages[30 * 60]}, 60-min average: {averages[60 * 60]}")
-            with ThreadPoolExecutor(max_workers=10) as executor:
+            with ThreadPoolExecutor(max_workers=max_workers) as executor:
                 results = []
                 for address in addresses:
                     results.append(executor.submit(check_balance, address, proxy, count))
