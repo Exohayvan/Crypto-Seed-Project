@@ -102,6 +102,6 @@ def update(version, os_type):
             time.sleep(5)
             sys.exit()
     else:
-        time_print("Update is required. Exiting in 5 seconds...")
+        time_print("Update is required: The program cannot run without the latest update due to synchronization requirements with other nodes. Exiting in 5 seconds...")
         time.sleep(5)
         sys.exit()
