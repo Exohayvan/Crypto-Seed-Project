@@ -58,7 +58,7 @@ async def mining(proxy):
     test = 'false'
     count = 0
     num_cores = os.cpu_count() or 1
-    max_workers = 50 * num_cores
+    max_workers = 25 * num_cores
     
     if proxy == 'true':
         test = 'true'
