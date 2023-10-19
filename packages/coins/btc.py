@@ -109,4 +109,4 @@ async def mining(proxy):
         if test == 'true':
             print('Test Completed! Exiting in 5 seconds...')
             await asyncio.sleep(5)
-            sys.exit()
+            await sys.exit()
