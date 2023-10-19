@@ -4,3 +4,4 @@ discordwebhook
 requests
 urllib3
 httpx
+aiohttp
