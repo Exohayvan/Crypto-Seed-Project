@@ -5,3 +5,4 @@ requests
 urllib3
 httpx
 aiohttp
+nest_asyncio
