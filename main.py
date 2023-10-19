@@ -7,6 +7,8 @@ import zipfile, shutil #needed for extracting zip files
 import argparse #needed for passing arguments
 import json
 import random
+import asyncio
+import httpx
 import hashlib, base64, ssl
 from packages.proxy import random_proxy
 from packages.update import update
@@ -14,6 +16,8 @@ from packages.coins.btc import mining as btc_mining
 from packages.time_print import time_print
 from packages.compile import compile
 from packages.checkhttp import checkInternetHttplib
+import nest_asyncio
+nest_asyncio.apply()
 
 msg = "Project for brute forcing private keys, using parallel processing across a network of everyone running the program! For educational use only."
 parser = argparse.ArgumentParser(description = msg)
@@ -185,7 +189,7 @@ else:
     checkInternetHttplib("www.google.com", 3)
     intro()
     jversion, address, is_node, userID = data_json()
-    print(f"User ID for address '{address}': {userID}")
+    print(f"{Fore.LIGHTCYAN_EX}User ID: {userID}")
     update(version, os_type)
-    btc_mining(0)
+    asyncio.run(btc_mining(0))
     
