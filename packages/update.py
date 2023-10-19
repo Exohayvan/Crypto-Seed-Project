@@ -72,12 +72,12 @@ def update(version, os_type):
     latest_tag = latest_release['tag_name']
 
     if latest_tag == version:
-        time_print(f'Version is latest: {version}')
+        time_print(f'{Fore.GREEN}Version is latest: {version}')
         r_update()
         return
 
     print()
-    print(f'Current version is {version}, latest version is {latest_tag}')
+    print(f'Current version is {Fore.YELLOW}{version}{Fore.WHITE}, latest version is {Fore.YELLOW}{latest_tag}')
     update_choice = input("Would you like to update? (y/n)")
 
     if update_choice.lower() == "y":
@@ -102,6 +102,6 @@ def update(version, os_type):
             time.sleep(5)
             sys.exit()
     else:
-        time_print("Update is required: The program cannot run without the latest update due to synchronization requirements with other nodes. Exiting in 5 seconds...")
+        time_print(f"{Fore.RED}Update is required: The program cannot run without the latest update due to synchronization requirements with other nodes. Exiting in 5 seconds...")
         time.sleep(5)
         sys.exit()
