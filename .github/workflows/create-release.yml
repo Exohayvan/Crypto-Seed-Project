@@ -94,7 +94,7 @@ jobs:
           latest_release_tag=$(echo "$latest_release_info" | jq -r '.tag_name // ""')
 
           git fetch --tags --unshallow || true
-          git fetch origin main
+          git fetch origin latest
 
           if [ -z "$latest_release_tag" ]; then
             echo "No previous release found. Generating changelog from the beginning."
