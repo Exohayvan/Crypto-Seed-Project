@@ -1,6 +1,9 @@
 name: Create Release
 
 on:
+  push:
+    branches:
+      - latest
   workflow_run:
     workflows: ["Compile Files"]
     types:
