@@ -21,7 +21,7 @@
   <h3 align="center">Crypto Seed Project</h3>
 
   <p align="center">
-    (Still a work in progress)
+    (Still a work in progress | Project has been set to the side, still check repo though for PRs and issues)
     <br />
     Project for brute forcing private keys, using parallel processing across a network of everyone running the program!
     For educational use only.
